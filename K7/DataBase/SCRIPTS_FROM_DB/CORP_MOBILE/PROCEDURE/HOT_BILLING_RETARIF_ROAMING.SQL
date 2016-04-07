@@ -1,0 +1,101 @@
+
+  CREATE OR REPLACE PROCEDURE "CORP_MOBILE"."HOT_BILLING_RETARIF_ROAMING" (
+  CALL_ROW IN OUT CALL_TYPE) IS
+--#Version=5
+--
+-- 5. 09.12.2014. Крайнов. Расширение временного коридора, исправление опечатки.
+-- 4. 08.12.2014. Крайнов. Поставил проверку на список тарифов с разрешениями на платные входящие.
+-- 3. Уколов. Проверяется метод перетарификации (в пользу оператора или в пользу абонента).
+-- 2. 30.07.14. Уколов. исправил - не работал перерасчет входящих звонков в роуминге.
+--Производит перерасчет сумм за роуминг для перетарификации
+--
+CURSOR C_ROAMING_RETARIF_SERVS(pNAME VARCHAR2) IS
+  SELECT 1
+  FROM ROAMING_RETARIF_SERVS
+  WHERE ROAMING_RETARIF_SERVS.NAME=pNAME;
+--
+CURSOR C_PHONE_OPTIONS(pPHONE_NUMBER VARCHAR2, pSERVICE_DATE DATE) IS
+  SELECT 1
+  FROM 
+    DB_LOADER_ACCOUNT_PHONE_OPTS,
+    TARIFF_OPTIONS
+  WHERE 
+    DB_LOADER_ACCOUNT_PHONE_OPTS.YEAR_MONTH=TO_NUMBER(TO_CHAR(pSERVICE_DATE, 'YYYYMM'))
+    AND DB_LOADER_ACCOUNT_PHONE_OPTS.PHONE_NUMBER=pPHONE_NUMBER
+    AND DB_LOADER_ACCOUNT_PHONE_OPTS.ADDED_FOR_RETARIF = 1 -- Подключена автоматически
+    AND (DB_LOADER_ACCOUNT_PHONE_OPTS.TURN_OFF_DATE IS NULL -- Действует на момент услуги 
+         OR DB_LOADER_ACCOUNT_PHONE_OPTS.TURN_OFF_DATE > pSERVICE_DATE)
+    AND DB_LOADER_ACCOUNT_PHONE_OPTS.OPTION_CODE=TARIFF_OPTIONS.OPTION_CODE
+    AND TARIFF_OPTIONS.IS_ROAMING_DISCOUNT=1;
+--
+CURSOR C_ROAMING_RETARIF_PHONES(pPHONE_NUMBER VARCHAR2, pSERVICE_DATE DATE) IS
+  SELECT ROAMING_RETARIF_METHOD
+  FROM ROAMING_RETARIF_PHONES
+  WHERE ROAMING_RETARIF_PHONES.PHONE_NUMBER=pPHONE_NUMBER
+    AND ROAMING_RETARIF_PHONES.BEGIN_DATE_TIME < pSERVICE_DATE + 4/24  -- Расширение на 4ч.
+    AND (ROAMING_RETARIF_PHONES.END_DATE_TIME IS NULL 
+         OR ROAMING_RETARIF_PHONES.END_DATE_TIME > pSERVICE_DATE - 4/24);  -- Расширение на 4ч.
+--
+CURSOR C_TARIFF_PHONE(pPHONE_NUMBER VARCHAR2) IS
+  SELECT 1
+    FROM DB_LOADER_ACCOUNT_PHONES D
+    WHERE D.YEAR_MONTH = TO_NUMBER(TO_CHAR(SYSDATE, 'YYYYMM'))
+      AND D.PHONE_NUMBER = pPHONE_NUMBER
+      AND D.CELL_PLAN_CODE IN (SELECT CELL_PLAN_CODE 
+                                 FROM BEELINE_TARIFF_CODE
+                                 WHERE PAID_OUTCOMING_ROUMING_CALL = 1);
+--
+  vDUMMY INTEGER;
+  vROAMING_RETARIF_METHOD INTEGER;
+  cROAMING_COST_PER_MINUTE CONSTANT NUMBER := 9.9474; -- Стоимость за 1 минуту
+  vCOST_PER_MINUTE NUMBER;
+  vMINUTES_COUNT INTEGER;
+  vCHECK_RETARIFF INTEGER;
+BEGIN
+  -- Если стоимость услуги = 0
+  IF (CALL_ROW.DUR > 0) THEN
+    vMINUTES_COUNT := TRUNC((CALL_ROW.DUR+59)/60);
+    vCOST_PER_MINUTE := CALL_ROW.CALL_COST / vMINUTES_COUNT;
+    IF (vCOST_PER_MINUTE BETWEEN 0 AND 0.01) 
+      OR (vCOST_PER_MINUTE BETWEEN 1.94 AND 1.95) 
+      OR (vCOST_PER_MINUTE BETWEEN 4.94 AND 4.95) 
+      THEN
+      -- И название есть в справочнике "Услуги в роуминге"
+      OPEN C_ROAMING_RETARIF_SERVS(CALL_ROW.AT_FT_DE);
+      FETCH C_ROAMING_RETARIF_SERVS INTO vDUMMY;
+      IF C_ROAMING_RETARIF_SERVS%FOUND THEN
+        -- И подключена автоматически опция "Роуминг налегке"
+        OPEN C_PHONE_OPTIONS(CALL_ROW.SUBSCR_NO, CALL_ROW.START_TIME);
+        FETCH C_PHONE_OPTIONS INTO vDUMMY;
+        IF C_PHONE_OPTIONS%FOUND THEN 
+          -- И дата/время услуги входит в диапазон в таблице "Номера с ретарификацией в роуминге" (Учесть, что END_DATE_TIME может быть NULL)
+          OPEN C_ROAMING_RETARIF_PHONES(CALL_ROW.SUBSCR_NO, CALL_ROW.START_TIME);
+          FETCH C_ROAMING_RETARIF_PHONES INTO vROAMING_RETARIF_METHOD;
+          IF C_ROAMING_RETARIF_PHONES%FOUND THEN
+            IF vROAMING_RETARIF_METHOD = 1 THEN -- Пересчет сумм разрешен
+              vCHECK_RETARIFF:=0;
+              -- Проверка, если входящие, то есть ли он в списке тарифов платящих за входяшие
+              IF CALL_ROW.SERVICEDIRECTION = 2 THEN
+                OPEN C_TARIFF_PHONE(CALL_ROW.SUBSCR_NO);
+                FETCH C_TARIFF_PHONE INTO vDUMMY;
+                IF C_TARIFF_PHONE%FOUND THEN 
+                  vCHECK_RETARIFF:=1;
+                END IF;
+                CLOSE C_TARIFF_PHONE;
+              ELSE
+                vCHECK_RETARIFF:=1;
+              END IF;
+              IF vCHECK_RETARIFF = 1 THEN
+                -- Пересчитываем по цене 9.94 за 1 минуту
+                CALL_ROW.CALL_COST := ROUND(cROAMING_COST_PER_MINUTE * vMINUTES_COUNT, 2);
+              END IF;
+            END IF;
+          END IF;
+          CLOSE C_ROAMING_RETARIF_PHONES;
+        END IF;
+        CLOSE C_PHONE_OPTIONS;
+      END IF;
+      CLOSE C_ROAMING_RETARIF_SERVS;
+    END IF;
+  END IF;
+END; 

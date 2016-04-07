@@ -1,0 +1,33 @@
+CREATE OR REPLACE PROCEDURE USER_NAMES_INSERT( 
+  p_USER_NAME_ID IN NUMBER, 
+  p_USER_FIO IN VARCHAR2, 
+  p_USER_NAME IN VARCHAR2, 
+  p_PASSWORD IN VARCHAR2, 
+  p_FILIAL_ID IN NUMBER, 
+  p_RIGHTS_TYPE IN NUMBER,
+  p_CHECK_ALLOW_ACCOUNT IN NUMBER,
+  p_ENCRYPT_PWD IN NUMBER,
+  user_oktel in varchar2 default null,
+  p_PASSWORD_OKTEL in varchar2 default null,
+  p_MAX_PROMISED_PAYMENT IN NUMBER default null,
+  p_SHOW_BLOCK_UNBLOCK_BTN in NUMBER default null,
+  p_RIGHT_CANCEL_CONTRACT in NUMBER default null
+  ) IS
+
+--#Version=9
+-- 9. 12.08.2015 Афросин добавил обработку поля RIGHT_CANCEL_CONTRACT( доступ функция расторжения договора.) 
+-- 8. 23.06.2015 Афросин Добавлено поле SHOW_BLOCK_UNBLOCK_BTN
+-- 7. Алексеев Добавлена обработка поля MAX_PROMISED_PAYMENT
+-- 6. Овсянников Добавлена обработка поля PASSWORD_OKTEL
+-- 5. Котенков Добавлена обработка поля ENCRYPT_PWD
+-- 4. Котенков Добавлена обработка поля CHECK_ALLOW_ACCOUNT
+
+begin
+  CHECK_CREATE_USER(p_USER_NAME, p_PASSWORD, NULL, p_RIGHTS_TYPE); 
+  --
+  INSERT INTO USER_NAMES
+    (USER_NAME_ID, USER_FIO, USER_NAME, FILIAL_ID, RIGHTS_TYPE, CHECK_ALLOW_ACCOUNT, ENCRYPT_PWD,user_name_oktel, PASSWORD_OKTEL, MAX_PROMISED_PAYMENT, SHOW_BLOCK_UNBLOCK_BTN, RIGHT_CANCEL_CONTRACT)
+  VALUES
+    (p_USER_NAME_ID, p_USER_FIO, UPPER(TRIM(p_USER_NAME)), p_FILIAL_ID, p_RIGHTS_TYPE, p_CHECK_ALLOW_ACCOUNT, p_ENCRYPT_PWD,user_oktel, p_PASSWORD_OKTEL, p_MAX_PROMISED_PAYMENT, p_SHOW_BLOCK_UNBLOCK_BTN, p_RIGHT_CANCEL_CONTRACT);
+end;
+/

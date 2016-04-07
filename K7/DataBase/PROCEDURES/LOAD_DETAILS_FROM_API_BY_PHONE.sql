@@ -1,0 +1,23 @@
+CREATE OR REPLACE PROCEDURE LOAD_DETAILS_FROM_API_BY_PHONE(
+    pPHONE_NUMBER VARCHAR2
+    ) IS
+    PRAGMA AUTONOMOUS_TRANSACTION;
+	
+    --Version 1
+    --
+    --v1. Алексеев. Добавил процедуру загрузки детализации по конкретному номеру
+
+    vTEXT_ERROR VARCHAR2(500 CHAR);    
+BEGIN 
+    BEGIN
+        BEELINE_API_PCKG.LOAD_DETAIL_FROM_API2(pPHONE_NUMBER);
+    EXCEPTION
+        WHEN OTHERS THEN
+            VTEXT_ERROR:=SUBSTR(SQLERRM, 1, 500);
+        INSERT INTO API_GET_UNBILLED_CALLS_LOG(PHONE_NUMBER, DATE_INSERT, ERROR_TEXT) 
+            VALUES(pPHONE_NUMBER, SYSDATE, VTEXT_ERROR);
+        COMMIT;    
+    END;  
+    COMMIT;                         
+END;
+

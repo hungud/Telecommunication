@@ -1,0 +1,15 @@
+
+  CREATE OR REPLACE FUNCTION "CORP_MOBILE"."RECALC_CHARGE_COST" (
+  PHONE_NUMBER IN VARCHAR2,
+  COSTS IN NUMBER
+  ) RETURN NUMBER IS
+-- Version=1
+--Начисление некоего процента к стоимости 
+--
+-- 1.Крайнов. Создание
+ITOG NUMBER(15,5);
+BEGIN
+--ITOG:=COSTS*1.012;
+  ITOG:=COSTS;
+  RETURN ITOG;
+END; 

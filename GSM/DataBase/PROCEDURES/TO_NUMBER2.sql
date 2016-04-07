@@ -1,0 +1,13 @@
+CREATE OR REPLACE FUNCTION TO_NUMBER2(pSTR VARCHAR2) RETURN NUMBER IS
+  -- version 1
+  --v1. 13.05.2015 Матюнин. - функция обрабывает приведеение строки в дробное число независимо от настроек разделителя    
+BEGIN
+  RETURN TO_NUMBER(pSTR);
+EXCEPTION WHEN INVALID_NUMBER OR VALUE_ERROR THEN
+  BEGIN
+    RETURN TO_NUMBER(REPLACE(pSTR, ',', '.'));
+  EXCEPTION WHEN INVALID_NUMBER OR VALUE_ERROR THEN
+    RETURN TO_NUMBER(REPLACE(pSTR, '.', ','));
+  END;
+END;
+/

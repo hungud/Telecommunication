@@ -1,0 +1,14 @@
+
+  CREATE OR REPLACE FUNCTION "SIM_TRADE"."RECALC_CHARGE_COST" (
+  PHONE_NUMBER IN VARCHAR2,
+  COSTS IN NUMBER
+  ) RETURN NUMBER IS
+-- Version=1
+--Начисление некоего процента к стоимости 
+--
+-- 1.Крайнов. Создание
+ITOG NUMBER(15,5);
+BEGIN
+  ITOG:=COSTS*1;
+  RETURN ITOG;
+END; 

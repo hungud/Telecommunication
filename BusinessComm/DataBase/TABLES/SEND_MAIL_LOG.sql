@@ -1,0 +1,33 @@
+CREATE TABLE SEND_MAIL_LOG
+(
+  VIRTUAL_ACCOUNTS_ID  INTEGER                  NOT NULL,
+  DATE_SEND            DATE                     DEFAULT sysdate               NOT NULL,
+  PERIOD               INTEGER,
+  BODY_MAIL            BLOB,
+  DELIVERED            INTEGER                  DEFAULT 0                     NOT NULL,
+  ERROR                VARCHAR2(500 CHAR),
+  EMEIL                VARCHAR2(100 CHAR)
+)
+LOB (BODY_MAIL) STORE AS (
+  TABLESPACE  TS_LOGS
+  )
+TABLESPACE TS_LOGS
+;
+
+COMMENT ON TABLE  SEND_MAIL_LOG IS 'Лог отправленных писем по эл. почте ';
+COMMENT ON COLUMN SEND_MAIL_LOG.VIRTUAL_ACCOUNTS_ID IS 'Идентификатор виртуального аккаунта, кому отправлено письмо';
+COMMENT ON COLUMN SEND_MAIL_LOG.DATE_SEND IS 'Дата отправки ';
+COMMENT ON COLUMN SEND_MAIL_LOG.PERIOD IS 'За какой период выполнен отчет';
+COMMENT ON COLUMN SEND_MAIL_LOG.BODY_MAIL IS 'Содержание отчета';
+COMMENT ON COLUMN SEND_MAIL_LOG.DELIVERED IS '1 - письмо отправлено успешно,  0 - не отправлено';
+COMMENT ON COLUMN SEND_MAIL_LOG.ERROR IS 'Текст ошибки при отправлении';
+COMMENT ON COLUMN SEND_MAIL_LOG.EMEIL IS 'Адрес, на который отправляется письмо';
+
+CREATE INDEX ID_PERIOD_SEND_MAIL_LOG ON SEND_MAIL_LOG
+(VIRTUAL_ACCOUNTS_ID, PERIOD)
+TABLESPACE TS_LOGS
+;
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON SEND_MAIL_LOG TO BUSINESS_COMM_ROLE;
+
+GRANT SELECT, UPDATE ON SEND_MAIL_LOG TO BUSINESS_COMM_ROLE_RO;

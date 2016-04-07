@@ -1,0 +1,32 @@
+
+  CREATE OR REPLACE PROCEDURE "CORP_MOBILE"."SET_MISSING_PHONE_INACTIVE" IS
+-- Version = 1
+  vDATE_END DATE;
+BEGIN
+  FOR REC IN (SELECT H.*, ROWID
+                FROM DB_LOADER_ACCOUNT_PHONE_HISTS H
+                WHERE H.BEGIN_DATE < SYSDATE
+                  AND H.END_DATE > SYSDATE
+                  AND H.PHONE_IS_ACTIVE = 1
+                  AND NOT EXISTS (SELECT 1
+                                    FROM DB_LOADER_ACCOUNT_PHONES D
+                                    WHERE D.PHONE_NUMBER = H.PHONE_NUMBER
+                                      AND D.YEAR_MONTH = TO_NUMBER(TO_CHAR(SYSDATE,'YYYYMM')))
+                  AND NOT EXISTS (SELECT 1
+                                    FROM DB_LOADER_ACCOUNT_PHONES D
+                                    WHERE D.PHONE_NUMBER = H.PHONE_NUMBER
+                                      AND D.ACCOUNT_ID IN (93,99))
+                  AND TRUNC(SYSDATE -11/24) = TRUNC(SYSDATE)
+             )
+  LOOP
+    vDATE_END:=SYSDATE; 
+    UPDATE DB_LOADER_ACCOUNT_PHONE_HISTS H
+      SET H.END_DATE = vDATE_END - 1/24/60/60
+      WHERE H.ROWID = REC.ROWID;
+    INSERT INTO DB_LOADER_ACCOUNT_PHONE_HISTS(PHONE_NUMBER, BEGIN_DATE, END_DATE, PHONE_IS_ACTIVE, 
+                                              CELL_PLAN_CODE, CONSERVATION, SYSTEM_BLOCK, STATUS_ID)
+      VALUES(REC.PHONE_NUMBER, vDATE_END, REC.END_DATE, 0, 
+             REC.CELL_PLAN_CODE, REC.CONSERVATION, REC.SYSTEM_BLOCK, REC.STATUS_ID );
+    COMMIT;
+  END LOOP;
+END; 

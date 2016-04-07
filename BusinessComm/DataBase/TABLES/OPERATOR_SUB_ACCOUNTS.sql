@@ -1,0 +1,74 @@
+CREATE TABLE OPERATOR_SUB_ACCOUNTS
+(
+  SUB_ACCOUNT_ID           INTEGER                    NOT NULL Primary KEY,
+  SUB_ACCOUNT_NUMBER       VARCHAR2(20 CHAR)          NOT NULL,
+  MOBILE_OPERATOR_NAME_ID Integer,
+  COMMENTS  VARCHAR2(50 CHAR),
+  
+  CONSTRAINT FK_MOBILE_OPERATOR_NAME_ID4
+  FOREIGN KEY (MOBILE_OPERATOR_NAME_ID) 
+  REFERENCES MOBILE_OPERATOR_NAMES (MOBILE_OPERATOR_NAME_ID)
+  ENABLE VALIDATE
+);
+
+COMMENT ON TABLE OPERATOR_SUB_ACCOUNTS IS 'Справочник подсчетов оператора связи';
+
+COMMENT ON COLUMN OPERATOR_SUB_ACCOUNTS.SUB_ACCOUNT_ID IS 'Идентификатор записи (равен номеру счета, если он цифровой, если нет, то берем из сиквиенса)';
+
+COMMENT ON COLUMN OPERATOR_SUB_ACCOUNTS.MOBILE_OPERATOR_NAME_ID IS 'Идентификатор оператора связи из MOBILE_OPERATOR_NAMES.MOBILE_OPERATOR_NAME_ID';
+
+COMMENT ON COLUMN OPERATOR_SUB_ACCOUNTS.SUB_ACCOUNT_NUMBER IS '№ подсчета';
+
+COMMENT ON COLUMN OPERATOR_SUB_ACCOUNTS.COMMENTS IS 'Комментарий';
+
+CREATE SEQUENCE S_SUB_ACCOUNT_ID
+  START WITH 0
+  MAXVALUE 9999999999999999999999999999
+  MINVALUE 0
+  NOCYCLE
+  NOCACHE
+  NOORDER;
+
+GRANT SELECT ON S_SUB_ACCOUNT_ID TO BUSINESS_COMM_ROLE;
+
+CREATE OR REPLACE TRIGGER TI_OPERATOR_SUB_ACCOUNTS
+BEFORE INSERT
+ON OPERATOR_SUB_ACCOUNTS
+REFERENCING NEW AS New OLD AS Old
+FOR EACH ROW
+BEGIN
+  
+  if nvl(trim(:NEW.SUB_ACCOUNT_NUMBER), '-1') <> '-1' then
+    
+    begin
+      if nvl(:NEW.SUB_ACCOUNT_ID, 0) = 0 then
+        :NEW.SUB_ACCOUNT_ID := to_number(trim(:NEW.SUB_ACCOUNT_NUMBER));  
+      end if;
+    exception
+      when Others then
+        :NEW.SUB_ACCOUNT_ID := S_SUB_ACCOUNT_ID.NEXTVAL;  
+    end;
+  else
+    :NEW.SUB_ACCOUNT_ID := S_SUB_ACCOUNT_ID.NEXTVAL;  
+  end if;
+   
+end;
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON OPERATOR_SUB_ACCOUNTS TO BUSINESS_COMM_ROLE;
+
+GRANT SELECT, UPDATE ON OPERATOR_SUB_ACCOUNTS TO BUSINESS_COMM_ROLE_RO;
+
+CREATE INDEX I_OPERATOR_SUB_ACC_ID_NAME ON OPERATOR_SUB_ACCOUNTS
+(SUB_ACCOUNT_ID, SUB_ACCOUNT_NUMBER);
+/
+
+-- добавляем foreign key - связку на filials.filial_id, удаляем колонку mobile_operator_name_id
+alter table OPERATOR_SUB_ACCOUNTS add filial_id number;
+comment on column OPERATOR_SUB_ACCOUNTS.filial_id is 'Филиал оператора FILIALS.FILIAL_ID';
+update OPERATOR_SUB_ACCOUNTS a set a.filial_id = decode(a.mobile_operator_name_id,31,81,a.mobile_operator_name_id);
+alter table OPERATOR_SUB_ACCOUNTS modify filial_id not null;
+alter table OPERATOR_SUB_ACCOUNTS
+  add constraint FK_FILIAL_ID4 foreign key (FILIAL_ID)
+  references filials (FILIAL_ID);
+alter table OPERATOR_SUB_ACCOUNTS drop constraint FK_MOBILE_OPERATOR_NAME_ID4;    
+alter table OPERATOR_SUB_ACCOUNTS drop column mobile_operator_name_id;  

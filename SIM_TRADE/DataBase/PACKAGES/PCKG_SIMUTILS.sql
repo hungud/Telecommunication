@@ -1,0 +1,251 @@
+CREATE OR REPLACE PACKAGE PCKG_SIMUTILS IS
+--
+--Version=1
+--
+-- 1 22.09.2011 Крайнов. Доделан на соответствие схеме
+--
+  PROCEDURE LOAD_OLD_XLS(
+    vAGENT IN VARCHAR2,
+    vOPERATORID IN INTEGER,
+    vSUBAGENT IN VARCHAR2,
+    vACCOUNT IN VARCHAR2,
+    vCELLNUMBER IN VARCHAR2,
+    vSIMNUMBER IN VARCHAR2,
+    vTARIFFID IN VARCHAR2,
+    vDATEINIT IN DATE,
+    vDATEACTIV IN DATE,
+    vDATETECHACTIV IN DATE,
+    vDATEMOVE IN DATE
+    );
+
+  PROCEDURE SET_SIM_STATUS(
+    vSIMID IN INTEGER,
+    vSTATUSID IN INTEGER,
+    vDATE IN DATE,
+    vDESCR IN VARCHAR2
+    );
+
+  PROCEDURE SET_SIM_STATUS2(
+    vCELLNUMBER IN VARCHAR2,
+    vSTATUSID IN INTEGER,
+    vDATE IN DATE,
+    vDESCR IN VARCHAR2
+    );
+    
+  function Get_Sim_Opts(
+    vSimID in Varchar2
+    ) return Varchar2;   
+     
+END PCKG_SIMUTILS;
+/
+
+CREATE OR REPLACE PACKAGE BODY PCKG_SIMUTILS IS
+
+--
+--
+  PROCEDURE LOAD_OLD_XLS(
+    vAGENT IN VARCHAR2,
+    vOPERATORID IN INTEGER,
+    vSUBAGENT IN VARCHAR2,
+    vACCOUNT IN VARCHAR2,
+    vCELLNUMBER IN VARCHAR2,
+    vSIMNUMBER IN VARCHAR2,
+    vTARIFFID IN VARCHAR2,
+    vDATEINIT IN DATE,
+    vDATEACTIV IN DATE,
+    vDATETECHACTIV IN DATE,
+    vDATEMOVE IN DATE
+    ) IS
+-- 
+  AGENTID    AGENTS.AGENT_ID%TYPE;   
+  SUBAGENTID SUB_AGENTS.SUB_AGENT_ID%TYPE;
+  TARIFFID   TARIFFS.TARIFF_ID%TYPE;
+  OPERATORID OPERATORS.OPERATOR_ID%TYPE;
+  SIMID      SIM.SIM_ID%TYPE;
+--  
+  BEGIN
+    IF NOT VSUBAGENT IS NULL THEN
+      BEGIN
+        SELECT SUB_AGENT_ID
+          INTO SUBAGENTID
+          FROM SUB_AGENTS S
+          WHERE UPPER(REPLACE(S.SUB_AGENT_NAME, ' ')) = UPPER(REPLACE(VSUBAGENT, ' '))
+            AND ROWNUM = 1;
+      EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+          INSERT INTO SUB_AGENTS
+            (SUB_AGENT_NAME)
+          VALUES
+            (VSUBAGENT)
+          RETURNING SUB_AGENT_ID INTO SUBAGENTID;
+      END;
+    END IF;
+  
+    TARIFFID:=vTARIFFID;
+  
+    IF NOT vTARIFFID IS NULL THEN
+      BEGIN
+        SELECT OPERATOR_ID
+          INTO OPERATORID
+          FROM TARIFFS T
+          WHERE T.TARIFF_ID=vTARIFFID
+            AND ROWNUM = 1;
+      EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+          OPERATORID := VOPERATORID;
+      END;
+    END IF;
+  
+    IF NOT vAGENT IS NULL THEN
+      BEGIN
+        SELECT A.AGENT_ID
+          INTO AGENTID
+          FROM AGENTS A
+          WHERE UPPER(REPLACE(A.AGENT_NAME, ' ')) =
+                UPPER(REPLACE(vAGENT, ' '))
+            AND ROWNUM = 1;
+      EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+          AGENTID:=1;
+      END;
+    END IF;
+  
+    BEGIN
+      INSERT INTO SIM
+        (AGENT_ID,
+         SUBAGENT_ID,
+         OPERATOR_ID,
+         DATE_INIT,
+         STATUS_ID,
+         DATE_MOVE,
+         ACCOUNT,
+         CELL_NUMBER,
+         TARIFF_ID,
+         SIM_NUMBER,
+         ABON_PAY,
+         DATE_ACTIVATE,
+         DATE_ERASE,
+         BALANCE,
+         DATE_BALANCE,
+         DATE_LAST_ACTIVITY,
+         SERVICEGID_STATUS,
+         CHECKED)
+      VALUES
+        (AGENTID,
+         SUBAGENTID,
+         OPERATORID,
+         VDATEINIT,
+         1,
+         VDATEMOVE,
+         VACCOUNT,
+         VCELLNUMBER,
+         TARIFFID,
+         VSIMNUMBER,
+         NULL,
+         VDATEACTIV,
+         NULL,
+         NULL,
+         NULL,
+         NULL,
+         NULL,
+         1)
+      RETURNING SIM_ID INTO SIMID;
+    
+    EXCEPTION
+      WHEN DUP_VAL_ON_INDEX THEN
+        SELECT Q.SIM_ID
+          INTO SIMID
+          FROM SIM Q
+         WHERE Q.CELL_NUMBER = VCELLNUMBER;
+    END;
+  
+    IF NOT VDATEACTIV IS NULL THEN
+      BEGIN
+        SET_SIM_STATUS(SIMID, 3, VDATEACTIV, NULL);
+      EXCEPTION
+        WHEN DUP_VAL_ON_INDEX THEN
+          NULL;
+      END;
+    END IF;
+  
+    IF NOT VDATEMOVE IS NULL THEN
+      BEGIN
+        SET_SIM_STATUS(SIMID, 7, VDATEMOVE, NULL);
+      EXCEPTION
+        WHEN DUP_VAL_ON_INDEX THEN
+          NULL;
+      END;
+    END IF;
+  
+    IF NOT VDATEINIT IS NULL THEN
+      BEGIN
+        SET_SIM_STATUS(SIMID, 1, VDATEINIT, NULL);
+      EXCEPTION
+        WHEN DUP_VAL_ON_INDEX THEN
+          NULL;
+      END;
+    END IF;
+  
+    COMMIT;
+  END LOAD_OLD_XLS;
+--
+--
+  PROCEDURE SET_SIM_STATUS(
+    vSIMID IN INTEGER,
+    vSTATUSID IN INTEGER,
+    vDATE IN DATE,
+    vDESCR IN VARCHAR2
+    ) IS
+--    
+  BEGIN
+    insert into sim_status_history (SIM_ID, SIM_STATUS_ID, DATE_STATUS, DESCR)
+      values (vSIMID, vSTATUSID, vDATE, vDESCR);
+    UPDATE SIM S SET S.STATUS_ID = VSTATUSID WHERE S.SIM_ID = VSIMID;
+    IF VSTATUSID = 1 THEN
+      UPDATE SIM S SET S.DATE_INIT = VDATE WHERE S.SIM_ID = VSIMID;
+    ELSIF VSTATUSID = 2 THEN
+      UPDATE SIM S SET S.DATE_ERASE = VDATE WHERE S.SIM_ID = VSIMID;
+    ELSIF VSTATUSID = 3 THEN
+      UPDATE SIM S SET S.DATE_ACTIVATE = VDATE WHERE S.SIM_ID = VSIMID;
+    ELSIF VSTATUSID = 7 THEN
+      UPDATE SIM S SET S.DATE_MOVE = VDATE WHERE S.SIM_ID = VSIMID;
+    ELSIF VSTATUSID = 8 THEN 
+      UPDATE SIM S SET S.DATE_MOVE = NULL WHERE S.SIM_ID = VSIMID;
+    END IF;
+    COMMIT;
+  END SET_SIM_STATUS;
+--
+--
+  PROCEDURE SET_SIM_STATUS2(
+    VCELLNUMBER IN VARCHAR2,
+    VSTATUSID IN INTEGER,
+    VDATE IN DATE,
+    VDESCR IN VARCHAR2
+    ) IS
+--    
+    VSIMID SIM.SIM_ID%TYPE;
+  BEGIN
+    SELECT S.SIM_ID
+      INTO VSIMID
+      FROM SIM S
+     WHERE S.CELL_NUMBER = VCELLNUMBER;
+    SET_SIM_STATUS(VSIMID, VSTATUSID, VDATE, VDESCR);
+  END;
+
+  function Get_Sim_Opts(vSimID in Varchar2) return Varchar2 is
+--  
+  s Varchar2(1000) := ',';
+  begin
+    for c in (
+      select o.option_code
+        from SIM_CURRENT_PHONE_OPTIONS o, sim s
+        where s.sim_id = vSimID
+          and o.phone_number = s.cell_number)
+    loop
+      s := s || c.option_code || ',';
+    end loop;
+    return s;
+  end;
+  
+END PCKG_SIMUTILS;
+/

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.230,C:\Work\Lontana\trunk\SIM-Journal\Unit1.dfm=C:\Work\Lontana\trunk\SIM-Journal\CorpPortalJournal.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.154,C:\Work\Lontana\trunk\SIM-Journal\Unit1.dfm=C:\Work\Lontana\trunk\SIM-Journal\CorpPortal.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.458,C:\Work\Lontana\trunk\SIM-Journal\SettingsPanel.dfm=C:\Work\Lontana\trunk\SIM-Journal\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

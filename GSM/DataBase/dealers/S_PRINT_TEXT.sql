@@ -1,0 +1,12 @@
+CREATE OR REPLACE FUNCTION S_PRINT_TEXT(
+  pVALUE IN CLOB
+  ) RETURN CLOB IS
+--#Version=1
+BEGIN
+  RETURN
+    REPLACE(
+      HTF.ESCAPE_SC(pVALUE),
+      CHR(10), CHR(10)||'<br />'
+      );
+END;
+/

@@ -1,0 +1,21 @@
+CREATE TABLE SEND_MAIL_ALARM_LOAD_LOGS
+(
+--
+--Version=1
+--
+--v.1 22.05.2015 Афросин - Создал таблицу для логирования отправленных писем об ошибке авторизации в личный кабинет Билайна
+--
+  YEAR_MONTH INTEGER,
+  DATE_CREATED DATE,
+  MESSAGE_TITLE VARCHAR2(200),
+  MAIL_TEXT CLOB,
+  MAIL_RECIPIENT VARCHAR2(100)
+)
+;
+
+COMMENT ON TABLE SEND_MAIL_ALARM_LOAD_LOGS IS 'Лог отправленных email с ошибками авторизации в личый кабинет билайна';
+COMMENT ON COLUMN SEND_MAIL_ALARM_LOAD_LOGS.YEAR_MONTH IS 'ДАТА И МЕСЯЦ';
+COMMENT ON COLUMN SEND_MAIL_ALARM_LOAD_LOGS.DATE_CREATED IS 'ДАТА СОЗДАНИЯ';
+COMMENT ON COLUMN SEND_MAIL_ALARM_LOAD_LOGS.MESSAGE_TITLE IS 'ТЕМА ПИСЬМА';
+COMMENT ON COLUMN SEND_MAIL_ALARM_LOAD_LOGS.MAIL_TEXT IS 'ТЕЛО ПИСЬМА';
+COMMENT ON COLUMN SEND_MAIL_ALARM_LOAD_LOGS.MAIL_RECIPIENT IS 'ПОЛУЧАТЕЛИ ПИСЬМА';

@@ -1,0 +1,86 @@
+
+  CREATE OR REPLACE TRIGGER "CORP_MOBILE"."TIU_CONTRACT_CANCELS" 
+--#Version=4
+--25.09.2015 Соколов. Добавил проверку истории.
+--31.08.2015 Соколов. Доработал закрытие истории и добавил блокирование номера. 
+--13.08.2015 Соколов. Добавил закрытие истории при расторжение договора, чтобы не считалась обонка.
+  BEFORE INSERT OR UPDATE ON CONTRACT_CANCELS FOR EACH ROW
+DECLARE
+  CURSOR D(CON_ID IN INTEGER) IS
+    SELECT *
+      FROM CONTRACTS C
+      WHERE C.CONTRACT_ID=CON_ID;
+  CURSOR H(pPHONE IN VARCHAR2) IS
+    SELECT *
+      FROM DB_LOADER_ACCOUNT_PHONE_HISTS P
+      WHERE P.PHONE_NUMBER=pPHONE;
+  vDUMMY_H H%ROWTYPE;   
+  vDUMMY_D D%ROWTYPE;
+  vHISTS   DB_LOADER_ACCOUNT_PHONE_HISTS%ROWTYPE;  
+BEGIN
+  
+  IF INSERTING THEN
+    IF NVL(:NEW.CONTRACT_CANCEL_ID, 0) = 0 then
+      :NEW.CONTRACT_CANCEL_ID := NEW_CONTRACT_CANCEL_ID;
+    END IF;
+    
+    :NEW.USER_CREATED := USER;
+    :NEW.DATE_CREATED := SYSDATE;
+    
+    OPEN D(:NEW.CONTRACT_ID);  
+    FETCH D INTO vDUMMY_D;
+    IF D%FOUND THEN
+      OPEN H(vDUMMY_D.PHONE_NUMBER_FEDERAL);  
+      FETCH H INTO vDUMMY_H; 
+      IF H%FOUND THEN
+        SELECT * INTO vHISTS
+         FROM DB_LOADER_ACCOUNT_PHONE_HISTS
+          WHERE END_DATE=TO_DATE('01.01.3000','DD.MM.YYYY') 
+            AND PHONE_NUMBER = vDUMMY_D.PHONE_NUMBER_FEDERAL;
+        
+       -- Блокируем номер.                         
+       UPDATE DB_LOADER_ACCOUNT_PHONES DB
+         SET 
+         PHONE_IS_ACTIVE  = 0
+       WHERE
+         DB.PHONE_NUMBER = vDUMMY_D.PHONE_NUMBER_FEDERAL
+         AND DB.YEAR_MONTH = TO_CHAR(:NEW.CONTRACT_CANCEL_DATE,'YYYYMM');
+       -- AND NOT EXISTS (SELECT 1 FROM BLOCK_NO_CONTRACTS_SETTINGS BS WHERE BS.LIST_NO_BLOCK like '%'||vDUMMY_D.PHONE_NUMBER_FEDERAL||'%')
+       -- AND NOT EXISTS (SELECT 1 FROM PHONE_NUMBER_BLOCK_DENIED PD WHERE PD.PHONE_NUMBER = vDUMMY_D.PHONE_NUMBER_FEDERAL);    
+        
+       UPDATE DB_LOADER_ACCOUNT_PHONE_HISTS PH   -- Закрытие истории
+        SET
+        PH.END_DATE = :NEW.CONTRACT_CANCEL_DATE
+       WHERE
+        PH.END_DATE=TO_DATE('01.01.3000','DD.MM.YYYY') 
+        AND PH.PHONE_NUMBER = vDUMMY_D.PHONE_NUMBER_FEDERAL;
+      
+      -- Вставляем запись с активностью 0 и с датой закрытия договора, чтобы не обрезалась старая история 
+       INSERT INTO DB_LOADER_ACCOUNT_PHONE_HISTS(PHONE_NUMBER, BEGIN_DATE, END_DATE, PHONE_IS_ACTIVE,  
+                                                 CELL_PLAN_CODE, CONSERVATION, SYSTEM_BLOCK, STATUS_ID)
+         VALUES(vDUMMY_D.PHONE_NUMBER_FEDERAL, :NEW.CONTRACT_CANCEL_DATE + 1/24/60/60, :NEW.CONTRACT_CANCEL_DATE + 1/24/60/12, 0,  --(1/24/60/12) плюс 5 секунд 
+                vHISTS.CELL_PLAN_CODE, vHISTS.CONSERVATION, vHISTS.SYSTEM_BLOCK, vHISTS.STATUS_ID);   
+ 
+        
+      -- Удаляем строку которую добавил тригер таблицы DB_LOADER_ACCOUNT_PHONES(Эта редиска открывает занова историю))                 
+      /*  DELETE FROM DB_LOADER_ACCOUNT_PHONE_HISTS
+      WHERE END_DATE=TO_DATE('01.01.3000','DD.MM.YYYY') 
+            AND PHONE_NUMBER = vDUMMY_D.PHONE_NUMBER_FEDERAL;         
+     */ 
+      END IF;
+      CLOSE H;        
+    END IF; 
+    CLOSE D;
+   -----                              
+  END IF;
+  :NEW.USER_LAST_UPDATED := USER;
+  :NEW.DATE_LAST_UPDATED := SYSDATE;
+  
+  UPDATE
+    CONTRACTS CT
+  SET
+    CURR_TARIFF_ID = -1
+  WHERE
+    CT.CONTRACT_ID=:NEW.CONTRACT_ID;
+END;
+ALTER TRIGGER "CORP_MOBILE"."TIU_CONTRACT_CANCELS" ENABLE

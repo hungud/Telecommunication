@@ -1,0 +1,1 @@
+..\cmd\run.bat CONT_REG_FUNCTIONS_.SQL %1 %2 %3 %4

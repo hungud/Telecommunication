@@ -1,0 +1,33 @@
+CREATE OR REPLACE FUNCTION S_PHONE_RESERVED_LETTER_SEND(
+  pPHONE_NUMBER VARCHAR2, -- номер телефона
+  pUSER_ID integer,
+  pDATELU date,
+  pOUT_ERROR OUT VARCHAR2
+) RETURN VARCHAR2 AS
+
+  vTEXT VARCHAR2(32000 CHAR);
+  vCAPTION VARCHAR2(32000 CHAR);
+
+BEGIN
+  vTEXT := S_PHONE_RESERVED_GET_TEXT(pPHONE_NUMBER, pUSER_ID,pDATELU, vCAPTION, pOUT_ERROR);
+  IF pOUT_ERROR IS NULL THEN
+    FOR vSMTP IN (SELECT * FROM D_OPTIONS_SIM_CARD_ORDER) LOOP
+
+      S_UTILS_MAIL.SENDMAIL(
+        vSMTP.MAIL_SERVER_ADDRESS,
+        vSMTP.EMAIL_PORT,
+        vSMTP.EMAIL_FROM,
+        vSMTP.EMAIL_FROM_PASSWORD,
+        vSMTP.EMAIL_TO,
+        vCAPTION,
+        vTEXT);
+    END LOOP;
+  END IF;
+  RETURN '1';
+EXCEPTION
+  WHEN OTHERS THEN
+    pOUT_ERROR := 'Ошибка при отправке письма о бронировании номера '||pPHONE_NUMBER||'.'||CHR(13)||CHR(10)||
+      dbms_utility.format_error_stack ||CHR(13)||CHR(10)||
+      dbms_utility.format_error_backtrace;
+    RETURN NULL;
+END;

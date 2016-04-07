@@ -1,0 +1,32 @@
+--#IF GETVERSION("SAVE_BILL_FOR_CLIENT") < 1 THEN
+CREATE OR REPLACE PROCEDURE SAVE_BILL_FOR_CLIENT(
+  pYEAR_MONTH IN INTEGER
+  ) IS
+--#Version=1  
+-- v1 —охранение(фиксаци€) счетов по мес€ц
+begin
+  for rec in(
+    select *
+      from v_bill_for_client v
+      where v.YEAR_MONTH<=pYEAR_MONTH
+        and not exists(SELECT 1
+                          FROM BILL_FOR_CLIENTS_SAVED BS
+                          WHERE BS.ACCOUNT_ID = V.ACCOUNT_ID
+                            AND BS.YEAR_MONTH = V.YEAR_MONTH
+                            AND BS.PHONE_NUMBER = V.PHONE_NUMBER)  )
+  loop
+    insert into BILL_FOR_CLIENTS_SAVED(
+        ACCOUNT_ID, YEAR_MONTH, PHONE_NUMBER, DATE_BEGIN, DATE_END, DISCOUNT_VALUE, 
+        SUBSCRIBER_PAYMENT_COEF, OPTION_CORRECT_SUM, BILL_SUM_ORIGIN, BILL_SUM, 
+        SUBSCRIBER_PAYMENT_NEW, SUBSCRIBER_PAYMENT_OLD, TARIFF_ID, 
+        SUBSCRIBER_PAYMENT_ADD_OLD, SUBSCRIBER_PAYMENT_ADD_VOZVRAT, BILL_CHECKED)
+      values(
+        rec.ACCOUNT_ID, rec.YEAR_MONTH, rec.PHONE_NUMBER, rec.DATE_BEGIN, rec.DATE_END, rec.DISCOUNT_VALUE, 
+        rec.SUBSCRIBER_PAYMENT_COEF, rec.OPTION_CORRECT_SUM, rec.BILL_SUM_ORIGIN, rec.BILL_SUM, 
+        rec.SUBSCRIBER_PAYMENT_NEW, rec.SUBSCRIBER_PAYMENT_OLD, nvl(rec.TARIFF_ID, 0), 
+        rec.SUBSCRIBER_PAYMENT_ADD_OLD, rec.SUBSCRIBER_PAYMENT_ADD_VOZVRAT, rec.BILL_CHECKED);
+  end loop;
+  commit;
+end;
+
+--#end if

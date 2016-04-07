@@ -1,0 +1,2 @@
+
+  CREATE OR REPLACE TYPE "SIM_TRADE"."PHONE_LIST_ARRAYT" is object (p varchar2(4000))

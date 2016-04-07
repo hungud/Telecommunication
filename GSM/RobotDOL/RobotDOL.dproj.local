@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.075,C:\Users\TARIFER\Documents\RAD Studio\RobotDOL\RobotDOL.dproj=C:\Users\TARIFER\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.632,C:\WORK\Lontana\trunk\RobotDOL\PreProcessorExcelFull.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.379,=C:\WORK\Lontana\trunk\RobotDOL\PreProcessorExcelFull.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.163,=C:\WORK\Lontana\trunk\RobotDOL\DOLBeline.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.636,=C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\TariferPreProcessor_TLB.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.417,C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\TariferPreProcessor_TLB.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.733,=C:\WORK\Lontana\trunk\RobotDOL\BufStr.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.886,C:\WORK\Lontana\trunk\RobotDOL\PreProcessorExcelFull.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.420,C:\WORK\Lontana\trunk\RobotDOL\MTExcel2TSV.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.952,=C:\WORK\Lontana\trunk\RobotDOL\MTExcel2TSV.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.592,C:\WORK\Lontana\trunk\RobotDOL\MTExcel2TSV.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.790,=C:\WORK\Lontana\trunk\RobotDOL\MTExcel2TSV.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.569,=C:\WORK\Lontana\trunk\RobotDOL\PreProcessorExcelFull.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.586,=C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\PreProcessPDFImpl.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.423,C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\PreProcessPDFImpl.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.736,C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\PreProcessor.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.270,=C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\PreProcessor.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.546,=C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\PreProcessExcelFull.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.566,=C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\PreProcessor.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.604,=C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\ProProcessor.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.443,C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\ProProcessor.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.405,C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\PreProcessor.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.386,C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\PreProcessExcelFull.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.015,=C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\TariferPreProcessor_TLB.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.489,=C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\TariferPreProcessor_TLB.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.462,C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\TariferPreProcessor_TLB.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.756,C:\WORK\Lontana\trunk\RobotDOL\TariferPreProcessor\TariferPreProcessor_TLB.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.530,C:\Users\TARIFER\Documents\RAD Studio\RobotDOL\Main.pas=C:\Users\TARIFER\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.530,C:\Users\TARIFER\Documents\RAD Studio\RobotDOL\Main.dfm=C:\Users\TARIFER\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.958,=C:\Users\TARIFER\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

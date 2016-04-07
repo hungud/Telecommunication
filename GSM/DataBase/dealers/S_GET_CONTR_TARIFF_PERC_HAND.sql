@@ -1,0 +1,17 @@
+CREATE OR REPLACE FUNCTION S_GET_CONTR_TARIFF_PERC_HAND(pTARIFF_ID INTEGER, pUSER_ID INTEGER, pDATE DATE) RETURN NUMBER IS
+    CURSOR CUR IS
+       SELECT P_1C.PERCENT PERCENT_1C
+         FROM D_CONTR_TARIFF_PERC_HANDS P_1C
+        WHERE (pTARIFF_ID = P_1C.TARIFF_ID)
+          AND (pUSER_ID = P_1C.USER_ID)  
+          AND ((P_1C.PERIOD IS NULL) OR (P_1C.PERIOD <= pDATE)) -- проуент внесенный вручную до указанной даты
+        ORDER BY P_1C.PERIOD DESC NULLS LAST -- последний установленный процент
+         ;
+    vRES NUMBER;
+  BEGIN
+    OPEN CUR;
+    FETCH CUR INTO vRES;
+    CLOSE CUR;
+    RETURN vRES;
+  END;
+/

@@ -1,0 +1,66 @@
+CREATE TABLE BALANCE_TYPES
+(
+  BALANCE_TYPE_ID    INTEGER  NOT NULL,
+  TYPE_NAME         VARCHAR2(60 CHAR)         NOT NULL,
+  USER_CREATED        VARCHAR2(30 CHAR)         NOT NULL,
+  DATE_CREATED        DATE                      NOT NULL,
+  USER_LAST_UPDATED   VARCHAR2(30 CHAR)         NOT NULL,
+  DATE_LAST_UPDATED   DATE                      NOT NULL,
+  CONSTRAINT BALANCE_TYPE_ID_PK
+  PRIMARY KEY
+  (BALANCE_TYPE_ID)
+);
+
+COMMENT ON TABLE BALANCE_TYPES IS 'Cправочник типов начислений в балансе';
+
+COMMENT ON COLUMN BALANCE_TYPES.BALANCE_TYPE_ID IS '»дентификатор записи';
+
+COMMENT ON COLUMN BALANCE_TYPES.TYPE_NAME IS 'Ќаименование';
+
+COMMENT ON COLUMN BALANCE_TYPES.USER_CREATED IS 'ѕользователь, создавший запись';
+
+COMMENT ON COLUMN BALANCE_TYPES.DATE_CREATED IS 'ƒата/врем€ создани€ записи';
+
+COMMENT ON COLUMN BALANCE_TYPES.USER_LAST_UPDATED IS 'ѕользователь, редактировавший запись последним';
+
+COMMENT ON COLUMN BALANCE_TYPES.DATE_LAST_UPDATED IS 'ƒата/врем€ последней редакции записи';
+
+CREATE SEQUENCE S_BALANCE_TYPE_ID
+  START WITH -1
+  MAXVALUE 9999999999999999999999999999
+  MINVALUE -1;
+  
+CREATE OR REPLACE TRIGGER TBIU_BALANCE_TYPES BEFORE DELETE OR INSERT OR UPDATE
+ON BALANCE_TYPES
+REFERENCING NEW AS NEW OLD AS OLD
+FOR EACH ROW
+BEGIN
+ 
+  IF INSERTING THEN
+    IF NVL(:NEW.BALANCE_TYPE_ID, 0) = 0 then
+      :NEW.BALANCE_TYPE_ID := S_BALANCE_TYPE_ID.NEXTVAL;
+    END IF;
+    :NEW.USER_CREATED := USER;
+    :NEW.DATE_CREATED := SYSDATE;
+    :NEW.USER_LAST_UPDATED := USER;
+    :NEW.DATE_LAST_UPDATED := SYSDATE;
+  END IF;
+  if UPDATING THEN
+    :NEW.USER_LAST_UPDATED := USER;
+    :NEW.DATE_LAST_UPDATED := SYSDATE;
+  end if;
+ 
+END ;
+/
+
+GRANT INSERT, UPDATE, SELECT, DELETE ON BALANCE_TYPES TO BUSINESS_COMM_ROLE;
+
+GRANT SELECT ON BALANCE_TYPES TO BUSINESS_COMM_ROLE_RO;
+
+insert into balance_types(TYPE_NAME) values ('начальный, назначенный');
+insert into balance_types(TYPE_NAME) values ('начальный, вычисленный');
+insert into balance_types(TYPE_NAME) values ('промежуточный');
+insert into balance_types(TYPE_NAME) values ('последний за период');
+insert into balance_types(TYPE_NAME) values ('нет баланса');
+commit;
+

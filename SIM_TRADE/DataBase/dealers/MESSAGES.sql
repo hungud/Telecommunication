@@ -1,0 +1,25 @@
+CREATE OR REPLACE PROCEDURE MESSAGES(
+  SESSION_ID IN VARCHAR2 DEFAULT NULL,
+  SHOW_ALL_MESSAGES IN VARCHAR2 DEFAULT NULL,
+  MESSAGE_TEXT IN VARCHAR2 DEFAULT NULL,
+  MESSAGE_TEXT_SUBMIT IN VARCHAR2 DEFAULT NULL
+  ) IS
+--
+BEGIN
+  S_BEGIN(SESSION_ID=>SESSION_ID);
+  IF G_STATE.USER_ID IS NOT NULL THEN
+    HTP.PRINT('
+        <div id="content">');
+    HTP.PRINT('<table  class="info_table"><tr><td valign="top" style="text-align:left" width="300px">');
+    S_SHOW_FAQ_LIST;  
+    HTP.PRINT('</td><td valign="top" style="text-align:left" width="500px">');
+    S_SHOW_MY_MESSAGES(SHOW_ALL_MESSAGES IS NOT NULL, MESSAGE_TEXT, MESSAGE_TEXT_SUBMIT);
+    HTP.PRINT('</td></tr></table>');
+    HTP.PRINT('
+        </div>');
+  END IF;
+  S_END;
+EXCEPTION WHEN OTHERS THEN
+  OUT_ERROR(SQLERRM);
+END;
+/

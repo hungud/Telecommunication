@@ -1,0 +1,71 @@
+CREATE OR REPLACE PACKAGE ARCHIVE_PCKG AS
+--
+--#Version=1
+--
+--V.1 24.09.2015 Афросин Добавил пакет для работы с арзивными таблицами
+--
+--
+  
+  PROCEDURE ADD_REC_API_GET_CTN_INFO_LIST(
+    pBAN IN NUMBER
+    );        
+   
+--       
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY ARCHIVE_PCKG AS
+  --запоминаем стутусы телефонов
+  PROCEDURE ADD_REC_API_GET_CTN_INFO_LIST(
+    pBAN IN NUMBER
+    ) IS
+  --PRAGMA AUTONOMOUS_TRANSACTION;
+    vDATE DATE;
+    NEW_ID INTEGER;
+  BEGIN
+    vDATE:=SYSDATE;
+    MERGE INTO ARCHIVE_API_GET_CTN_INFO_LIST CIL
+      USING (SELECT pBAN BAN,
+                    SUBSTR(CTN, -10) CTN,
+                    STATUSDATE,
+                    STATUS,
+                    PRICEPLAN, 
+                    REASONSTATUS,
+                    LASTACTIVITY,
+                    ACTIVATIONDATE,
+                    SUBSCRIBERHLR,
+                    vDATE LAST_CHECK_DATE 
+               FROM API_GET_CTN_INFO_LIST
+              ) API                  
+        ON (CIL.BAN = API.BAN
+              AND CIL.CTN = API.CTN
+              AND CIL.END_DATE IS NULL
+              AND CIL.STATUSDATE = API.STATUSDATE
+              AND CIL.STATUS = API.STATUS
+              AND CIL.PRICEPLAN = API.PRICEPLAN
+              AND CIL.REASONSTATUS = API.REASONSTATUS
+              AND CIL.LASTACTIVITY = API.LASTACTIVITY
+              AND CIL.ACTIVATIONDATE = API.ACTIVATIONDATE
+              AND CIL.SUBSCRIBERHLR = API.SUBSCRIBERHLR)        
+      WHEN MATCHED THEN
+      -- Совпало
+        UPDATE SET CIL.LAST_CHECK_DATE = API.LAST_CHECK_DATE         
+      WHEN NOT MATCHED THEN
+      -- Не совпало
+        INSERT(CIL.BAN, CIL.CTN, CIL.STATUSDATE, CIL.STATUS, CIL.PRICEPLAN, 
+               CIL.REASONSTATUS, CIL.LASTACTIVITY, CIL.ACTIVATIONDATE, 
+               CIL.SUBSCRIBERHLR, CIL.BEGIN_DATE, CIL.LAST_CHECK_DATE)
+          VALUES(API.BAN, API.CTN, API.STATUSDATE, API.STATUS, API.PRICEPLAN, 
+                 API.REASONSTATUS, API.LASTACTIVITY, API.ACTIVATIONDATE, 
+                 API.SUBSCRIBERHLR, API.LAST_CHECK_DATE, API.LAST_CHECK_DATE);      
+    UPDATE ARCHIVE_API_GET_CTN_INFO_LIST CIL
+      SET CIL.END_DATE = vDATE - 1/24/60/60
+      WHERE CIL.BAN = pBAN
+        AND CIL.END_DATE IS NULL
+        AND CIL.LAST_CHECK_DATE < vDATE;
+--    COMMIT;  
+  END;
+   --
+   
+END;
+/

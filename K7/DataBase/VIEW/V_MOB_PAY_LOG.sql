@@ -1,0 +1,24 @@
+CREATE OR REPLACE VIEW V_MOB_PAY_LOG
+AS
+--
+--Version=1
+--
+--v.1 Афросин 27.04.2015 Создал фьюху по логам таблицы mob_pay_log
+--
+select 
+  PHONE,
+  SUM_PAY,
+  REQ_COUNT,
+  DATE_INSERT,
+  RES_CODE,
+  ERROR_TEXT,
+  nvl(nvl(UN.USER_FIO, MP.USER_CREATED), 'USSD_USER') USER_CREATED
+ from mob_pay_log mp
+      , USER_NAMES un
+ where
+  UPPER(MP.USER_CREATED) = UPPER(UN.USER_NAME(+))
+ ;
+
+GRANT SELECT ON V_MOB_PAY_LOG TO CORP_MOBILE_ROLE;
+GRANT SELECT ON V_MOB_PAY_LOG TO CORP_MOBILE_ROLE_RO;
+  

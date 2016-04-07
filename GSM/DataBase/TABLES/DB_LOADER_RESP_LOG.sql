@@ -1,0 +1,78 @@
+CREATE SEQUENCE DB_LOADER_RESP_LOG_ID
+  START WITH 41
+  MAXVALUE 9999999999999999999999999999
+  MINVALUE 1
+  NOCYCLE
+  CACHE 20
+  NOORDER;
+
+CREATE TABLE DB_LOADER_RESP_LOG
+(
+  LOG_ID     NUMBER(10),
+  LOAD_DATE  TIMESTAMP(6),
+  PHONE      VARCHAR2(10 char),
+  REQUESTID  NUMBER,
+  CODE       NUMBER(10),
+  STATUS     VARCHAR2(1024 char),
+  MESSAGE    VARCHAR2(1024 char),
+  NOTE       VARCHAR2(1024 char)
+)
+TABLESPACE USERS
+RESULT_CACHE (MODE DEFAULT)
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MAXSIZE          UNLIMITED
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+CREATE OR REPLACE FUNCTION NEW_RESP_LOG_ID RETURN NUMBER IS
+--#Version=1
+  vRES NUMBER;
+BEGIN
+  SELECT DB_LOADER_RESP_LOG_ID.NEXTVAL
+  INTO vRES
+  FROM DUAL;
+  RETURN vRES;
+END;
+
+ALTER TABLE DB_LOADER_RESP_LOG ADD (
+  CONSTRAINT PK_DB_LOADER_RESP_LOG
+ PRIMARY KEY
+ (LOG_ID));
+
+alter table db_loader_resp_log add (request varchar2(1024 char), response clob);
+
+
+COMMENT ON TABLE DB_LOADER_RESP_LOG IS 'Лог загрузки ответов методом REST';
+
+COMMENT ON COLUMN DB_LOADER_RESP_LOG.LOG_ID IS 'Первичный ключ';
+
+COMMENT ON COLUMN DB_LOADER_RESP_LOG.LOAD_DATE IS 'Дата/время загрузки';
+
+COMMENT ON COLUMN DB_LOADER_RESP_LOG.PHONE IS 'Номер телефона';
+
+COMMENT ON COLUMN DB_LOADER_RESP_LOG.REQUESTID IS 'Идентификатор запроса услуги для модификации опций тарифного плана (подписки, переадресация)';
+
+COMMENT ON COLUMN DB_LOADER_RESP_LOG.CODE IS 'Код ошибки из параметра meta (метод REST)';
+
+COMMENT ON COLUMN DB_LOADER_RESP_LOG.STATUS IS 'Результат операции OK/ERROR из параметра meta (метод REST)';
+
+COMMENT ON COLUMN DB_LOADER_RESP_LOG.MESSAGE IS 'Дополнительное сообщение из параметра meta (метод REST)';
+
+COMMENT ON COLUMN DB_LOADER_RESP_LOG.NOTE IS 'Метод пакета инициировавший вызов REST';
+

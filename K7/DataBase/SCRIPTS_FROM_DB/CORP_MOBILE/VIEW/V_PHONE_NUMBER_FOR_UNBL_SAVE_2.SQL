@@ -1,0 +1,25 @@
+
+  CREATE OR REPLACE FORCE VIEW "CORP_MOBILE"."V_PHONE_NUMBER_FOR_UNBL_SAVE_2" ("PHONE_NUMBER", "BALANCE", "FIO", "ACCOUNT_ID", "HAND_BLOCK") AS 
+  SELECT v.PHONE_NUMBER_FEDERAL PHONE_NUMBER,
+          GET_ABONENT_BALANCE (v.PHONE_NUMBER_FEDERAL) BALANCE,
+          v.SURNAME || ' ' || v.NAME || ' ' || v.PATRONYMIC FIO,
+          P.ACCOUNT_ID,
+          CASE
+             WHEN v.HAND_BLOCK = 1 THEN 'Да'
+             WHEN v.HAND_BLOCK = 0 THEN 'Нет'
+          END
+             AS HAND_BLOCK
+     FROM v_abonent_balances_3 v, TARIFFS, DB_LOADER_ACCOUNT_PHONES P
+    WHERE TARIFFS.TARIFF_ID = v.TARIFF_ID
+          AND GET_ABONENT_BALANCE (v.PHONE_NUMBER_FEDERAL)
+              - NVL (v.DISCONNECT_LIMIT, 0) >
+                 NVL (v.CONNECT_LIMIT, NVL (TARIFFS.BALANCE_UNBLOCK, 0))
+          AND phone_is_active_code = 0
+          AND Hand_block = 0
+          AND v.PHONE_NUMBER_FEDERAL = P.PHONE_NUMBER
+          AND P.YEAR_MONTH = (SELECT MAX (P2.YEAR_MONTH)
+                                FROM DB_LOADER_ACCOUNT_PHONES P2
+                               WHERE P2.ACCOUNT_ID = P.ACCOUNT_ID)
+          AND P.PHONE_IS_ACTIVE = 0
+          AND P.CONSERVATION = 1
+          AND P.SYSTEM_BLOCK <> 1

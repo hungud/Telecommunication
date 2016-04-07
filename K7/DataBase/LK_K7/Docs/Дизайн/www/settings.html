@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <title>Личный кабиент</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5">
+        <a class="header-logo" href="index.html">Личный кабинет</a>
+      </div>
+      <div class="col-md-4 col-sm-3">
+        <p class="header-phone">Служба поддержки
+        <a class="none-decoration" href="tel:+74993015121">+7 499 301-51-21</a></p>
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <ul class="header-menu list-inline">
+          <li><a class="active" href="settings.html">Мои настройки</a></li>
+          <li><a href="login.html">Выход</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Begin page content -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <nav>
+        <ul class="list-group main-bar">
+          <li class="list-group-item"><a href="payments.html"><div class="icon-payments"></div> Мои платежи</a></li>
+          <li class="list-group-item"><a href="promised-payment.html"><div class="icon-promised-payment"></div> Обещанный платеж</a></li>
+          <li class="list-group-item"><a href="detailing.html"><div class="icon-detailing"></div> Детализация услуг</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-md-10">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Личные данные</h2>
+        </div>
+
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group has-error">
+              <label for="inputName" class="col-sm-3 control-label">Ваше имя:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="inputName" aria-describedby="helpBlock1">
+                <span class="help-block">Это поле обязательно для заполнения.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail" class="col-sm-3 control-label">Электронный адрес:</label>
+              <div class="col-sm-5">
+                <input type="email" class="form-control" id="inputEmail">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputDate" class="col-sm-3 control-label">Дата рождения:</label>
+              <div class="col-sm-5">
+                <input type="date" class="form-control" id="inputDate">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassport" class="col-sm-3 control-label">Паспортные данные:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="inputPassport">
+              </div>
+            </div>
+            <div class="form-group has-icon">
+              <label for="inputWord" class="col-sm-3 control-label">Кодовое слово:</label>
+              <div class="col-sm-5">
+                <input type="password" class="form-control" id="inputWord">
+                <span class="glyphicon glyphicon-eye-close form-control-icon"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-9">
+                <button type="submit" class="btn btn-warning">Сохранить</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Изменение пароля</h2>
+        </div>
+
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group has-icon">
+              <label for="inputOldPassword" class="col-sm-3 control-label">Старый пароль:</label>
+              <div class="col-sm-5">
+                <input type="password" class="form-control" id="inputOldPassword">
+                <span class="glyphicon glyphicon-eye-open form-control-icon"></span>
+              </div>
+            </div>
+            <div class="form-group has-icon">
+              <label for="inputNewPassword" class="col-sm-3 control-label">Новый пароль:</label>
+              <div class="col-sm-5">
+                <input type="password" class="form-control" id="inputNewPassword">
+                <span class="glyphicon glyphicon-eye-close form-control-icon"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-9">
+                <button type="submit" class="btn btn-warning">Сохранить</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>© 2015, ООО «Агентство связи» </p>
+  </div>
+</footer>
+
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

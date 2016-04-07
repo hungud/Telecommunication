@@ -1,0 +1,404 @@
+object ShowHackersForm: TShowHackersForm
+  Left = 0
+  Top = 0
+  Caption = #1055#1086#1076#1086#1079#1088#1077#1085#1080#1077' '#1074' '#1084#1086#1096#1077#1085#1085#1080#1095#1077#1089#1090#1074#1077
+  ClientHeight = 392
+  ClientWidth = 730
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 730
+    Height = 28
+    Align = alTop
+    TabOrder = 0
+    object lStatuses: TLabel
+      Left = 8
+      Top = 8
+      Width = 45
+      Height = 13
+      Caption = #1057#1090#1072#1090#1091#1089':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object btLoadInExcel: TBitBtn
+      Left = 331
+      Top = -1
+      Width = 135
+      Height = 29
+      Action = aExcel
+      Caption = #1042#1099#1075#1088#1091#1079#1080#1090#1100' '#1074' Excel'
+      DoubleBuffered = True
+      ParentDoubleBuffered = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+    end
+    object btRefresh: TBitBtn
+      Left = 225
+      Top = -1
+      Width = 105
+      Height = 29
+      Action = aRefresh
+      Caption = #1054#1073#1085#1086#1074#1080#1090#1100
+      DoubleBuffered = True
+      ParentDoubleBuffered = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
+    end
+    object cbStatuses: TComboBox
+      Left = 121
+      Top = 3
+      Width = 98
+      Height = 21
+      Style = csDropDownList
+      TabOrder = 2
+      OnChange = cbStatusesChange
+    end
+    object BitBtn3: TBitBtn
+      Left = 472
+      Top = -1
+      Width = 111
+      Height = 29
+      Caption = #1055#1086#1076#1088#1086#1073#1085#1086
+      DoubleBuffered = True
+      Glyph.Data = {
+        36090000424D3609000000000000360000002800000018000000180000000100
+        2000000000000009000000000000000000000000000000000000FF00FF00FF00
+        FF00FBFBFB00F4F4F400EEEEEE00E8E8E800E5E5E500E0E0E000DEDEDE00DFDF
+        DF00DFDFDF00DFDFDF00DEDEDE00DFDFDF00DEDEDE00DFDFDF00E1E1E100E6E6
+        E600EAEAEA00EFEFEF00F5F5F500FDFDFD00FF00FF00FF00FF00FF00FF00FF00
+        FF00E5E5E500C8C8C800BCBCBC00B3B1AB00ADA18800B09B7000B4996100B897
+        5500BB974E00BC974A00BC974B00BB974F00B7975800B29A6700AF9E7D00AFAA
+        A000AAB2B700BDBDBE00CBCBCB00EFEFEF00FF00FF00FF00FF00FF00FF00FF00
+        FF00FFFFFE00E4DDD000C1AB7D00B38E3F00B68F3F00BA924200BD954500BF97
+        4700C1984900C2994A00C1994A00C1984900BF974700BC954500B99242005B8D
+        8F000189DE00A2C4D600FCFCFC00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+        FF00CBB58300AD873600B18B3A00B68E3F00B9924100BD954500C0984900C39A
+        4A00C69C4C00C79D4D00C79D4E00C69C4C00C39A4B00C0984800BD9545005590
+        9900008EE1005E8C8700BD9F5E00F1EBDE00FF00FF00FF00FF00FF00FF00FF00
+        FF00BD9F5F00AF893800B48D3C00B8914100BC944400C0984800C49B4C00C89E
+        4E00CBA05000CCA15100CCA15200CBA05000C89E4F00C49B4B00C0984700B894
+        480087916B00B28D3D00AF893900C8AF7A00FF00FF00FF00FF00FF00FF00FF00
+        FF00CDB78600B18A3A00B58E3E00BA924300BE964700C39A4B00C89E4F00CCA1
+        5200CFA45500D1A55700D1A55700CFA45500CCA15200C89E4F00C39A4B006898
+        91000198E7008A906600B18A3A00CAB27D00FF00FF00FF00FF00FF00FF00FF00
+        FF00F1EADC00B48E3F00B78F3F00BB944400C0984700C59C4C00CAA05100CFA4
+        5400D3A75700D5A95A00D5A95B00D3A75700CFA35500CAA05000C59C4B00659B
+        9600009DEB004698A700B28C3D00E7DBC300FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00E2D3B200BC974B00BC944500C1984800C69C4C00CBA15200D0A5
+        5500D5A95A00D9AD5D00D9AD5E00D5A95900D0A55600CBA15100C69C4C00AA99
+        5C000CA1E20000A2ED0069B1C000FEFFFF00FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00ECE2CC00C7A66100C1994B00C69C4D00CBA05200D3AA
+        5D00E5BF7900EFC98400EEC88300E4BD7700D2A95C00CBA05100C69C4D00C199
+        4A009DA37A001BAEEE0001A7F1006FCDF700FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FBF8F300DCC69900C8A15400E5C17E00FDD7
+        9800FBD59800EFD4A500EFD4A600FAD59900F0D59C0043ACC50079A38E00D6C1
+        9200F7F5EE00DCF2FA000DB0F50001ACF400CEEFFD00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FBF4E800FBE0B500D9D5
+        C500C3DAED00C4DDF300C4DDF300C3DAEE00ADCFD50008B3F7001BB7F200F9FC
+        FD00FF00FF00FF00FF0033C1F80003B1F700B0E7FC00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FEFEFE00C7DF
+        F400BAD8F100BAD8F100BAD8F100BAD8F100CCE8F80048C9FA0000B5F90056CF
+        FC00B8EBFE007EDAFC0002B6F9001FBEF900E7F8FE00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00E2EE
+        F900B5D5F000D0E4F500CFE4F500B6D6F000FBFDFE00E2F7FE0055CFFC0016BF
+        FC0003BAFC000DBDFC0034C7FB00BCECFD00FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00EEF5
+        FB00D8E8F700DCEBF800DCEBF800D8E8F700F8FBFE00FF00FF00FEFFFF00D5F4
+        FE00C0EEFE00C9F0FE00F6FCFF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FDFDFE00D3E6
+        F600CEE3F500CEE3F500CEE3F500CEE3F500D5E7F600FEFEFF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00E7F1FA00C0DB
+        F200C0DBF200C0DBF200C0DBF200C0DBF200C0DBF200E2E8EF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00B5CDE300B2D4
+        F000B2D4F000B2D4F000B2D4F000B2D4F000B2D4F0008295A900FCFCFC00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00D3D7DE0093B7D800A5CC
+        ED00A5CCED00A5CCED00A5CCED00A5CCED00A5CCED00667D9700BFC2C800FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF008E98AA0084ABD20097C3
+        EA0097C3EA0097C3EA0097C3EA0097C3EA0092BCE4003E4E690081869300FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF006A778E005573980087B8
+        E40089BBE8007DA8D3005E7B9F00526C8E003A4A66002B354C005F687800FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF0074809400314464004258
+        7A006184AD0032405A002C384F002C384F002C384F002C384F00636B7C00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00C5C9D100334361002C39
+        53002B354C002C3851002D3952002C3851002D3952002D3951009EA3AE00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00AAB1BB003843
+        5A002B364D002D3A54002D3B55002D3A5400323F570080879600FCFCFC00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00E4E5
+        E8009A9FAA0068728500616B7E0080899700CFD2D700FF00FF00FF00FF00FF00
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
+      ParentDoubleBuffered = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 3
+      OnClick = BitBtn3Click
+    end
+  end
+  object grDataHackers: TCRDBGrid
+    Left = 0
+    Top = 28
+    Width = 730
+    Height = 364
+    Align = alClient
+    DataSource = dsHackers
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    PopupMenu = PopupMenu1
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -14
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = [fsBold]
+    OnKeyPress = grDataHackersKeyPress
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'PHONE_NUMBER'
+        Title.Caption = #1053#1086#1084#1077#1088' '#1090#1077#1083#1077#1092#1086#1085#1072
+        Width = 136
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'SERVICE_NAME'
+        Title.Caption = #1058#1080#1087' '#1091#1089#1083#1091#1075#1080
+        Width = 86
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DATE_CREATED'
+        Title.Caption = #1044#1072#1090#1072' '#1089#1086#1073#1099#1090#1080#1103
+        Width = 106
+        Visible = True
+      end
+      item
+        DropDownRows = 4
+        Expanded = False
+        FieldName = 'CHECKED_TYPE_NAME_2'
+        Title.Caption = #1057#1090#1072#1090#1091#1089
+        Width = 110
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'COUNT_SMS_CHANGE'
+        Title.Caption = #1048#1079#1084#1077#1085#1077#1085#1080#1077' '#1050#1086#1083'-'#1074#1072' '#1057#1052#1057
+        Width = 176
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'BALANCE'
+        Title.Caption = #1058#1077#1082#1091#1097#1080#1081' '#1073#1072#1083#1072#1085#1089
+        Width = 124
+        Visible = True
+      end>
+  end
+  object dsHackers: TDataSource
+    DataSet = qHackers
+    OnUpdateData = dsHackersUpdateData
+    Left = 80
+    Top = 72
+  end
+  object qHackers: TOraQuery
+    SQLInsert.Strings = (
+      'INSERT INTO HACKERS'
+      '  (CHECKED_TYPE_ID)'
+      'VALUES'
+      '  (:CHECKED_TYPE_ID)')
+    SQLDelete.Strings = (
+      'DELETE FROM HACKERS'
+      'WHERE'
+      '  HACKERS_ID = :Old_HACKERS_ID')
+    SQLUpdate.Strings = (
+      'UPDATE HACKERS'
+      'SET'
+      '  CHECKED_TYPE_ID = :CHECKED_TYPE_ID'
+      'WHERE'
+      '  HACKERS_ID = :Old_HACKERS_ID')
+    SQLLock.Strings = (
+      'SELECT * FROM HACKERS'
+      'WHERE'
+      '  HACKERS_ID = :Old_HACKERS_ID'
+      'FOR UPDATE NOWAIT')
+    SQLRefresh.Strings = (
+      'SELECT CHECKED_TYPE_ID FROM HACKERS'
+      'WHERE'
+      '  HACKERS_ID = :HACKERS_ID')
+    Session = MainForm.OraSession
+    SQL.Strings = (
+      
+        'SELECT H.*, ST.*, CT.CHECKED_TYPE_NAME, GET_ABONENT_BALANCE(h.Ph' +
+        'one_number) as balance'
+      '  FROM HACKERS H, SERVICE_TYPE ST, CHECKED_TYPES CT'
+      '   WHERE'
+      
+        '    ((:CHECKED_TYPE_NAME IS NULL)OR(CT.CHECKED_TYPE_NAME = :CHEC' +
+        'KED_TYPE_NAME))'
+      '    AND H.CHECKED_TYPE_ID = CT.CHECKED_TYPE_ID '
+      '    AND H.SERVICES_TYPE = ST.SERVICE_CODE'
+      '    --AND H.user_last_updated IS NULL')
+    DetailFields = 'CHECKED_TYPE_ID_1'
+    Left = 96
+    Top = 87
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'CHECKED_TYPE_NAME'
+      end>
+    object qHackersDATE_CREATED: TDateTimeField
+      FieldName = 'DATE_CREATED'
+      Required = True
+    end
+    object qHackersPHONE_NUMBER: TStringField
+      FieldName = 'PHONE_NUMBER'
+      Size = 10
+    end
+    object qHackersSERVICE_NAME: TStringField
+      FieldName = 'SERVICE_NAME'
+      Size = 80
+    end
+    object qHackersCHECKED_TYPE_NAME: TStringField
+      FieldName = 'CHECKED_TYPE_NAME'
+      Size = 200
+    end
+    object qHackersCHECKED_TYPE_ID: TFloatField
+      FieldName = 'CHECKED_TYPE_ID'
+    end
+    object qHackersCHECKED_TYPE_NAME_2: TStringField
+      FieldKind = fkLookup
+      FieldName = 'CHECKED_TYPE_NAME_2'
+      LookupDataSet = qCheckedTypes
+      LookupKeyFields = 'CHECKED_TYPE_ID'
+      LookupResultField = 'CHECKED_TYPE_NAME'
+      KeyFields = 'CHECKED_TYPE_ID'
+      Size = 50
+      Lookup = True
+    end
+    object qHackersHACKERS_ID: TFloatField
+      FieldName = 'HACKERS_ID'
+      Required = True
+    end
+    object qHackersCOUNT_SMS_CHANGE: TFloatField
+      FieldName = 'COUNT_SMS_CHANGE'
+    end
+    object qHackersBALANCE: TFloatField
+      FieldName = 'BALANCE'
+    end
+  end
+  object ActionList: TActionList
+    Images = MainForm.ImageList24
+    Left = 216
+    Top = 72
+    object aCheck: TAction
+      Caption = #1055#1088#1086#1074#1077#1088#1077#1085#1086
+      ImageIndex = 7
+      OnExecute = aCheckExecute
+    end
+    object aExcel: TAction
+      Caption = #1042#1099#1075#1088#1091#1079#1080#1090#1100' '#1074' Excel'
+      ImageIndex = 12
+      OnExecute = aExcelExecute
+    end
+    object aRefresh: TAction
+      Caption = #1054#1073#1085#1086#1074#1080#1090#1100
+      ImageIndex = 9
+      OnExecute = aRefreshExecute
+    end
+    object aPayments: TAction
+      Caption = #1055#1083#1072#1090#1077#1078#1080
+      ImageIndex = 20
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 296
+    Top = 80
+    object N1: TMenuItem
+      Action = aCheck
+    end
+    object N2: TMenuItem
+      Action = aRefresh
+    end
+    object N4: TMenuItem
+      Caption = '-'
+    end
+    object N3: TMenuItem
+      Action = aPayments
+    end
+  end
+  object qUpdate: TOraQuery
+    Session = MainForm.OraSession
+    SQL.Strings = (
+      
+        'UPDATE HACKERS SET user_last_updated = USER, DATE_LAST_UPDATED =' +
+        ' SYSDATE, CHECKED_TYPE_ID = :CHECKED_TYPE_ID '
+      '   WHERE HACKERS_ID= :HACKERS_ID'
+      '         --AND user_last_updated IS NULL'
+      
+        '         --AND NVL(date_last_updated,date_created) = :record_dat' +
+        'e')
+    Left = 96
+    Top = 144
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'CHECKED_TYPE_ID'
+      end
+      item
+        DataType = ftUnknown
+        Name = 'HACKERS_ID'
+      end>
+  end
+  object qStatuses: TOraQuery
+    Session = MainForm.OraSession
+    SQL.Strings = (
+      'SELECT DISTINCT CHECKED_TYPE_NAME, CHECKED_TYPE_ID '
+      '   FROM CHECKED_TYPES '
+      '      ORDER BY CHECKED_TYPE_ID')
+    Left = 208
+    Top = 152
+  end
+  object dsCheckedTypes: TDataSource
+    DataSet = qHackers
+    Left = 448
+    Top = 80
+  end
+  object qCheckedTypes: TOraQuery
+    Session = MainForm.OraSession
+    SQL.Strings = (
+      'SELECT * '
+      '   FROM CHECKED_TYPES')
+    DetailFields = 'CHECKED_TYPE_ID_1'
+    Left = 464
+    Top = 95
+  end
+end

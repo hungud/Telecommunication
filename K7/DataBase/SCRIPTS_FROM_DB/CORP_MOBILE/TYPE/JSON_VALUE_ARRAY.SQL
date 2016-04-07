@@ -1,0 +1,2 @@
+
+  CREATE OR REPLACE TYPE "CORP_MOBILE"."JSON_VALUE_ARRAY" as table of json_value;

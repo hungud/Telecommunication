@@ -1,0 +1,19 @@
+CREATE TABLE CASCADE_NUMBER_TYPES(
+  CASCADE_NUMBER_TYPE_ID Integer NOT NULL PRIMARY KEY,
+  NAME Varchar2(30 ) NOT NULL
+)
+/
+  
+COMMENT ON TABLE CASCADE_NUMBER_TYPES IS 'Типы каскадов в счетах, детализациях'
+/
+COMMENT ON COLUMN CASCADE_NUMBER_TYPES.CASCADE_NUMBER_TYPE_ID IS 'Идентификтор записи'
+/
+COMMENT ON COLUMN CASCADE_NUMBER_TYPES.NAME IS 'Назваине каскада'
+/
+
+SET DEFINE OFF;
+Insert into CASCADE_NUMBER_TYPES (CASCADE_NUMBER_TYPE_ID, NAME) Values (0, 'старые детализации');
+Insert into CASCADE_NUMBER_TYPES (CASCADE_NUMBER_TYPE_ID, NAME) Values (1, 'детализация');
+Insert into CASCADE_NUMBER_TYPES (CASCADE_NUMBER_TYPE_ID, NAME) Values (2, 'абонентская плата');
+Insert into CASCADE_NUMBER_TYPES (CASCADE_NUMBER_TYPE_ID, NAME) Values (3, 'сводная информация по номеру');
+COMMIT;

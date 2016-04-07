@@ -1,0 +1,3 @@
+
+  CREATE OR REPLACE TYPE "CORP_MOBILE"."PHONE_LIST_ARRAYT" is object (p varchar2(4000))
+

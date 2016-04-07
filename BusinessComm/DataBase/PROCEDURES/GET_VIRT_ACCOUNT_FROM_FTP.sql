@@ -1,0 +1,17 @@
+CREATE OR REPLACE PROCEDURE GET_VIRT_ACCOUNT_FROM_FTP
+--
+--#Version=1
+--
+--v.1 Кочнев 25.11.2015 - Получаем файлы  вирт. счетов из ФТП в директорию Оракл 
+AS
+ DIR_VIRT_ACCOUNT VARCHAR2(150);
+begin
+  DIR_VIRT_ACCOUNT := MS_CONSTANTS.GET_CONSTANT_VALUE('DIR_VIRT_ACCOUNT_FILES_NEW');
+  
+  GET_FILE_FROM_FTP('.dbf','1C/FROM_1C/VIRT_ACCOUNT', 1, DIR_VIRT_ACCOUNT, 'DIR_VIRT_ACCOUNT_FILES_BACKUP');
+
+exception
+      when OTHERS then
+        rollback;   
+END GET_VIRT_ACCOUNT_FROM_FTP;
+/

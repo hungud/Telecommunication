@@ -1,0 +1,39 @@
+
+  CREATE TABLE "LONTANA"."HOT_BILLING_CSV1" 
+   (	"SUBSCR_NO" VARCHAR2(11), 
+	"CH_SEIZ_DT" VARCHAR2(14), 
+	"AT_FT_CODE" VARCHAR2(10), 
+	"AT_CHG_AMT" VARCHAR2(10), 
+	"CALLING_NO" VARCHAR2(30), 
+	"DURATION" VARCHAR2(8), 
+	"DATA_VOL" VARCHAR2(10), 
+	"CELL_ID" VARCHAR2(10), 
+	"DIALED_DIG" VARCHAR2(30), 
+	"AT_FT_DESC" VARCHAR2(300)
+   ) 
+   ORGANIZATION EXTERNAL 
+    ( TYPE ORACLE_LOADER
+      DEFAULT DIRECTORY "NEW_CSV"
+      ACCESS PARAMETERS
+      ( records delimited by 0x'0A' CHARACTERSET CL8MSWIN1251
+             SKIP 1
+             badfile NEW_CSV:'CSV%a_%p.bad'
+             nologfile
+             fields terminated by ';'  LRTRIM
+            MISSING FIELD VALUES ARE NULL (SUBSCR_NO char(11),
+CH_SEIZ_DT char(14),
+AT_FT_CODE char(10),
+AT_CHG_AMT char(10),
+CALLING_NO char(30),
+DURATION char(8),
+DATA_VOL char(10),
+CELL_ID char(10),
+DIALED_DIG char(30),
+AT_FT_DESC char(300))
+       )
+      LOCATION
+       ( '361826161_20130930-233116.csv'
+       )
+    )
+   REJECT LIMIT UNLIMITED 
+  PARALLEL 10 

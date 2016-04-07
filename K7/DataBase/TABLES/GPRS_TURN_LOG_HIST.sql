@@ -1,0 +1,47 @@
+CREATE TABLE GPRS_TURN_LOG_HIST
+(
+  LOG_ID       NUMBER(38),
+  PHONE        VARCHAR2(10 CHAR),
+  TARIFF_CODE  VARCHAR2(30 CHAR),
+  DATE_ON      TIMESTAMP(6),
+  DATE_OFF     TIMESTAMP(6)
+)
+TABLESPACE USERS
+RESULT_CACHE (MODE DEFAULT)
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MAXSIZE          UNLIMITED
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+/
+
+COMMENT ON TABLE GPRS_TURN_LOG_HIST			IS 'Архив истории подключений доп.пакетов на номер абонента';
+
+COMMENT ON COLUMN GPRS_TURN_LOG_HIST.LOG_ID		IS 'Первичный ключ';
+
+COMMENT ON COLUMN GPRS_TURN_LOG_HIST.PHONE 		IS 'Номер телефона';
+
+COMMENT ON COLUMN GPRS_TURN_LOG_HIST.TARIFF_CODE	IS 'Код тарифа';
+
+COMMENT ON COLUMN GPRS_TURN_LOG_HIST.DATE_ON 		IS 'Дата подключения пакета';
+
+COMMENT ON COLUMN GPRS_TURN_LOG_HIST.DATE_OFF 		IS 'Дата отключения пакета';
+
+create index I_GPRS_TURN_LOG_HIST_PHONE on GPRS_TURN_LOG_HIST(PHONE);
+
+/

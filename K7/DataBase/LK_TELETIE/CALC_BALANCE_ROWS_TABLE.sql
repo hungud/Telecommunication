@@ -1,0 +1,77 @@
+GRANT CREATE TYPE TO CORP_MOBILE_LK;
+
+CREATE TYPE CORP_MOBILE_LK.BALANCE_ROW_TYPE AS OBJECT
+(ROW_DATE DATE,
+ROW_COST NUMBER,
+DESCRIPTION VARCHAR2(4000)
+);
+
+CREATE OR REPLACE TYPE CORP_MOBILE_LK.BALANCE_ROW_TAB AS TABLE OF BALANCE_ROW_TYPE
+/
+
+
+CREATE OR REPLACE FUNCTION CORP_MOBILE_LK.CALC_BALANCE_ROWS_TABLE(
+  pPHONE_NUMBER IN VARCHAR2
+  ) RETURN CORP_MOBILE_LK.BALANCE_ROW_TAB PIPELINED AS
+--#Version=1
+--
+-- 2. Уколов. Добавил шаблон "Корректировка до счета" в список
+--
+  vDATE_ROWS DBMS_SQL.DATE_TABLE;
+  vCOST_ROWS DBMS_SQL.NUMBER_TABLE;
+  vDESCRIPTION_ROWS DBMS_SQL.VARCHAR2_TABLE;
+  vPAYMENT_DATE DATE;
+  I BINARY_INTEGER;
+  NEXT_I BINARY_INTEGER;
+  K BINARY_INTEGER;
+  cCOMPENSATION_PATTERN CONSTANT VARCHAR2(200 CHAR) := 'ко(р)+ектировка к сч[её]ту|компенсация к сч[её]ту|корректировка до счета';
+BEGIN
+  CALC_BALANCE_ROWS2(pPHONE_NUMBER, vDATE_ROWS, vCOST_ROWS, vDESCRIPTION_ROWS);
+  -- Суммы платежей с текстом "Компенсация к счету" или "Корректировка к счету" 
+  -- переносим в счет за период платежа.
+  -- 
+  I := vDATE_ROWS.FIRST;
+  WHILE I IS NOT NULL LOOP
+    NEXT_I := vDATE_ROWS.NEXT(I);
+    IF REGEXP_LIKE(LOWER(vDESCRIPTION_ROWS(I)), cCOMPENSATION_PATTERN) THEN
+      --dbms_output.put_line(vDESCRIPTION_ROWS(I));
+      vPAYMENT_DATE := vDATE_ROWS(I);
+      K := vDATE_ROWS.FIRST;
+      WHILE K IS NOT NULL LOOP
+        IF REGEXP_LIKE(vDESCRIPTION_ROWS(K), '^Сч[ёе]т оператора') THEN
+          IF TO_CHAR(vDATE_ROWS(K), 'MM.YYYY') = TO_CHAR(vPAYMENT_DATE, 'MM.YYYY') THEN
+            --vDESCRIPTION_ROWS(K) := vDESCRIPTION_ROWS(K) || ' + ' || vPAYMENT_DATE;
+            -- Приплюсуем стоимость платежа к стоимости счета
+            vCOST_ROWS(K) := vCOST_ROWS(K) + vCOST_ROWS(I);
+            -- Удалим запись о платеже
+            vDATE_ROWS.DELETE(I);
+            vCOST_ROWS.DELETE(I);
+            vDESCRIPTION_ROWS.DELETE(I);
+            EXIT; -- Выходим из цикла
+          END IF;
+        END IF;
+        K := vDATE_ROWS.NEXT(K);
+      END LOOP;
+      --vDESCRIPTION_ROWS(I) := '!!! ' || vDESCRIPTION_ROWS(I);
+    END IF;
+    I := NEXT_I;
+  END LOOP;
+  I := vDATE_ROWS.FIRST;
+  WHILE I IS NOT NULL LOOP
+    PIPE ROW(
+      BALANCE_ROW_TYPE(
+        vDATE_ROWS(I),
+        vCOST_ROWS(I),
+        vDESCRIPTION_ROWS(I)
+        )
+      );
+    I := vDATE_ROWS.NEXT(I);
+  END LOOP;
+END;
+/
+
+--select * from table(CALC_BALANCE_ROWS_TABLE('9689681650')) order by row_date desc
+
+CREATE SYNONYM CORP_MOBILE_LK.CALC_BALANCE_ROWS2 FOR CALC_BALANCE_ROWS2;
+
+GRANT EXECUTE ON CALC_BALANCE_ROWS2 TO CORP_MOBILE_LK;

@@ -1,0 +1,9 @@
+
+  CREATE OR REPLACE TRIGGER "SIM_TRADE"."TBI_PHONE_REP_COL" 
+  before insert on phone_report_columns  
+  for each row
+begin
+  :NEW.PHONE_REPORT_COLUMN_ID := S_NEW_PHONE_REPORT_COLUMNS_ID.Nextval;
+end;
+
+ALTER TRIGGER "SIM_TRADE"."TBI_PHONE_REP_COL" ENABLE

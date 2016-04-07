@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <size price="1">ABCDE</size>
+    <size price="2">AAABBCCC</size>
+    <size price="3">AABBCC</size>
+    <size price="4">ABABAB</size>
+    <size price="5">A*A*A*</size>
+    <size price="6">SSSS*</size>
+    <size price="7">A*****B</size>
+    <size price="8">***4</size>
+</config>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <title>Личный кабиент</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5">
+        <a class="header-logo" href="index.html">Личный кабинет</a>
+      </div>
+      <div class="col-md-4 col-sm-3">
+        <p class="header-phone">Служба поддержки
+        <a class="none-decoration" href="tel:+74993015121">+7 499 301-51-21</a></p>
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <ul class="header-menu list-inline">
+          <li><a href="settings.html">Мои настройки</a></li>
+          <li><a href="login.html">Выход</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Begin page content -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <nav>
+        <ul class="list-group main-bar">
+          <li class="list-group-item"><a href="payments.html"><div class="icon-payments"></div> Мои платежи</a></li>
+          <li class="list-group-item"><a href="promised-payment.html"><div class="icon-promised-payment"></div> Обещанный платеж</a></li>
+          <li class="list-group-item"><a href="detailing.html"><div class="icon-detailing"></div> Детализация услуг</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-md-10">
+
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Детализация услуг</h2>
+        </div>
+
+        <div class="form-wrapper">
+          <form class="form-inline">
+            <div class="form-group mask">
+              За последние:&nbsp;<br class="visible-xs-inline">
+              <a class="dotted" href="#">сутки</a>
+              <a class="dotted" href="#">неделю</a>
+              <a class="dotted" href="#">две недели</a>
+              <a class="dotted active" href="#">месяц</a>
+            </div>
+            <br class="hidden-xs">
+            <p class="visible-xs-block">За период:</p>
+            <div class="form-group">
+              <label for="startDate" class="sr-only">с</label>
+              <input type="date" class="form-control" id="startDate">
+            </div>
+            <span class="hidden-xs"> — </span>
+            <div class="form-group">
+              <label for="finishDate" class="sr-only">по</label>
+              <input type="date" class="form-control" id="finishDate">
+            </div>
+
+            <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-repeat"></span> Обновить</button>
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-save"></span> Скачать</button>
+          </form>
+        </div>
+
+
+        <div class="panel-body">
+          <h3>Расходы за период</h3>
+        </div>
+        <table class="table expenses">
+          <tbody>
+          <tr>
+            <td colspan="2">Абон. плата по тарифу</td>
+            <td>450 ₽</td>
+          </tr>
+          <tr>
+            <td colspan="3">Входящие и исходящие вызовы</td>
+          </tr>
+          <tr class="sub-tr">
+            <td>Бесплатные</td>
+            <td>93 шт./ 224 мин.</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr class="sub-tr">
+            <td>Платные</td>
+            <td>10 шт./ 34 мин.</td>
+            <td>92,86 ₽</td>
+          </tr>
+          <tr>
+            <td colspan="3">MMS и SMS</td>
+          </tr>
+          <tr class="sub-tr">
+            <td>Бесплатные</td>
+            <td>251 шт.</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr class="sub-tr">
+            <td>Платные</td>
+            <td>10 шт.</td>
+            <td>5,98 ₽</td>
+          </tr>
+          <tr>
+            <td>Мобильный интернет</td>
+            <td>1592,46 Мб</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td colspan="2">Прочие услуги</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr class="total-tr">
+            <td colspan="2">Итого:</td>
+            <td>648,84 ₽</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div class="panel-body">
+          <h3>Детализация оказанных услуг</h3>
+        </div>
+        <div class="form-wrapper">
+          <form>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="">
+                    Отображать только платные
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-6 line-numbers">
+                <span>Выводить по&nbsp;&nbsp;</span>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default active">20</button>
+                  <button type="button" class="btn btn-default">50</button>
+                  <button type="button" class="btn btn-default">100</button>
+                  <button type="button" class="btn btn-default">Все</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table">
+          <thead>
+          <tr>
+            <th>Дата и время</th>
+            <th>Тип услуги</th>
+            <th>Направление</th>
+            <th>Собеседник</th>
+            <th>Объем услуг</th>
+            <th>Стоимость</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Звонок</td>
+            <td>Исходящий</td>
+            <td>9258472157</td>
+            <td>1 мин.</td>
+            <td>1,70 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Звонок</td>
+            <td>Входящий</td>
+            <td>9252350101</td>
+            <td>5 мин.</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Звонок</td>
+            <td>Входящий</td>
+            <td>9252350101</td>
+            <td>2 мин.</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Звонок</td>
+            <td>Входящий</td>
+            <td>9252350101</td>
+            <td>12 мин.</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Интернет</td>
+            <td>Входящий</td>
+            <td>85.115.245.108</td>
+            <td>92 Кб</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Интернет</td>
+            <td>Входящий</td>
+            <td>85.115.245.108</td>
+            <td>256 Мб</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Интернет</td>
+            <td>Входящий</td>
+            <td>85.115.245.108</td>
+            <td>430 Мб</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Интернет</td>
+            <td>Входящий</td>
+            <td>85.115.245.108</td>
+            <td>129 Мб</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Звонок</td>
+            <td>Исходящий</td>
+            <td>9258472157</td>
+            <td>1 мин.</td>
+            <td>1,70 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Звонок</td>
+            <td>Входящий</td>
+            <td>9252350101</td>
+            <td>5 мин.</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Звонок</td>
+            <td>Входящий</td>
+            <td>9252350101</td>
+            <td>2 мин.</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Звонок</td>
+            <td>Входящий</td>
+            <td>9252350101</td>
+            <td>12 мин.</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Интернет</td>
+            <td>Входящий</td>
+            <td>85.115.245.108</td>
+            <td>92 Кб</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Интернет</td>
+            <td>Входящий</td>
+            <td>85.115.245.108</td>
+            <td>256 Мб</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Интернет</td>
+            <td>Входящий</td>
+            <td>85.115.245.108</td>
+            <td>430 Мб</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Интернет</td>
+            <td>Входящий</td>
+            <td>85.115.245.108</td>
+            <td>129 Мб</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Звонок</td>
+            <td>Исходящий</td>
+            <td>9258472157</td>
+            <td>1 мин.</td>
+            <td>1,70 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Звонок</td>
+            <td>Входящий</td>
+            <td>9252350101</td>
+            <td>5 мин.</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Звонок</td>
+            <td>Входящий</td>
+            <td>9252350101</td>
+            <td>2 мин.</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>30.06.2014 21:07:41</td>
+            <td>Звонок</td>
+            <td>Входящий</td>
+            <td>9252350101</td>
+            <td>12 мин.</td>
+            <td>0 ₽</td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="panel-body">
+          <nav>
+            <ul class="pagination">
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li>
+                <a href="#" aria-label="Next">
+                  <span aria-hidden="true">Дальше</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>© 2015, ООО «Агентство связи» </p>
+  </div>
+</footer>
+
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

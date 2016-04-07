@@ -1,0 +1,15 @@
+CREATE OR REPLACE FUNCTION GET_TARIFF_REST_TABLE (pPHONE IN VARCHAR2) RETURN VARCHAR2
+IS
+--
+--Version=1
+--
+--v.1 18.02.2015 Афросин - добавил функцию для получения остатков по пакетам для запросов по USSD
+--
+  PRAGMA AUTONOMOUS_TRANSACTION;
+BEGIN
+  
+  INSERT INTO USSD_TARIFF_REST_QUEUE (PHONE_NUMBER) VALUES (substr(pPHONE, -10));
+  commit;
+  
+  RETURN MS_PARAMS.GET_REF_TEXT_VALUE('TARIFF_REST')  ;
+END;

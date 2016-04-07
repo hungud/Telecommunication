@@ -1,0 +1,152 @@
+BEGIN
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_API_TICKET_CHECK'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_BLOCK_CLIENT_12'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ACCOUNT_ID 12');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_EXPRESS_UNLOCK'
+     ,attribute => 'COMMENTS'
+     ,value     => '<быстрая разблокировка клиентов');
+
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_HOT_BILLING_CALCDETAILSUM1'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_HOT_BILLING_CALCDETAILSUM2'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_LOAD_ACCOUNTS_TARIFFS'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка тарифов абонента');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_LOAD_BEELINE_BILLS_1'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 1');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_LOAD_BEELINE_BILLS_11'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 1');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_LOAD_BEELINE_BILLS_12'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 1');
+
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_LOAD_OBJ_ID_1'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 1');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_LOAD_OBJ_ID_11'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 11');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_LOAD_OBJ_ID_12'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 12');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_LOAD_PAYMENTS_11'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка детализации ACCOUNT_ID 11');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_LOAD_PHONE_OPTIONS_1'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 11 ');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_LOAD_PHONES_11'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса телефона ID 11');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_LOAD_REPORT_DATA_1'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 1');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_LOAD_REPORT_DATA_11'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 11');
+
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_RUN_P_CR_BALANCE_HISTORY'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Пересчет баланса ');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_TEMP_PLSQL_BLOCK2'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Восстановление статусов ');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.J_UNBLOCK_CLIENT_12'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Разблокировка клиента ID 12 ');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'SIM_TRADE.SMS_ERROR_NOTICE_JOB'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Проверяет системные параметры бд и рассылает об этом уведомления');
+
+
+
+
+
+END;

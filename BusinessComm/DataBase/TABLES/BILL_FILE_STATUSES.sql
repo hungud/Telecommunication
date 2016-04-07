@@ -1,0 +1,19 @@
+CREATE TABLE BILL_FILE_STATUSES(
+  BILL_FILE_STATUS_ID Integer NOT NULL PRIMARY KEY,
+  STATUS_NAME VARCHAR2(30 char) NOT NULL
+)
+/
+  
+COMMENT ON TABLE BILL_FILE_STATUSES IS 'Статусы файлов звгрзки счетов'
+/
+COMMENT ON COLUMN BILL_FILE_STATUSES.BILL_FILE_STATUS_ID IS 'Идентификатор записи'
+/
+COMMENT ON COLUMN BILL_FILE_STATUSES.STATUS_NAME IS 'Название статуса'
+/
+SET DEFINE OFF;
+Insert into BILL_FILE_STATUSES (BILL_FILE_STATUS_ID, STATUS_NAME) Values (0, 'Новый файл');
+Insert into BILL_FILE_STATUSES (BILL_FILE_STATUS_ID, STATUS_NAME) Values (1, 'Файл обработан парсером');
+Insert into BILL_FILE_STATUSES (BILL_FILE_STATUS_ID, STATUS_NAME) Values (2, 'Файл разобран на счета');
+Insert into BILL_FILE_STATUSES (BILL_FILE_STATUS_ID, STATUS_NAME) Values (3, 'Ошибка при обработке парсером');
+Insert into BILL_FILE_STATUSES (BILL_FILE_STATUS_ID, STATUS_NAME) Values (4, 'Ошибка при разборе на счета');
+COMMIT;

@@ -1,0 +1,105 @@
+CREATE TABLE ALL_PHONE_TURN_LOG
+(
+  ALL_PHONE_LOG_ID  NUMBER(38),
+  PHONE             VARCHAR2(10 CHAR),
+  TARIFF_ID         NUMBER(38),
+  TURN_ON_DATE      DATE,
+  PCKG_CODE         VARCHAR2(30 CHAR),
+  UNITTYPE               VARCHAR2(100 CHAR),
+  DATE_ON           TIMESTAMP(6),
+  DATE_OFF          TIMESTAMP(6),
+  IS_SEND_SMS_ZERO  NUMBER(38)                  DEFAULT 0,
+  IS_SEND_SMS_PREV  NUMBER(38)                  DEFAULT 0,
+  PREDVALUE         NUMBER(38),
+  DO_NOT_REST       NUMBER(1)
+)
+TABLESPACE USERS
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE ALL_PHONE_TURN_LOG IS 'История по пакетам на всех номерах, кроме безлмитов и драйвов';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG.DO_NOT_REST IS 'Признак отсутствия остатков по пакетам на номере';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG.ALL_PHONE_LOG_ID IS 'Первичный ключ';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG.PHONE IS 'Номер телефона';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG.TARIFF_ID IS 'ID тарифа';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG.TURN_ON_DATE IS 'Дата подключения пакета (дата начала тарифа - для тарифных пакетов)';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG.PCKG_CODE IS 'Код пакета';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG.UNITTYPE IS 'Тип данных: звонки, смс и ммс, интернет';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG.DATE_ON IS 'Дата подключения';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG.DATE_OFF IS 'Дата отключения';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG.IS_SEND_SMS_ZERO IS 'Признак отправки смс о расходовании трафика в 0 (1 - отправлялось, 0 - не отправлялось)';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG.IS_SEND_SMS_PREV IS 'Признак отправки смс об израсходовании 80 % трафика (1 - отправлялось, 0 - не отправлялось)';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG.PREDVALUE IS 'Объем прогнозируемого трафика';
+
+
+CREATE INDEX I_ALL_PHONE_TURN_LOG_PHN ON ALL_PHONE_TURN_LOG
+(PHONE)
+LOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX PK_ALL_PHN_TURN_LOG ON ALL_PHONE_TURN_LOG
+(ALL_PHONE_LOG_ID)
+LOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+ALTER TABLE ALL_PHONE_TURN_LOG ADD (
+  CONSTRAINT PK_ALL_PHN_TURN_LOG
+  PRIMARY KEY
+  (ALL_PHONE_LOG_ID)
+  USING INDEX PK_ALL_PHN_TURN_LOG);
+
+GRANT SELECT ON ALL_PHONE_TURN_LOG TO CORP_MOBILE_ROLE;
+
+GRANT SELECT ON ALL_PHONE_TURN_LOG TO CORP_MOBILE_ROLE_RO;

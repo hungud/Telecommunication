@@ -1,0 +1,26 @@
+
+  CREATE OR REPLACE PROCEDURE "CORP_MOBILE"."HOT_BILLING_LOAD_FILES" IS
+  cursor curf is
+    select rowid, hbf.file_name
+      from HOT_BILLING_FILES hbf
+     where hbf.load_sdate is null;
+  rowi  rowid;
+  filen varchar2(50);
+BEGIN
+  open curf;
+  loop
+    FETCH curf
+      into rowi, filen;
+    EXIT WHEN curf%NOTFOUND;
+    update HOT_BILLING_FILES hbf
+       set hbf.load_sdate = sysdate
+     where rowid = rowi;
+    commit;
+    HOT_BILLING_LOAD_FILE(filen,'1');
+    update HOT_BILLING_FILES hbf
+       set hbf.load_edate = sysdate
+     where rowid = rowi;
+    commit;
+  end loop;
+  close curf;
+end;

@@ -1,0 +1,3 @@
+
+   CREATE JAVA SOURCE NAMED "CORP_MOBILE"."LOBUtils2" AS 
+ import oracle.sql.BLOB;import oracle.sql.CLOB;import java.io.*;import java.sql.DriverManager;import java.sql.SQLException;import java.sql.CallableStatement;public class LOBUtils2 { public static void blob2file(BLOB blob, String fileName)    throws SQLException, IOException {    InputStream in = null;    OutputStream out = null;    try {      out = new BufferedOutputStream(new FileOutputStream(new File(fileName)));      in = blob.getBinaryStream();      int length;      byte[] buf = new byte[blob.getChunkSize()];      while ((length = in.read(buf)) != -1) {        out.write(buf, 0, length);      }    } finally {      if (in != null) {in.close();}      if (out != null) {out.close();}    }  }}

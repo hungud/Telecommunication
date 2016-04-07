@@ -1,0 +1,29 @@
+[OPTIONS]
+Auto Index=Yes
+Binary Index=No
+Compatibility=1.1 or later
+Compiled file=Help.chm
+Contents file=Help.hhc
+Default Window=Navigation Pane
+Default topic=npv_01.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x419 Русский (Россия)
+Title=Справка
+
+[WINDOWS]
+Navigation Pane=,"Help.hhc",,"npv_01.htm","npv_01.htm",,,,,0x63520,,0x304e,,,,,,,,0
+
+
+[FILES]
+npv_01.htm
+npv_02.htm
+npv_03.htm
+npv_04.htm
+npv_err_con.htm
+
+[MAP]
+#include npv.h
+
+[INFOTYPES]
+

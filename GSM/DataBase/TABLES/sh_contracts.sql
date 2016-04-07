@@ -1,0 +1,116 @@
+-- Create table
+CREATE TABLE LONTANA.SH_CONTRACTS
+(
+  CONTRACT_ID                     INTEGER       NOT NULL,
+  CONTRACT_NUM                    INTEGER,
+  CONTRACT_DATE                   DATE,
+  FILIAL_ID                       INTEGER,
+  OPERATOR_ID                     INTEGER,
+  PHONE_NUMBER_FEDERAL            VARCHAR2(10 CHAR) NOT NULL,
+  PHONE_NUMBER_CITY               VARCHAR2(7 CHAR),
+  PHONE_NUMBER_TYPE               NUMBER(1),
+  TARIFF_ID                       INTEGER,
+  SIM_NUMBER                      VARCHAR2(20 CHAR),
+  SERVICE_ID                      INTEGER,
+  DISCONNECT_LIMIT                NUMBER,
+  CONFIRMED                       NUMBER(1),
+  USER_CREATED                    VARCHAR2(30 CHAR),
+  DATE_CREATED                    DATE,
+  USER_LAST_UPDATED               VARCHAR2(30 CHAR),
+  DATE_LAST_UPDATED               DATE,
+  ABONENT_ID                      INTEGER,
+  RECEIVED_SUM                    NUMBER(15,2),
+  START_BALANCE                   NUMBER(15,2)  NOT NULL,
+  GOLD_NUMBER_SUM                 NUMBER(15,2),
+  HAND_BLOCK                      NUMBER,
+  USER_PASSWORD                   VARCHAR2(30 CHAR),
+  CONNECT_LIMIT                   NUMBER(12,2),
+  DATE_LAST_SET_PASS              DATE,
+  COUNT_SET_PASS_BY_DAY           INTEGER,
+  HAND_BLOCK_DATE_END             DATE,
+  COMMENTS                        VARCHAR2(300 CHAR),
+  IS_CREDIT_CONTRACT              NUMBER(1),
+  SEND_ACTIV                      NUMBER(1),
+  DOP_STATUS                      NUMBER,
+  DEALER_KOD                      INTEGER,
+  ABON_TP_DISCOUNT                INTEGER,
+  INSTALLMENT_PAYMENT_DATE        DATE,
+  INSTALLMENT_PAYMENT_SUM         NUMBER(15,4),
+  INSTALLMENT_PAYMENT_MONTHS      INTEGER,
+  INSTALLMENT_ADVANCED_REPAYMENT  DATE,
+  GROUP_ID                        INTEGER,
+  OPTION_GROUP_ID                 INTEGER,
+  MN_ROAMING                      INTEGER,
+  UPDATE_TIME                     DATE,
+  UPDATE_USER                     VARCHAR2(50 BYTE),
+  PARAMDISABLE_SMS                VARCHAR2(50 BYTE),
+  CURR_TARIFF_ID                  INTEGER,
+  ABONENT_TARIFF_OPTION           VARCHAR2(100 CHAR),
+  BALANCE_NOTICE_HAND_BLOCK       INTEGER,
+  BALANCE_BLOCK_HAND_BLOCK        INTEGER,
+  DAILY_ABON_BANNED               INTEGER,
+  HANDS_BILLING                   INTEGER
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+
+COMMENT ON TABLE  SH_CONTRACTS IS 'теневая таблица изменений в контракте (логи изменений)';
+COMMENT ON COLUMN SH_CONTRACTS.CONTRACT_ID IS 'ID КОНТРАКТА';
+COMMENT ON COLUMN SH_CONTRACTS.CONTRACT_NUM IS 'НОМЕР КОНТРАКТА';
+COMMENT ON COLUMN SH_CONTRACTS.CONTRACT_DATE IS 'ДАТА КОНТРАКТА';
+COMMENT ON COLUMN SH_CONTRACTS.FILIAL_ID IS 'ID ФИЛИАЛА';
+COMMENT ON COLUMN SH_CONTRACTS.OPERATOR_ID IS 'ID ОПЕРАТОРА';
+COMMENT ON COLUMN SH_CONTRACTS.PHONE_NUMBER_FEDERAL IS 'ФЕДЕРАЛЬНЫЙ НОМЕР ТЕЛЕФОНА';
+COMMENT ON COLUMN SH_CONTRACTS.PHONE_NUMBER_CITY IS 'ГОРОДСКОЙ НОМЕР ТЕЛЕФОНА';
+COMMENT ON COLUMN SH_CONTRACTS.PHONE_NUMBER_TYPE IS 'ТИП НОМЕРА ТЕЛЕФОНА';
+COMMENT ON COLUMN SH_CONTRACTS.TARIFF_ID IS 'ID ТАРИФА';
+COMMENT ON COLUMN SH_CONTRACTS.SIM_NUMBER IS 'НОМЕР СИМ КАРТЫ';
+COMMENT ON COLUMN SH_CONTRACTS.SERVICE_ID IS 'ID СЕРВИСА';
+COMMENT ON COLUMN SH_CONTRACTS.DISCONNECT_LIMIT IS 'ЛИМИТ';
+COMMENT ON COLUMN SH_CONTRACTS.CONFIRMED IS 'СТАТУС ПРОВЕДЕНИЯ';
+COMMENT ON COLUMN SH_CONTRACTS.USER_CREATED IS 'ПОЛЬЗОВАТЕЛЬ, СОЗДАВШИЙ';
+COMMENT ON COLUMN SH_CONTRACTS.DATE_CREATED IS 'ДАТА СОЗДАНИЯ';
+COMMENT ON COLUMN SH_CONTRACTS.USER_LAST_UPDATED IS 'ПОЛЬЗОВАТЕЛЬ, ИЗМЕНИВШИЙ';
+COMMENT ON COLUMN SH_CONTRACTS.DATE_LAST_UPDATED IS 'ДАТА ПОСЛЕДНЕГО ИЗМЕНЕНИЯ';
+COMMENT ON COLUMN SH_CONTRACTS.ABONENT_ID IS 'ID АБОНЕНТА';
+COMMENT ON COLUMN SH_CONTRACTS.RECEIVED_SUM IS 'ВНЕСЕННАЯ СУММА';
+COMMENT ON COLUMN SH_CONTRACTS.START_BALANCE IS 'НАЧАЛЬНЫЙ БАЛАНС';
+COMMENT ON COLUMN SH_CONTRACTS.GOLD_NUMBER_SUM IS 'СУММА ЗОЛОТОГО НОМЕРА';
+COMMENT ON COLUMN SH_CONTRACTS.HAND_BLOCK IS 'РУЧНАЯ БЛОКИРОВКА';
+COMMENT ON COLUMN SH_CONTRACTS.USER_PASSWORD IS 'ПАРОЛЬ ПОЛЬЗОВАТЕЛЯ';
+COMMENT ON COLUMN SH_CONTRACTS.CONNECT_LIMIT IS 'ЛИМИТ ПОДКЛЮЧЕНИЯ';
+COMMENT ON COLUMN SH_CONTRACTS.HAND_BLOCK_DATE_END IS 'ДАТА ОКОНЧАНИЯ РУЧНОЙ БЛОКИРОВКИ';
+COMMENT ON COLUMN SH_CONTRACTS.COMMENTS IS 'ПРИМЕЧАНИЕ';
+COMMENT ON COLUMN SH_CONTRACTS.IS_CREDIT_CONTRACT IS 'ПРИЗНАК КРЕДИТНОГО ДОГОВОРА';
+COMMENT ON COLUMN SH_CONTRACTS.SEND_ACTIV IS 'АКТИВНОСТЬ  ';
+COMMENT ON COLUMN SH_CONTRACTS.DOP_STATUS IS 'ДОПОЛНИТЕЛЬНЫЙ СТАТУС';
+COMMENT ON COLUMN SH_CONTRACTS.DEALER_KOD IS 'КОД ДИЛЛЕРА';
+COMMENT ON COLUMN SH_CONTRACTS.ABON_TP_DISCOUNT IS 'ТИП СКИДКИ';
+COMMENT ON COLUMN SH_CONTRACTS.INSTALLMENT_PAYMENT_DATE IS 'ДАТА РАССРОЧКИ';
+COMMENT ON COLUMN SH_CONTRACTS.INSTALLMENT_PAYMENT_SUM IS 'СУММА РАССРОЧКИ';
+COMMENT ON COLUMN SH_CONTRACTS.INSTALLMENT_PAYMENT_MONTHS IS 'МЕСЯЦ РАССРОЧКИ';
+COMMENT ON COLUMN SH_CONTRACTS.INSTALLMENT_ADVANCED_REPAYMENT IS 'РАССРОЧКА АВАНСОВОГО ПЛАТЕЖА';
+COMMENT ON COLUMN SH_CONTRACTS.GROUP_ID IS 'ID ГРУППЫ';
+COMMENT ON COLUMN SH_CONTRACTS.OPTION_GROUP_ID IS 'ОПЦИИ ГРУППЫ';
+COMMENT ON COLUMN SH_CONTRACTS.MN_ROAMING IS 'МЕЖДУНАРОДНЫЙ РОУМИНГ';
+COMMENT ON COLUMN SH_CONTRACTS.UPDATE_TIME IS 'ВРЕМЯ ИЗМЕНЕНИЯ';
+COMMENT ON COLUMN SH_CONTRACTS.UPDATE_USER IS 'ПОЛЬЗОВАТЕЛЬ, ИЗМЕНИВШИЙ';
+COMMENT ON COLUMN SH_CONTRACTS.PARAMDISABLE_SMS IS 'Параметр для учёта времени отправки смс уведомлений';
+COMMENT ON COLUMN SH_CONTRACTS.ABONENT_TARIFF_OPTION IS 'Тарифные опции абонента';
+COMMENT ON COLUMN SH_CONTRACTS.BALANCE_NOTICE_HAND_BLOCK IS 'Порог предупреждения при ручной блокировке';
+COMMENT ON COLUMN SH_CONTRACTS.BALANCE_BLOCK_HAND_BLOCK IS 'Порог отключения при ручной блокировке';
+COMMENT ON COLUMN SH_CONTRACTS.DAILY_ABON_BANNED IS 'Запрет посуточной абон платы';
+COMMENT ON COLUMN SH_CONTRACTS.HANDS_BILLING IS ' Установка цикла биллинга вручную с началом цикла по дате договора';
+
+
+-- Grant/Revoke object privileges 
+grant select, insert, update, delete, references, alter, index on SH_CONTRACTS to PUBLIC;

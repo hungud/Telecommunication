@@ -1,0 +1,109 @@
+CREATE OR REPLACE PACKAGE CALC_BALANCE_PCKG AS
+--
+--#Version=1
+--
+  PROCEDURE ADD_ABON_DOP_STATUS;
+--
+  PROCEDURE SAVE_ABON_DOP_STATUS;  
+--
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY CALC_BALANCE_PCKG AS
+--
+  PROCEDURE ADD_ABON_DOP_STATUS IS
+    vABON_PAY_DAY NUMBER;
+    vABON_PAY_DATE DATE;
+  BEGIN
+    vABON_PAY_DAY:=-3;
+    vABON_PAY_DATE:=TRUNC(SYSDATE);
+    --CALC_BALANCE_PCKG.SAVE_ABON_DOP_STATUS;
+    INSERT INTO BALANCE_DATA_DAILY_CHARGES(
+              PHONE_NUMBER, CHARGES_TYPE_ID, CHARGES_DATE, CHARGES_SUMM, 
+              CHARGES_COMMENT, CONTRACT_ID, IS_ACTIVE, TARIFF_ID)
+      SELECT DISTINCT c.PHONE_NUMBER_FEDERAL, 21, vABON_PAY_DATE, vABON_PAY_DAY,
+             'Добровольная блокировка номера ('||TO_CHAR(TRUNC(-vABON_PAY_DAY, 2))||'р в день)', 
+             c.CONTRACT_ID, D.PHONE_IS_ACTIVE, C.CURR_TARIFF_ID
+        FROM CONTRACTS C,
+             TARIFFS R,
+             CONTRACT_CANCELS CC,
+             (SELECT * FROM DB_LOADER_ACCOUNT_PHONES
+                WHERE YEAR_MONTH = TO_NUMBER(TO_CHAR(vABON_PAY_DATE, 'YYYYMM'))
+                  AND ACCOUNT_ID NOT IN (49,72,73,93,99)) D
+        WHERE C.CONTRACT_ID = CC.CONTRACT_ID(+)
+          AND C.CURR_TARIFF_ID = R.TARIFF_ID(+)
+          AND CC.CONTRACT_CANCEL_DATE IS NULL
+          AND C.DOP_STATUS = 382
+          -- Имеет статус "Добровольная блокировка"
+          AND C.PHONE_NUMBER_FEDERAL = D.PHONE_NUMBER(+)         
+          AND D.PHONE_NUMBER IS NOT NULL                                        
+          AND (NVL(C.IS_CREDIT_CONTRACT, 0) = 1
+              OR GET_ABONENT_BALANCE(C.PHONE_NUMBER_FEDERAL) > 3)          
+          -- Списываем у кредитников и положительному балансу
+          AND NOT EXISTS (SELECT 1
+                            FROM BALANCE_DATA_DAILY_CHARGES DC
+                            WHERE DC.PHONE_NUMBER = C.PHONE_NUMBER_FEDERAL
+                              AND DC.CHARGES_DATE = vABON_PAY_DATE
+                              AND DC.CHARGES_TYPE_ID = 21)
+          AND NOT EXISTS (SELECT 1
+                            FROM BALANCE_DAILY_CHARGES_ARCHIVE DC
+                            WHERE DC.PHONE_NUMBER = C.PHONE_NUMBER_FEDERAL
+                              AND DC.CHARGES_DATE = vABON_PAY_DATE
+                              AND DC.CHARGES_TYPE_ID = 21);
+    COMMIT;                            
+  END;  
+--  
+  PROCEDURE SAVE_ABON_DOP_STATUS IS
+    CURSOR C(pPHONE_NUMBER IN VARCHAR2, pCHARGES_DATE IN DATE, pCHARGES_TYPE_ID IN INTEGER) IS
+      SELECT *
+        FROM BALANCE_DAILY_CHARGES_ARCHIVE CA
+        WHERE CA.PHONE_NUMBER = pPHONE_NUMBER
+          AND CA.CHARGES_DATE = pCHARGES_DATE - 1
+          AND CA.CHARGES_TYPE_ID = pCHARGES_TYPE_ID;
+    C_DUMMY C%ROWTYPE;
+    vBALANCE_ROW_ID INTEGER;
+  BEGIN  
+    FOR rec IN (SELECT DC.*, DC.ROWID
+                  FROM BALANCE_DATA_DAILY_CHARGES DC
+                  WHERE DC.CHARGES_DATE <= TRUNC(SYSDATE - 1)
+                    AND DC.CHARGES_TYPE_ID = 21
+                  ORDER BY DC.PHONE_NUMBER, DC.CHARGES_DATE, DC.CHARGES_TYPE_ID)
+    LOOP
+      OPEN C(rec.PHONE_NUMBER, rec.CHARGES_DATE, rec.CHARGES_TYPE_ID);
+      FETCH C INTO C_DUMMY;
+      IF (C%FOUND) AND (TO_CHAR(REC.CHARGES_DATE, 'DD') <> '01') THEN
+        UPDATE BALANCE_DATA BD
+          SET BD.CHARGES_SUMM = BD.CHARGES_SUMM + rec.CHARGES_SUMM
+          WHERE BD.BALANCE_ROW_ID = C_DUMMY.BALANCE_ROW_ID;
+        INSERT INTO BALANCE_DAILY_CHARGES_ARCHIVE(PHONE_NUMBER, CHARGES_TYPE_ID, CHARGES_DATE, 
+                                                  CHARGES_SUMM, CHARGES_COMMENT, CONTRACT_ID,
+                                                  IS_ACTIVE, TARIFF_ID, BALANCE_ROW_ID)
+          VALUES(rec.PHONE_NUMBER, rec.CHARGES_TYPE_ID, rec.CHARGES_DATE, 
+                 rec.CHARGES_SUMM, rec.CHARGES_COMMENT, rec.CONTRACT_ID, 
+                 rec.IS_ACTIVE, rec.TARIFF_ID, C_DUMMY.BALANCE_ROW_ID);  
+      ELSE
+        INSERT INTO BALANCE_DATA(PHONE_NUMBER, CHARGES_TYPE_ID, CHARGES_DATE, 
+                                 CHARGES_SUMM, CHARGES_COMMENT, CONTRACT_ID, 
+                                 IS_ACTIVE, TARIFF_ID)
+          VALUES(rec.PHONE_NUMBER, rec.CHARGES_TYPE_ID, rec.CHARGES_DATE, 
+                 rec.CHARGES_SUMM, rec.CHARGES_COMMENT, rec.CONTRACT_ID, 
+                 rec.IS_ACTIVE, rec.TARIFF_ID)
+          RETURNING BALANCE_ROW_ID INTO vBALANCE_ROW_ID;
+        INSERT INTO BALANCE_DAILY_CHARGES_ARCHIVE(PHONE_NUMBER, CHARGES_TYPE_ID, CHARGES_DATE, 
+                                                  CHARGES_SUMM, CHARGES_COMMENT, CONTRACT_ID,
+                                                  IS_ACTIVE, TARIFF_ID, BALANCE_ROW_ID)
+          VALUES(rec.PHONE_NUMBER, rec.CHARGES_TYPE_ID, rec.CHARGES_DATE, 
+                 rec.CHARGES_SUMM, rec.CHARGES_COMMENT, rec.CONTRACT_ID, 
+                 rec.IS_ACTIVE, rec.TARIFF_ID, vBALANCE_ROW_ID);                                                 
+      END IF;
+      CLOSE C;
+      DELETE FROM BALANCE_DATA_DAILY_CHARGES DC
+        WHERE DC.ROWID = rec.ROWID;
+      COMMIT;
+    END LOOP;
+    COMMIT;                                   
+  END;  
+--
+END;
+/
+

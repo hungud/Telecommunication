@@ -1,0 +1,81 @@
+CREATE TABLE ALL_PHONE_TURN_LOG_HIST
+(
+  ALL_PHONE_LOG_ID  NUMBER(38),
+  PHONE             VARCHAR2(10 CHAR),
+  TARIFF_ID         NUMBER(38),
+  TURN_ON_DATE      DATE,
+  PCKG_CODE         VARCHAR2(30 CHAR),
+  UNITTYPE               VARCHAR2(100 CHAR),
+  DATE_ON           TIMESTAMP(6),
+  DATE_OFF          TIMESTAMP(6),
+  IS_SEND_SMS_ZERO  NUMBER(38)                  DEFAULT 0,
+  IS_SEND_SMS_PREV  NUMBER(38)                  DEFAULT 0,
+  PREDVALUE         NUMBER(38),
+  DO_NOT_REST       NUMBER(1)
+)
+TABLESPACE USERS
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE ALL_PHONE_TURN_LOG_HIST IS 'Архив истории по пакетам на всех номерах, кроме безлмитов и драйвов';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG_HIST.DO_NOT_REST IS 'Признак отсутствия остатков по пакетам на номере';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG_HIST.ALL_PHONE_LOG_ID IS 'Первичный ключ';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG_HIST.PHONE IS 'Номер телефона';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG_HIST.TARIFF_ID IS 'ID тарифа';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG_HIST.TURN_ON_DATE IS 'Дата подключения пакета (дата начала тарифа - для тарифных пакетов)';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG_HIST.PCKG_CODE IS 'Код пакета';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG_HIST.UNITTYPE IS 'Тип данных: звонки, смс и ммс, интернет';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG_HIST.DATE_ON IS 'Дата подключения';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG_HIST.DATE_OFF IS 'Дата отключения';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG_HIST.IS_SEND_SMS_ZERO IS 'Признак отправки смс о расходовании трафика в 0 (1 - отправлялось, 0 - не отправлялось)';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG_HIST.IS_SEND_SMS_PREV IS 'Признак отправки смс об израсходовании 80 % трафика (1 - отправлялось, 0 - не отправлялось)';
+
+COMMENT ON COLUMN ALL_PHONE_TURN_LOG_HIST.PREDVALUE IS 'Объем прогнозируемого трафика';
+
+
+CREATE INDEX I_ALL_PHONE_TURN_LOG_HIST_PHN ON ALL_PHONE_TURN_LOG_HIST
+(PHONE)
+LOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+GRANT SELECT ON ALL_PHONE_TURN_LOG_HIST TO CORP_MOBILE_ROLE;
+
+GRANT SELECT ON ALL_PHONE_TURN_LOG_HIST TO CORP_MOBILE_ROLE_RO;

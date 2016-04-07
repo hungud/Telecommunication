@@ -1,0 +1,469 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{B404AF70-F2D0-4E7D-BF81-876F409A8571}</ProjectGuid>
+			<MainSource>ContractsRegistration.DPR</MainSource>
+			<Base>True</Base>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<TargetedPlatforms>1</TargetedPlatforms>
+			<AppType>Application</AppType>
+			<FrameworkType>VCL</FrameworkType>
+			<ProjectVersion>13.4</ProjectVersion>
+			<Platform Condition="'$(Platform)'==''">Win32</Platform>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+			<Base_Win64>true</Base_Win64>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+			<Base_Win32>true</Base_Win32>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+			<Cfg_2_Win32>true</Cfg_2_Win32>
+			<CfgParent>Cfg_2</CfgParent>
+			<Cfg_2>true</Cfg_2>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+			<VerInfo_Locale>1049</VerInfo_Locale>
+			<DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;$(DCC_Namespace)</DCC_Namespace>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_E>false</DCC_E>
+			<DCC_N>false</DCC_N>
+			<DCC_S>false</DCC_S>
+			<DCC_F>false</DCC_F>
+			<DCC_K>false</DCC_K>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win64)'!=''">
+			<Icon_MainIcon>ContractsRegistration_Icon.ico</Icon_MainIcon>
+			<Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win32)'!=''">
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<Icon_MainIcon>ContractsRegistration_Icon.ico</Icon_MainIcon>
+			<DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+			<Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+			<DCC_Optimize>false</DCC_Optimize>
+			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+			<VerInfo_Build>28</VerInfo_Build>
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.28;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+			<DCC_MapFile>3</DCC_MapFile>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="$(MainSource)">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="uMain.pas">
+				<Form>MainForm</Form>
+			</DCCReference>
+			<DCCReference Include="uDm.pas">
+				<Form>Dm</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="ConnForm.pas">
+				<Form>fmConn</Form>
+			</DCCReference>
+			<DCCReference Include="Func_Const.pas"/>
+			<DCCReference Include="TimedMsgBox.pas">
+				<Form>TimedMsgForm</Form>
+			</DCCReference>
+			<DCCReference Include="ChangePassword.pas">
+				<Form>ChangePasswordForm</Form>
+			</DCCReference>
+			<DCCReference Include="ChildFrm.pas">
+				<Form>ChildForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefFrmEdit.pas">
+				<Form>RefFormEdit</Form>
+			</DCCReference>
+			<DCCReference Include="ImageVarnCl.pas"/>
+			<DCCReference Include="RefUserNames.pas">
+				<Form>RefUserNamesForm</Form>
+			</DCCReference>
+			<DCCReference Include="ExportGridToExcelPDF.pas"/>
+			<DCCReference Include="uRepFrm.pas">
+				<Form>RepFrm</Form>
+			</DCCReference>
+			<DCCReference Include="RefFrm.pas">
+				<Form>RefForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefAccounts.pas">
+				<Form>RefAccountsForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefMobilOperator.pas">
+				<Form>RefMobilOperatorForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefPhones.pas">
+				<Form>RefPhonesForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefPhonesOnAccountHist.pas">
+				<Form>RefPhonesOnAccountHistForm</Form>
+			</DCCReference>
+			<DCCReference Include="SettingProg.pas">
+				<Form>SettingProgForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefCountries.pas">
+				<Form>RefCountriesForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefRegions.pas">
+				<Form>RefRegionsForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefAbonents.pas">
+				<Form>RefAbonentsForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefFilial.pas">
+				<Form>RefFilialForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefTariffs.pas">
+				<Form>RefTariffsForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefDocum_Types.pas">
+				<Form>RefDocum_TypesForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefContract.pas">
+				<Form>RefContractForm</Form>
+			</DCCReference>
+			<DCCReference Include="RepInfoAboutPhone.pas">
+				<Form>RepInfoAboutPhoneFrm</Form>
+			</DCCReference>
+			<DCCReference Include="RepLoaderBill.pas">
+				<Form>RepLoaderBillFrm</Form>
+			</DCCReference>
+			<DCCReference Include="RepLoaderBillLoadLog.pas">
+				<Form>RepLoaderBillLoadLogFrm</Form>
+			</DCCReference>
+			<DCCReference Include="RepBillLoadLog.pas">
+				<Form>RepBillLoadLogFrm</Form>
+			</DCCReference>
+			<DCCReference Include="RefPeriods.pas">
+				<Form>RefPeriodsForm</Form>
+			</DCCReference>
+			<DCCReference Include="AddPeriod.pas">
+				<Form>AddPeriodForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefVirtual_Operators.pas">
+				<Form>RefVirtual_OperatorsForm</Form>
+			</DCCReference>
+			<DCCReference Include="FindData.pas">
+				<Form>FindDataForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefDocument.pas">
+				<Form>RefDocumentForm</Form>
+			</DCCReference>
+			<DCCReference Include="uRepPaymentsHist.pas">
+				<Form>RepPaymentsHist</Form>
+			</DCCReference>
+			<DCCReference Include="uShowAnotherVirt_Ac.pas">
+				<Form>ShowAnotherVirt_Ac</Form>
+			</DCCReference>
+			<DCCReference Include="uRepPayments.pas">
+				<Form>RepPayments</Form>
+			</DCCReference>
+			<DCCReference Include="uInsPayment.pas">
+				<Form>InsPaymentFrm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="ShowLogMail.pas">
+				<Form>ShowLogMailFrm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefAgent.pas">
+				<Form>RefAgentForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefSubAgent.pas">
+				<Form>RefSubAgentForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefAgentAndSubAgent.pas">
+				<Form>frmRefAgentAndSubAgent</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefLocal_Phone_Statuses.pas">
+				<Form>RefLocal_Phone_StatusesForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefOperatorPhoneStatuses.pas">
+				<Form>RefOperatorPhoneStatusesForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefOperatorAccountNames.pas">
+				<Form>RefOperatorAccountNamesForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefOperatorSubAccount.pas">
+				<Form>RefOperatorSubAccountForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefProjects.pas">
+				<Form>RefProjectsForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefEditContract.pas">
+				<Form>RefEditContractForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="FiltrForContract.pas">
+				<Form>FiltrForContractFrm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefPhonesOnAcc.pas">
+				<Form>RefPhonesOnAccFrm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefPaymentsType.pas">
+				<Form>RefPaymentsTypefrm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="uInsBalanceVirt.pas">
+				<Form>InsBalanceVirtFrm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="uTranscriptBalance.pas">
+				<Form>TranscriptBalanceFrm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<RcItem Include="1212.png">
+				<ResourceType>RCDATA</ResourceType>
+				<ResourceId>PngImage_1</ResourceId>
+			</RcItem>
+			<RcItem Include="logotip2.jpg">
+				<ResourceType>RCDATA</ResourceType>
+				<ResourceId>JpgImage_1</ResourceId>
+			</RcItem>
+			<RcItem Include="Resources\Russian.frc">
+				<ContainerId>ResourceItem</ContainerId>
+				<ResourceType>RCDATA</ResourceType>
+				<ResourceId>Russian_frc</ResourceId>
+			</RcItem>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Source>
+						<Source Name="MainSource">ContractsRegistration.DPR</Source>
+					</Source>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1049</VersionInfo>
+						<VersionInfo Name="CodePage">1251</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dclofficexp160.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+				</Delphi.Personality>
+				<Platforms>
+					<Platform value="Win64">False</Platform>
+					<Platform value="Win32">True</Platform>
+				</Platforms>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+	</Project>
+
+<!-- EurekaLog First Line
+[Exception Log]
+EurekaLog Version=7001
+Activate=0
+atVCL=1
+AutoCrashOperation=2
+boHandleSafeCallExceptions=1
+boUseMainModuleOptions=1
+csoAllowedRenderMethods=64
+csoDoNotStoreProcNames=1
+csoShowWindowsThreads=1
+DeleteMapAfterCompile=0
+Dialog Class="TEurekaLogDialog"
+dpJCL=1
+edoShowAttachScreenshotOption=0
+edoShowCopyToClipOption=0
+Email Address="support@tarifer.ru"
+Email Object="Bug"
+Encrypt Password=tar_173g!
+Errors Number=32
+Errors Terminate=5
+Foreground Tab=0
+idEurekaLog=1
+idEurekaLogDetailed=1
+idStepsToReproduce=1
+loAppendReproduceText=1
+loCatchLeaks=0
+loEnableMMDebugMode=0
+loFreeAllLeaks=1
+loHideRTLLeaks=0
+loMaxLeaks=1024
+loOnlyUnderIDE=0
+loProcessesSection=1
+Output Path=""
+ProjectID="{680A8F77-1138-4270-857A-FF33D8B6DB17}"
+seMantis=1
+Sender Classes="TELTrackerMantisSender"
+SMTP From="robot@tarifer.ru"
+SMTP Host="tarifer.ru"
+SMTP Password="tariferrobot"
+SMTP UserID="robot"
+sndBugZillaComponent="Automessage"
+sndBugZillaLogin="user"
+sndBugZillaOwner="ukolovda"
+sndBugZillaPassword="tarifer_user"
+sndBugZillaProject="%%U041A%%U043E%%U0440%%U043F%%U043E%%U0440%%U0430%%U0442%%U0438%%U0432%%U043D%%U0430%%U044F %%U0432%%U0435%%U0440%%U0441%%U0438%%U044F"
+sndBugZillaURL="http://bugs.tarifer.ru"
+sndFogBugzCategory="Automessage"
+sndFogBugzHost="http://bugs.tarifer.ru"
+sndFogBugzLogin="user"
+sndFogBugzOwner="ukolovda"
+sndFogBugzPassword="tarifer_user"
+sndFogBugzProject="%%U041A%%U043E%%U0440%%U043F%%U043E%%U0440%%U0430%%U0442%%U0438%%U0432%%U043D%%U0430%%U044F %%U0432%%U0435%%U0440%%U0441%%U0438%%U044F"
+sndFTPLogin=""
+sndFTPURL="http://bugs.tarifer.ru"
+sndHTTPURL="http://bugs.tarifer.ru"
+sndJIRAComponent="Automessage"
+sndJIRAHost="http://bugs.tarifer.ru"
+sndJIRALogin="user"
+sndJIRAOwner="ukolovda"
+sndJIRAPassword="tarifer_user"
+sndJIRAProject="%%U041A%%U043E%%U0440%%U043F%%U043E%%U0440%%U0430%%U0442%%U0438%%U0432%%U043D%%U0430%%U044F %%U0432%%U0435%%U0440%%U0441%%U0438%%U044F"
+sndMantisCategory="Automessage"
+sndMantisLogin="user"
+sndMantisPassword="tarifer_user"
+sndMantisProject="%U041A%U043E%U0440%U043F%U043E%U0440%U0430%U0442%U0438%U0432%U043D%U0430%U044F %U0432%U0435%U0440%U0441%U0438%U044F"
+sndMantisURL="http://bugs.tarifer.ru"
+sndMAPISubject="Bug"
+sndMAPITarget="support@tarifer.ru"
+sndPack=0
+sndSendEntireLog=1
+sndShellRecepient="support@tarifer.ru"
+sndShellSubject="Bug"
+sndShowFailureMsg=1
+sndSMAPISubject="Bug"
+sndSMAPITarget="support@tarifer.ru"
+sndSMTPClientFrom="robot@tarifer.ru"
+sndSMTPClientHost="tarifer.ru"
+sndSMTPClientLogin="robot"
+sndSMTPClientPassword="tariferrobot"
+sndSMTPClientSubject="Bug"
+sndSMTPClientTarget="support@tarifer.ru"
+sndSMTPServerFrom="robot@tarifer.ru"
+sndSMTPServerSubject="Bug"
+sndSMTPServerTarget="support@tarifer.ru"
+soActCtlsControlClass=1
+soActCtlsControlText=1
+soActCtlsFormClass=1
+soActCtlsFormText=1
+soAppCompilationDate=1
+soAppName=1
+soAppParameters=1
+soAppStartDate=1
+soAppUpTime=1
+soAppVersionNumber=1
+soCmpDisplayDPI=1
+soCmpDisplayMode=1
+soCmpFreeDisk=1
+soCmpFreeMemory=1
+soCmpName=1
+soCmpPrinter=1
+soCmpProcessor=1
+soCmpSysUpTime=1
+soCmpTotalDisk=1
+soCmpTotalMemory=1
+soCmpVideoCard=1
+soCustomData=1
+soExcCount=1
+soExcDate=1
+soExcModuleName=1
+soExcModuleVersion=1
+soExcNote=1
+soExcStatus=1
+soNetDHCP=1
+soNetDNS1=1
+soNetDNS2=1
+soNetGateway=1
+soNetIP=1
+soNetSubmask=1
+soOSBuildN=1
+soOSCharset=1
+soOSLanguage=1
+soOSType=1
+soOSUpdate=1
+soUserCompany=1
+soUserID=1
+soUserPrivileges=1
+TerminateBtn Operation=0
+TextsCollection="Russian"
+TrakerAssignTo="ukolovda"
+TrakerCategory="Automessage"
+TrakerPassword="tarifer_user"
+TrakerProject="%%U041A%%U043E%%U0440%%U043F%%U043E%%U0440%%U0430%%U0442%%U0438%%U0432%%U043D%%U0430%%U044F %%U0432%%U0435%%U0440%%U0441%%U0438%%U044F"
+TrakerUser="user"
+WebURL="http://bugs.tarifer.ru"
+EurekaLog Last Line -->

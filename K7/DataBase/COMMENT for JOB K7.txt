@@ -1,0 +1,2314 @@
+BEGIN
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.ANTIFRAUDJOB'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Проверка детализаий по наличию фрода');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.CALL_BACK_LOAD_CDR'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Сбор информации о звонках типа CALL_BACK ');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_API_TICKET_CHECK'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_100'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 100');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_106'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 106');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_119'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 119');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_12'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 12');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_120'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 120');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_44'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 44');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_46'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 47');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_48'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 48');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_49'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 49');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_50'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 50');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_51'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 52');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_53'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 53');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_54'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 54');
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_55'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 55');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_56'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 56');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_59'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 59');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_60'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 60');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_61'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 61');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_62'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 62');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_63'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 63');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_64'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 64');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_65'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 65');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 66');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_67'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 67');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_68'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 68');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_69'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 69');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_70'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 70');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_71'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 71');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_72'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 72');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_73'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 73');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_90'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 90');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_93'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 93');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_94'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 94');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_95'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 97');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_106'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 98');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_CLIENT_106'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиентов с балансом меньше 0 счета 99');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_BLOCK_FRAUD_CLIENT'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка мошенников');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_CALL_BACK_QUERY'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Очередь для запросов на сайт партнера через CALL_BACK ');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_DAYLY_ROUTINE_JOBS_TWICE'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Очередь для запросов на сайт партнера через CALL_BACK ');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_DB_PHONES_CLONE_KILLER'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Удаление дублей номеров ');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_DAYLY_ROUTINE_JOBS_TWICE'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Снятие ручной блокировки, с контрактов, у которых истек срок ручной блокировки ');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_EXPORT_OBJECTS_TO_SVN'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Экспорт объектов в SVN ');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_EXPORT_OBJECTS_TO_SVN'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Экспорт объектов в SVN ');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_EXPRESS_UNLOCK'
+     ,attribute => 'COMMENTS'
+     ,value     => 'быстрая разблокировка клиентов ');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_HOT_BILLING_CALCDETAILSUM1'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации ');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_HOT_BILLING_CALCDETAILSUM2'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации ');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_HOT_BILLING_CALCDETAILSUM3'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации ');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_HOT_BILLING_CALCDETAILSUM4'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации ');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_HOT_BILLING_CALCDETAILSUMS5'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации ');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_HOT_BILLING_CALCDETAILSUMS6'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации ');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_HOT_BILLING_CHECK'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг заявки ');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_HOT_BILLING_LOAD_DBF'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг загрузки dbf ');
+
+
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_HOT_BILLING_LOAD_LOGGER'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка наименований файлов горячего биллинга в базу');  
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_KILL_HANGED_JOBS'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Убивает висящие JOB');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_1'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 1');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_100'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 100');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_106'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 106');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_119'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 119');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_12'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 12');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_120'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 120');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_44'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 44');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_46'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 46');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_47'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 47');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_48'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 48');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_49'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 49');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_50'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 50');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_51'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 51');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_52'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 52');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_53'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 53');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_54'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 54');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_55'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 55');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_56'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 56');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_59'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 59');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_60'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 60');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_61'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 61');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_62'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 62');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_63'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 63');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_64'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 64');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_65'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 65');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 66');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_67'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 67');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_68'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 68');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_69'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 69');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_70'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 70');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_71'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 71');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_72'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 72');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_73'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 73');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_90'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 90');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_93'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 93');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_94'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 94');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_95'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 95');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_97'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 97');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_98'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 98');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_API_CHECK_TICKETS_99'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки ACCOUNT ID 99');
+
+
+
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_1'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 1');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_100'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 100');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_106'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 106');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_119'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 119');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_12'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 12');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_120'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 120');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_44'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 44');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_46'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 46');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_47'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 47');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_48'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 48');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_49'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 49');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_50'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 50');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_51'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 51');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_52'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 52');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_53'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 53');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_54'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 54');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_55'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 55');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_56'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 56');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_59'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 59');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_60'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 60');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_61'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 61');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_62'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 62');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_63'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 63');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_64'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 64');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_65'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 65');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 66');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_67'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 67');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_68'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 68');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_69'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 69');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_70'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 70');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_71'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 71');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_72'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 72');
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_73'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 73');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_90'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 90');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_94'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 94');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_95'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 95');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_97'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 97');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_BEELINE_BILLS_98'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 98');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_COLLECT_SUBBANS_93'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Получает список подбанов на счете 93  ');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_COLLECT_SUBBANS_99'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Получает список подбанов на счете 99  ');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_HOT_BILLING_CHECK'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг заявки ');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_DETAIL_API_STREAM_00'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_DETAIL_API_STREAM_01'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_DETAIL_API_STREAM_02'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_DETAIL_API_STREAM_03'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_DETAIL_API_STREAM_04'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_DETAIL_API_STREAM_05'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_DETAIL_API_STREAM_05'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_DETAIL_API_STREAM_06'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_DETAIL_API_STREAM_07'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_DETAIL_API_STREAM_08'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_DETAIL_API_STREAM_09'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_1'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 1');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_100'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 100');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_106'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 106');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_119'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 119');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_12'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 12');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_120'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 120');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_44'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 44');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_46'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 46');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_47'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 47');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_48'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 48');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_49'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 49');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_50'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 50');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_51'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 51');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_52'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 52');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_53'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 53');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_54'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 54');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_55'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 55');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_56'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 56');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_59'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 59');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_60'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 60');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_61'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 61');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_62'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 62');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_63'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 63');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_64'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 64');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_65'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 65');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 66');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_67'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 67');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_68'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 68');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_69'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 69');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_70'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 70');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_71'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 71');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_72'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 72');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_73'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 73');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_90'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 90');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_94'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 94');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_95'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 95');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_97'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 97');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_OBJ_ID_98'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 98');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_106'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 106');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_119'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 119');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_12'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 12');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_120'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 120');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_125'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 125');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_44'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 44');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_46'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 46');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_47'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 47');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_48'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 48');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_49'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 49');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_50'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 50');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_51'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 51');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_52'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 52');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_53'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 53');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_54'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 54');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_55'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 55');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_56'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 56');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_59'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 59');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_60'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 60');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_61'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 61');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_62'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 62');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_63'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 63');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_64'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 64');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_65'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 65');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 66');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_67'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 67');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_68'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 68');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_69'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 69');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_70'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 70');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_71'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 71');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_72'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 72');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_73'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 73');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_90'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 90');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_94'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 94');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_95'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 95');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_97'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 97');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PAYMENTS_98'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка платежей счета 98');
+
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_106'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 106');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_119'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 119');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_12'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 12');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_120'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 120');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_44'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 44');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_46'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 46');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_47'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 47');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_48'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 48');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_49'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 49');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_50'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 50');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_51'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 51');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_52'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 52');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_53'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 53');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_54'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 54');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_55'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 55');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_56'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 56');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_59'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 59');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_60'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 60');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_61'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 61');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_62'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 62');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_63'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 63');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_64'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 64');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_65'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 65');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 66');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_67'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 67');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_68'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 68');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_69'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 69');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_70'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 70');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_71'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 71');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_72'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 72');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_73'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 73');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_90'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 90');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_94'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 94');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_95'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 95');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_97'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 97');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONE_OPTIONS_98'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 98');
+
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_106'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 106');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_119'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 119');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_12'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 12');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_120'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 120');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_44'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 44');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_120'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 120');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_44'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 44');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_46'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 46');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_47'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 47');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_48'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 48');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_49'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 49');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_50'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 50');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_51'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 51');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_52'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 52');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_53'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 53');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_54'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 54');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_55'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 55');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_56'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 56');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_59'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 59');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_60'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 60');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_61'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 61');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_62'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 62');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_63'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 63');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_64'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 64');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_65'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 65');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 66');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_67'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 67');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_68'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 68');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_69'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 69');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_70'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 70');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_71'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 71');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_72'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 72');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_73'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 73');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_90'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 90');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_94'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 94');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_95'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 95');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_97'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 97');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_PHONES_98'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 98');
+
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_119'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 119');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_12'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 12');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_120'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 120');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_44'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 44');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_46'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 46');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_47'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 47');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_48'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 48');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_49'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 49');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_50'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 50');
+
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_51'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 51');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_52'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 52');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_53'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 53');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_54'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 54');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_55'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 55');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_59'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 59');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_60'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 60');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_61'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 61');
+
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_62'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 62');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_63'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 63');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_64'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 64');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_65'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 65');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 66');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_67'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 67');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_68'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 68');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_69'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 69');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_70'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 70');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_71'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 71');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_72'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 72');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_73'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 73');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_90'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 90');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_93_T0'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 93');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_93_T1'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 93');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_93_T2'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 93');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_93_T3'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 93');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_99_T0'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 99');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_99_T1'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 99');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_99_T2'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 99');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_99_T3'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 99');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_LOAD_REPORT_DATA_99_T4'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 99');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_MAIL_REQ_QUERY'
+     ,attribute => 'COMMENTS'
+     ,value     => 'рассылка писем на e-mail');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_MOB_PAY_QUERY'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проведение мобильных платежей');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_RUN_P_CR_BALANCE_HISTORY'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Пересчет баланса ');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_SAVE_BILL_FOR_DILER'
+     ,attribute => 'COMMENTS'
+     ,value     => 'подсчет дилер вознаграждения ');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_SEND_MAIL_PHONE_FOR_SAVE3'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Отправка отчета на блокировку на сохранение ');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_SEND_MAIL_PHONE_FOR_BLSV3'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Отправка отчета на разблокировку на сохранение ');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_SEND_MAIL_PHONE_UNBL_2040'
+     ,attribute => 'COMMENTS'
+     ,value     => ' отправка отчета на разблокировку');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_TEMP_LOAD_OBJ_ID'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету ');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_P_EVERYDAY_PAY'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Добавление номера в очередь на персечет баланса');
+
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_TEST_TASKS_SMS'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Высылает оповещение о добавлении/отключении услуги');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_TT_BALANCE_REDUCED_NOTICE'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Рассылка смс с оповещением о балансе');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_100'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 100');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_106'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 106');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_119'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 119');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_12'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 12');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_120'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 120');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_44'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 44');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_46'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 46');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_47'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 47');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_48'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 48');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_49'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 49');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_50'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 50');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_51'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 51');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_52'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 52');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_53'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 53');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_54'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 54');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_55'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 55');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_56'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 56');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_59'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 59');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_60'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 60');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_61'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 61');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_62'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 62');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_63'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 63');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_64'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 64');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_65'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 65');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_66'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 66');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_67'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 67');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_68'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 68');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_69'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 69');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_70'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 70');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_71'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 71');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_72'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 72');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_73'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 73');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_90'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 90');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_93'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 93');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_94'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 94');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_95'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 95');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_97'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 97');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_98'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 98');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_UNBLOCK_CLIENT_99'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Разблокировка клиентов с балансом больше 0 счета 99');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.SMS_ERROR_NOTICE_JOB'
+     ,attribute => 'COMMENTS'
+     ,value     => ' Рассылка почтовых сообщений об ошибках');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'CORP_MOBILE.J_RECALC_CURR_TARIF'
+     ,attribute => 'COMMENTS'
+     ,value     => ' пересчет текущего тарифа');
+
+
+
+ 
+
+
+
+END;

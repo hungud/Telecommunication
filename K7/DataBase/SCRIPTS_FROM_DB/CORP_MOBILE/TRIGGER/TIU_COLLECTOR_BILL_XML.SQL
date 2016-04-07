@@ -1,0 +1,32 @@
+
+  CREATE OR REPLACE TRIGGER "CORP_MOBILE"."TIU_COLLECTOR_BILL_XML" 
+  BEFORE INSERT OR UPDATE ON COLLECTOR_BILL_XML FOR EACH ROW
+DECLARE
+vXML XMLTYPE;
+vYM INTEGER;
+vACC varchar2(30 char);
+BEGIN
+  IF INSERTING THEN
+    :NEW.DATE_INSERT:=SYSDATE;
+    :NEW.FILE_ID:=NEW_BILL_FILE_ID;
+    IF NVL(:NEW.XML_CHECKED, 0) <> -1 THEN
+      :NEW.XML_CHECKED:=0;
+    END IF;
+  END IF; 
+  IF ((INSERTING) and (:NEW.XML_CHECKED <> -1)) 
+      OR ((UPDATING) AND (:NEW.XML_CHECKED = :OLD.XML_CHECKED) AND (:NEW.BAN = :OLD.BAN) AND (:NEW.ACCOUNT_ID = :OLD.ACCOUNT_ID))
+      OR ((UPDATING) AND (:NEW.XML_CHECKED = 0) AND (:OLD.XML_CHECKED = -1)) THEN
+    SELECT TO_CHAR(TO_DATE(extractVALUE(xmltype(:NEW.XML_TXT),'XML_BILL/ECare_Corporate_Str/ECare_Corporate_Info/BILL_prd_cvrg_end_date'), 'DD/MM/YYYY'), 'YYYYMM'),
+           TO_NUMBER(extractVALUE(xmltype(:NEW.XML_TXT),'XML_BILL/ECare_Corporate_Str/ECare_Corporate_Info/BILL_ban')),
+           TO_NUMBER(extractVALUE(xmltype(:NEW.XML_TXT),'XML_BILL/ECare_Corporate_Str/ECare_Corporate_Info/WORK_corporate_id'))
+      INTO :NEW.YEAR_MONTH, :NEW.BAN, vACC
+      FROM DUAL;
+    :NEW.ACCOUNT_ID:=CASE
+                       WHEN vACC = 4582633 THEN 93
+                       WHEN vACC = 4965132 THEN 99
+                       when vACC = 7040749 THEN 128
+                       ELSE 930
+                     END;
+  END IF; 
+END;
+ALTER TRIGGER "CORP_MOBILE"."TIU_COLLECTOR_BILL_XML" ENABLE

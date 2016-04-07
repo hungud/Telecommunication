@@ -1,0 +1,776 @@
+unit RefAccounts;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, TemplateFrm, Ora, ActnList, Menus, DB, MemDS, DBAccess, Grids,
+  DBGrids, CRGrid, ComCtrls, ToolWin, ExtCtrls, StdCtrls, Mask, DBCtrls, Buttons,
+  OraSmart,IntecExportGrid;
+
+type
+  TRefAccountsForm = class(TTemplateForm)
+    qOperators: TOraQuery;
+    qMainACCOUNT_ID: TFloatField;
+    qMainOPERATOR_ID: TFloatField;
+    qMainACCOUNT_NUMBER: TFloatField;
+    qMainLOGIN: TStringField;
+    qMainPASSWORD: TStringField;
+    qMainOPERATOR_NAME: TStringField;
+    qMainDO_AUTO_LOAD_DATA: TIntegerField;
+    qMainLOAD_INTERVAL: TFloatField;
+    Panel3: TPanel;
+    qLogs: TOraQuery;
+    dsLogs: TDataSource;
+    qMainPAY_LOAD_INTERVAL: TFloatField;
+    spLoadPayment: TOraStoredProc;
+    tbLoadPayments: TToolButton;
+    ToolButton9: TToolButton;
+    dgLoadingLogs: TCRDBGrid;
+    RGLoadLogTypes: TRadioGroup;
+    Splitter1: TSplitter;
+    qLoadLogTypes: TOraQuery;
+    DsRadioGroup: TOraDataSource;
+    qMainBALANCE_NOTICE_TEXT: TStringField;
+    qMainBLOCK_NOTICE_TEXT: TStringField;
+    qMainNEXT_MONTH_NOTICE_TEXT: TStringField;
+    qMainLOAD_DETAIL_POOL_SIZE: TFloatField;
+    qMainLOAD_DETAIL_THREAD_COUNT: TFloatField;
+    qMainBALANCE_BLOCK: TFloatField;
+    qMainDO_AUTO_BLOCK: TIntegerField;
+    qMainBALANCE_NOTICE: TFloatField;
+    qMainDO_BALANCE_NOTICE: TIntegerField;
+    qMainDO_BALANCE_NOTICE_MONTH: TIntegerField;
+    qMainBALANCE_NOTICE_END_MONTH: TFloatField;
+    qMainBALANCE_NOTICE_CREDIT: TFloatField;
+    qMainTEXT_NOTICE_BALANCE_CREDIT: TStringField;
+    qMainBALANCE_BLOCK_CREDIT: TFloatField;
+    qMainTEXT_NOTICE_BLOCK_CREDIT: TStringField;
+    qMainBALANCE_NOTICE_MONTH_CREDIT: TFloatField;
+    qMainTEXT_NOTICE_END_MONTH_CREDIT: TStringField;
+    qMainDILER_PAYMETS: TFloatField;
+    qMainUSER_CREATED: TStringField;
+    qMainDATE_CREATED: TDateTimeField;
+    qMainUSER_LAST_UPDATED: TStringField;
+    qMainDATE_LAST_UPDATED: TDateTimeField;
+    qMainNEXT_MONTH_NOTICE_BALANCE: TFloatField;
+    qMainBALANCE_NOTICE2: TFloatField;
+    qMainBALANCE_NOTICE_TEXT2: TStringField;
+    qMainBALANCE_NOTICE_CREDIT2: TFloatField;
+    qMainTEXT_NOTICE_BALANCE_CREDIT2: TStringField;
+    qMainCOMPANY_NAME: TStringField;
+    spAllTurnOnOff: TOraStoredProc;
+    qFilials: TOraTable;
+    qMainFILIAL_ID: TFloatField;
+    qMainFILIAL_NAME: TStringField;
+    qMainNEW_PSWD: TStringField;
+    qJobs: TOraQuery;
+    dsJobs: TDataSource;
+    qMainIS_COLLECTOR: TIntegerField;
+    ToolButton10: TToolButton;
+    tbJobOn: TToolButton;
+    tbJobOff: TToolButton;
+    spStartStopJob: TOraStoredProc;
+    osStartStopJob: TOraSQL;
+    qSMS_SENDER_NAME: TOraQuery;
+    qMainSMS_SENDER_NAME_ID: TIntegerField;
+    qMainSMS_SENDER_NAME: TStringField;
+    Panel6: TPanel;
+    Panel4: TPanel;
+    PageControl2: TPageControl;
+    TabSheet1: TTabSheet;
+    PageControl1: TPageControl;
+    tsAvans: TTabSheet;
+    GroupBoxBalanceBlock: TGroupBox;
+    LabelBalanceBlock: TLabel;
+    lBlockNoticeLength: TLabel;
+    LabelBlockNEM: TLabel;
+    DBCheckBoxAutoBlock: TDBCheckBox;
+    DBEditBalanceBlock: TDBEdit;
+    DBMemoBlockNotice: TDBMemo;
+    GroupBoxBalanceNotice: TGroupBox;
+    LabelBalanceNotice: TLabel;
+    lBalanceNoticeLength: TLabel;
+    LabelBalanceN: TLabel;
+    LabelBalanceNotice2: TLabel;
+    Label2: TLabel;
+    lBalanceNoticeLength2: TLabel;
+    DBCheckBoxBalanceNotice: TDBCheckBox;
+    DBEditBalanceNotice: TDBEdit;
+    DBMemoBalanceNotice: TDBMemo;
+    DBEditBalanceNotice2: TDBEdit;
+    DBMemoBalanceNotice2: TDBMemo;
+    GroupBoxBalanceNoticeEndMonth: TGroupBox;
+    LabelBalanceNoticeEndMonth: TLabel;
+    lBalanceNoticeEndMonthLength: TLabel;
+    LabelBalanceNEM: TLabel;
+    DBCheckBoxBalanceNoticeEndMonth: TDBCheckBox;
+    DBEditBalanceNoticeEndMonth: TDBEdit;
+    DBMemoBalanceNoticeEndMonth: TDBMemo;
+    tsCredit: TTabSheet;
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    lBlockNoticeCreditLength: TLabel;
+    Label3: TLabel;
+    DBCheckBox1: TDBCheckBox;
+    DBEdit1: TDBEdit;
+    DBMemoBlockNoticeCredit: TDBMemo;
+    GroupBox2: TGroupBox;
+    Label4: TLabel;
+    lBalanceNoticeCreditLength: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    lBalanceNoticeCreditLength2: TLabel;
+    Label8: TLabel;
+    DBCheckBox2: TDBCheckBox;
+    DBEdit2: TDBEdit;
+    DBMemoBalanceNoticeCredit: TDBMemo;
+    DBMemoBalanceNoticeCredit2: TDBMemo;
+    DBEditBalanceNoticeCredit2: TDBEdit;
+    GroupBox3: TGroupBox;
+    Label7: TLabel;
+    lBalanceNoticeEndMonthCreditLength: TLabel;
+    Label9: TLabel;
+    DBCheckBox3: TDBCheckBox;
+    DBEdit3: TDBEdit;
+    DBMemoBalanceNoticeEndMonthCredit: TDBMemo;
+    TabSheet2: TTabSheet;
+    GroupBoxSettingsConnection: TGroupBox;
+    LabelLoadInterval: TLabel;
+    LabelPayLoadInterval: TLabel;
+    LabelChangePassword: TLabel;
+    LabelDetailThreadCount: TLabel;
+    LabelLoadDetailPoolSize: TLabel;
+    lblnewpass: TLabel;
+    DBCheckBoxAutoLoad: TDBCheckBox;
+    DBEditLoadInterval: TDBEdit;
+    DBEditPayLoadInterval: TDBEdit;
+    DBEditChangePassword: TDBEdit;
+    DBEditLoadDetailPoolSize: TDBEdit;
+    DBEditLoadDetailThreadCount: TDBEdit;
+    DBEditChangeNewPassword: TDBEdit;
+    GroupBoxStatusLoad: TGroupBox;
+    lbBlockJob: TLabel;
+    lbUnBlockJob: TLabel;
+    lbPaymentsJob: TLabel;
+    lbStatusJob: TLabel;
+    lbBlockJobStatus: TDBText;
+    lbUnBlockJobStatus: TDBText;
+    lbPaymentsJobStatus: TDBText;
+    lbStatusJobStatus: TDBText;
+    DBCheckBoxIsCollector: TDBCheckBox;
+    Panel5: TPanel;
+    cbAllTurnOnOff: TCheckBox;
+    gJob: TCRDBGrid;
+    dsJob: TDataSource;
+    OraQuery1: TOraQuery;
+    qJob: TOraQuery;
+    Panel7: TPanel;
+    qJobJOB_NAME: TStringField;
+    qJobSACCOUNT_NUM: TStringField;
+    qJobSTATE: TStringField;
+    Panel8: TPanel;
+    Splitter2: TSplitter;
+    qMainPROVIDER_NAME: TStringField;
+    qMainPROVIDER_ID: TFloatField;
+    qSMS_SEND_PARAMETRS: TOraQuery;
+    tsUSSD: TTabSheet;
+    gbParametrs: TGroupBox;
+    GroupBox4: TGroupBox;
+    lUSSDBalanceLen: TLabel;
+    dbUSSDBalance: TDBMemo;
+    qMainBALANCE_USSD_TEXT: TStringField;
+    lUSSDMaxlen: TLabel;
+    procedure qMainBeforePost(DataSet: TDataSet);
+    procedure qMainDO_AUTO_LOAD_DATAValidate(Sender: TField);
+    procedure qMainAfterOpen(DataSet: TDataSet);
+    procedure tbLoadPaymentsClick(Sender: TObject);
+    procedure DataSource1StateChange(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure RGLoadLogTypesClick(Sender: TObject);
+    procedure qMainLOAD_INTERVALGetText(Sender: TField; var Text: string;
+      DisplayText: Boolean);
+    procedure qMainLOAD_INTERVALSetText(Sender: TField; const Text: string);
+    procedure DBMemoBalanceNoticeEndMonthChange(Sender: TObject);
+    procedure DBMemoBlockNoticeChange(Sender: TObject);
+    procedure DBMemoBalanceNoticeChange(Sender: TObject);
+    procedure DBMemoBlockNoticeCreditChange(Sender: TObject);
+    procedure DBMemoBalanceNoticeCreditChange(Sender: TObject);
+    procedure DBMemoBalanceNoticeEndMonthCreditChange(Sender: TObject);
+    procedure DBMemoBalanceNotice2Change(Sender: TObject);
+    procedure DBMemoBalanceNoticeCredit2Change(Sender: TObject);
+    procedure cbAllTurnOnOffClick(Sender: TObject);
+    procedure CRDBGrid1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure tbJobOnClick(Sender: TObject);
+    procedure tbJobOffClick(Sender: TObject);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure dgLoadingLogsKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure gJobDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure aRefreshExecute(Sender: TObject);
+    procedure dbUSSDBalanceChange(Sender: TObject);
+
+
+
+
+
+  private
+    { Private declarations }
+  public
+    procedure Execute(CheckLogsOnly : Boolean);
+  end;
+
+//var
+//  RefAccountsForm: TRefAccountsForm;
+
+implementation
+{$R *.dfm}
+
+uses ContractsRegistration_Utils, Main, ClipBrd, StrUtils;
+
+procedure TRefAccountsForm.qMainBeforePost(DataSet: TDataSet);
+begin
+  if DataSet.FieldByName('OPERATOR_ID').IsNull then
+  begin
+    MessageDlg('Оператор должен быть выбран', mtError, [mbOK], 0);
+    Abort;
+  end;
+  if DataSet.FieldByName('ACCOUNT_NUMBER').IsNull then
+  begin
+    MessageDlg('Номер счета должен быть заполнен', mtError, [mbOK], 0);
+    Abort;
+  end;
+  //
+  inherited;
+end;
+
+procedure TRefAccountsForm.qMainDO_AUTO_LOAD_DATAValidate(Sender: TField);
+begin
+  if not (Sender.AsInteger in [0, 1]) then
+  begin
+    ShowMessage('Допускается значение 0 (не загружать) или 1 (загружать)');
+    Abort;
+  end;
+end;
+
+procedure TRefAccountsForm.qMainLOAD_INTERVALGetText(Sender: TField;
+  var Text: string; DisplayText: Boolean);
+begin
+  inherited;
+  Text := FormatDateTime('hh:nn',
+    Sender.AsFloat / 24 // Часы переводим в доли суток
+    ); //
+end;
+
+procedure TRefAccountsForm.qMainLOAD_INTERVALSetText(Sender: TField;
+  const Text: string);
+begin
+  inherited;
+  Sender.AsFloat := StrToTime(Text) *24; // Доли суток переводим в часы
+end;
+
+procedure TRefAccountsForm.RGLoadLogTypesClick(Sender: TObject);
+var
+param: integer;
+begin
+  inherited;
+  qlogs.Close;
+  param:=Integer(RGLoadLogTypes.Items.Objects[RGLoadLogTypes.ItemIndex]);
+  qlogs.ParamByName('VIEW_TYPE').AsInteger:=param;
+  qlogs.Open;
+  if GetConstantValue('SHOW_STATUS_JOB')='1' then begin
+    try
+     qJobs.ParamByName('paccount_id').Value:=qMainACCOUNT_ID.asstring;
+     qJobs.Open;
+    except
+     ShowMessage('Ошибка определения статусов заданий.');
+     qJobs.active:=false;
+    end;
+  end;
+
+end;
+
+procedure TRefAccountsForm.tbJobOffClick(Sender: TObject);
+begin
+  inherited;
+  with osStartStopJob do
+    begin
+      parambyname('ENB').AsString:='TRUE';
+      execute;
+    end;
+  if osStartStopJob.parambyname('str').AsString = '' then
+    MessageDlg('Задачи успешно остановленны',mtCustom, [mbYes], 0)
+  else MessageDlg('Ошибка при остановке задач '+osStartStopJob.parambyname('str').AsString,mtError, [mbOK], 0);
+end;
+
+procedure TRefAccountsForm.tbJobOnClick(Sender: TObject);
+begin
+  inherited;
+  with osStartStopJob do
+    begin
+      parambyname('ENB').AsString:='FALSE';
+      execute;
+    end;
+  if osStartStopJob.parambyname('str').AsString = '' then
+    MessageDlg('Задачи успешно запущены',mtCustom, [mbYes], 0)
+  else MessageDlg('Ошибка при запуске задач '+osStartStopJob.parambyname('str').AsString,mtError, [mbOK], 0);
+end;
+
+procedure TRefAccountsForm.tbLoadPaymentsClick(Sender: TObject);
+var
+  Year,Month,Day : word;
+begin
+  if qMain.IsEmpty then
+    ShowMessage('Не выбран лицевой счёт для загрузки')
+  else
+  begin
+    if IDYES = Application.MessageBox(
+      'Загрузить платежи прошлого месяца для лицевого счёта?',
+      'Загрузить?',
+      MB_YESNOCANCEL or MB_ICONQUESTION) then
+    begin
+      spLoadPayment.ParamByName('PACCOUNT_ID').AsInteger:=qMain.FieldByName('ACCOUNT_ID').AsInteger;
+      DecodeDate(IncMonth(Date, -1), Year, Month, Day);
+      spLoadPayment.ParamByName('PYEAR').AsInteger:=Year;
+      spLoadPayment.ParamByName('PMONTH').AsInteger:=Month;
+      spLoadPayment.ExecProc;
+    end;
+  end;
+end;
+
+procedure TRefAccountsForm.qMainAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+  RGLoadLogTypesClick(RGLoadLogTypes);
+end;
+
+procedure TRefAccountsForm.aRefreshExecute(Sender: TObject);
+begin
+  inherited;
+  if GetConstantValue('SHOW_JOB_AND_SEND_ACCOUNTS')='1' then
+  begin
+   qJob.Close;
+   qJob.Open;
+  end;
+end;
+
+procedure TRefAccountsForm.cbAllTurnOnOffClick(Sender: TObject);
+var Check: boolean;
+    TypeChange: string;
+begin
+  inherited;
+  if cbAllTurnOnOff.Checked then
+  begin
+    TypeChange:='Включить';
+    spAllTurnOnOff.ParamByName('PNEW_STATE').AsInteger:=1;
+  end else
+  begin
+    TypeChange:='Отключить';
+    spAllTurnOnOff.ParamByName('PNEW_STATE').AsInteger:=0;
+  end;
+  if mrOk = MessageDlg(TypeChange+' по всем Л/С автобл. и пред. о балансе?', mtConfirmation, [mbOK, mbCancel], 0) then
+    spAllTurnOnOff.ExecProc;
+end;
+
+procedure TRefAccountsForm.CRDBGrid1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+ if  (Key=vk_F1) and (ssCtrl in Shift) then
+ begin
+  ShowMessage('Id счёта - '+qMain.FieldByName('ACCOUNT_ID').AsString);
+ end;
+
+end;
+
+procedure TRefAccountsForm.gJobDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var cc: TCanvas;
+  Bitmap: TBitmap;
+begin
+  if GetConstantValue('SHOW_JOB_AND_SEND_ACCOUNTS')='1' then
+  begin
+    if (DataCol = 2) then
+    begin
+      Bitmap := TBitmap.Create;
+      if gJob.DataSource.DataSet.Fields[2].AsString = 'DISABLED' then
+        MainForm.ImageList16.GetBitmap(10,Bitmap)
+      else
+        MainForm.ImageList16.GetBitmap(9,Bitmap);
+      cc := gJob.Canvas;
+      cc.FillRect(rect);
+      cc.Draw(Rect.Left + (Rect.Right - Rect.Left - Bitmap.Width) div 2, Rect.Top, Bitmap);
+      Bitmap.Free;
+    end;
+  end;
+end;
+
+procedure TRefAccountsForm.DataSource1DataChange(Sender: TObject;
+  Field: TField);
+begin
+  inherited;
+  if GetConstantValue('SHOW_STATUS_JOB')='1' then begin
+    if lbBlockJobStatus.Caption='Загрузка отключена!!!' then begin
+     lbBlockJobStatus.Font.Style:=[fsBold];
+     lbBlockJobStatus.Font.Color:=clRed;
+    end
+    else begin
+     lbBlockJobStatus.Font.Style:=[];
+     lbBlockJobStatus.Font.Color:=clWindowText;
+    end;
+    if lbUnBlockJobStatus.Caption='Загрузка отключена!!!' then begin
+     lbUnBlockJobStatus.Font.Style:=[fsBold];
+     lbUnBlockJobStatus.Font.Color:=clRed;
+    end
+    else begin
+     lbUnBlockJobStatus.Font.Style:=[];
+     lbUnBlockJobStatus.Font.Color:=clWindowText;
+    end;
+    if lbStatusJobStatus.Caption='Загрузка отключена!!!' then begin
+     lbStatusJobStatus.Font.Style:=[fsBold];
+     lbStatusJobStatus.Font.Color:=clRed;
+    end
+    else begin
+     lbStatusJobStatus.Font.Style:=[];
+     lbStatusJobStatus.Font.Color:=clWindowText;
+    end;
+    if lbPaymentsJobStatus.Caption='Загрузка отключена!!!' then begin
+     lbPaymentsJobStatus.Font.Style:=[fsBold];
+     lbPaymentsJobStatus.Font.Color:=clRed;
+    end
+    else begin
+     lbPaymentsJobStatus.Font.Style:=[];
+     lbPaymentsJobStatus.Font.Color:=clWindowText;
+    end;
+  end;
+end;
+
+procedure TRefAccountsForm.DataSource1StateChange(Sender: TObject);
+begin
+  inherited;
+  tbLoadPayments.Enabled := (not qMain.IsEmpty);
+end;
+
+procedure TRefAccountsForm.DBMemoBlockNoticeChange(Sender: TObject);
+begin
+  inherited;
+  lBlockNoticeLength.Caption:=IntToStr(DBMemoBlockNotice.GetTextLen);
+  if DBMemoBlockNotice.GetTextLen<71
+    then lBlockNoticeLength.Font.Color:=clGreen
+    else lBlockNoticeLength.Font.Color:=clRed;
+end;
+
+
+procedure TRefAccountsForm.DBMemoBalanceNotice2Change(Sender: TObject);
+begin
+  inherited;
+  lBalanceNoticeLength2.Caption:=IntToStr(DBMemoBalanceNotice2.GetTextLen);
+  if DBMemoBalanceNotice2.GetTextLen<71
+    then lBalanceNoticeLength2.Font.Color:=clGreen
+    else lBalanceNoticeLength2.Font.Color:=clRed;
+end;
+
+procedure TRefAccountsForm.DBMemoBalanceNoticeChange(Sender: TObject);
+begin
+  inherited;
+  lBalanceNoticeLength.Caption:=IntToStr(DBMemoBalanceNotice.GetTextLen);
+  if DBMemoBalanceNotice.GetTextLen<71
+    then lBalanceNoticeLength.Font.Color:=clGreen
+    else lBalanceNoticeLength.Font.Color:=clRed;
+end;
+
+procedure TRefAccountsForm.DBMemoBalanceNoticeEndMonthChange(Sender: TObject);
+begin
+  inherited;
+  lBalanceNoticeEndMonthLength.Caption:=IntToStr(DBMemoBalanceNoticeEndMonth.GetTextLen);
+  if DBMemoBalanceNoticeEndMonth.GetTextLen<71
+    then lBalanceNoticeEndMonthLength.Font.Color:=clGreen
+    else lBalanceNoticeEndMonthLength.Font.Color:=clRed;
+end;
+
+procedure TRefAccountsForm.DBMemoBlockNoticeCreditChange(Sender: TObject);
+begin
+  inherited;
+  lBlockNoticeCreditLength.Caption:=IntToStr(DBMemoBlockNoticeCredit.GetTextLen);
+  if DBMemoBlockNoticeCredit.GetTextLen<71
+    then lBlockNoticeCreditLength.Font.Color:=clGreen
+    else lBlockNoticeCreditLength.Font.Color:=clRed;
+end;
+
+
+procedure TRefAccountsForm.dbUSSDBalanceChange(Sender: TObject);
+var
+  len : Integer;
+  text : string;
+begin
+  inherited;
+  // длину измеряем без слова %balance%
+  text := AnsiReplaceStr(dbUSSDBalance.Text, '%balance%', '');
+
+  len := Length(text) ;
+  lUSSDBalanceLen.Caption := IntToStr(len);
+  //максимальная длина ответа по USSD 80 символов
+  // под сумму баланса отводим 7
+  if (len < 74) then
+  begin
+    lUSSDBalanceLen.Font.Color := clGreen;
+    lUSSDMaxlen.Visible := False;
+  end
+  else
+  begin
+    lUSSDBalanceLen.Font.Color := clRed;
+    lUSSDMaxlen.Visible := True;
+  end;
+end;
+
+procedure TRefAccountsForm.dgLoadingLogsKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if (shift=[ssCtrl]) and (key=67) then Clipboard.AsText:='Время:'+qlogs.FieldByName('LOAD_DATE_TIME').AsString+#13+#10+
+                                                       'Л\С: '+qMainACCOUNT_NUMBER.AsString+#13+#10+
+                                                       'Тип: '+qlogs.FieldByName('ACCOUNT_LOAD_TYPE_NAME').AsString+#13+#10+
+                                                       'Рез. '+qlogs.FieldByName('IS_SUCCESS').AsString+#13+#10+
+                                                       'Инф: '+qlogs.FieldByName('ERROR_TEXT').AsString;
+end;
+
+procedure TRefAccountsForm.DBMemoBalanceNoticeCredit2Change(Sender: TObject);
+begin
+  inherited;
+  lBalanceNoticeCreditLength2.Caption:=IntToStr(DBMemoBalanceNoticeCredit2.GetTextLen);
+  if DBMemoBalanceNoticeCredit2.GetTextLen<71
+    then lBalanceNoticeCreditLength2.Font.Color:=clGreen
+    else lBalanceNoticeCreditLength2.Font.Color:=clRed;
+end;
+
+
+procedure TRefAccountsForm.DBMemoBalanceNoticeCreditChange(Sender: TObject);
+begin
+  inherited;
+  lBalanceNoticeCreditLength.Caption:=IntToStr(DBMemoBalanceNoticeCredit.GetTextLen);
+  if DBMemoBalanceNoticeCredit.GetTextLen<71
+    then lBalanceNoticeCreditLength.Font.Color:=clGreen
+    else lBalanceNoticeCreditLength.Font.Color:=clRed;
+end;
+
+procedure TRefAccountsForm.DBMemoBalanceNoticeEndMonthCreditChange(
+  Sender: TObject);
+begin
+  inherited;
+  lBalanceNoticeEndMonthCreditLength.Caption:=IntToStr(DBMemoBalanceNoticeEndMonthCredit.GetTextLen);
+  if DBMemoBalanceNoticeEndMonthCredit.GetTextLen<71
+    then lBalanceNoticeEndMonthCreditLength.Font.Color:=clGreen
+    else lBalanceNoticeEndMonthCreditLength.Font.Color:=clRed;
+end;
+
+procedure TRefAccountsForm.Execute(CheckLogsOnly : Boolean);
+begin
+  if CheckLogsOnly then
+  begin
+    // Запретим редактирование
+    aInsert.Enabled := False;
+    aEdit.Enabled := False;
+    aDelete.Enabled := False;
+    aPost.Enabled := False;
+    aCancel.Enabled := False;
+    CRDBGrid1.ReadOnly := True;
+    // Скроем лишние колонки
+    Caption := 'Журнал загрузки информации с сайта оператора';
+    panel4.Visible:=true;
+    panel4.Enabled:=false;
+  end;
+  FormStyle := fsMDIChild;
+end;
+
+procedure TRefAccountsForm.FormCreate(Sender: TObject);
+var FilialSelect: string;
+    i: integer;
+begin
+  inherited;
+  if MainForm.FUseFilialBlockAccess then
+  begin
+    qMain.SQL.Append('WHERE FILIAL_ID=' + IntToStr(MainForm.FFilial));
+    cbAllTurnOnOff.Hide;
+  end;
+  if (GetConstantValue('USE_FILIAL_BLOCK_ACCESS')<>'1') then
+  begin
+    i := 0;
+    while i <= CRDBGrid1.Columns.Count -1  do
+    begin
+      if (CRDBGrid1.Columns[i].FieldName = 'FILIAL_NAME')
+          or(CRDBGrid1.Columns[i].FieldName = 'FILIAL_ID') then
+        CRDBGrid1.Columns[i].Destroy
+      else
+        Inc(i);
+    end;
+    qMainFILIAL_ID.Destroy;
+    qMainFILIAL_NAME.Destroy;
+  end;
+  if GetConstantValue('SHOW_STATUS_JOB')='1' then
+    GroupBoxStatusLoad.Visible:=true;
+
+  if GetConstantValue('USE_COLLECTOR')='1' then
+    DBCheckBoxIsCollector.Visible:=true;
+
+
+  if GetConstantValue('SHOW_CONTRACT_INFO')='1' then
+    CRDBGrid1.Columns.Items[1].Visible:=true
+  else
+    CRDBGrid1.Columns.Items[1].Visible:=false;
+  if GetConstantValue('CREDIT_SYSTEM_ENABLE')='1' then
+  begin
+    tsCredit.TabVisible:=true;
+    PageControl1.ActivePageIndex:=0;
+  end
+  else
+  begin
+    tsCredit.TabVisible:=false;
+    tsCredit.Caption:='СМС предупреждения';
+  end;
+  //если есть константа показа загруок и оповещений, то запускаем qJob
+  panel8.Visible := false;
+  Splitter2.Visible := false;
+  if GetConstantValue('SHOW_JOB_AND_SEND_ACCOUNTS')='1' then
+  begin
+    panel8.Visible := true;
+    Splitter2.Visible := true;
+    qJob.Open;
+  end;
+  qLoadLogTypes.Open;
+  DsRadioGroup.DataSet.First;
+  while Not (DsRadioGroup.DataSet.Eof) do
+  begin
+    RGLoadLogTypes.Items.AddObject(
+      qLoadLogTypes.FieldByName('ACCOUNT_LOAD_TYPE_NAME').AsString,
+      TObject(qLoadLogTypes.FieldByName('ACCOUNT_LOAD_TYPE_ID').AsInteger)
+      );
+    DsRadioGroup.DataSet.next;
+  end;
+  qLoadLogTypes.Close;
+
+
+  PageControl2.ActivePageIndex := 0;
+
+end;
+
+procedure TRefAccountsForm.FormKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+
+ procedure Pclose(sender:TObject);
+  begin
+  (sender as TForm).ModalResult:=mrOk;
+  //sender.Destroy;
+  end;
+
+ procedure ToExcel(sender:TObject);
+var
+  cr : TCursor;
+  ACaption : String;
+  ANameFile : string;
+begin
+  cr := Screen.Cursor;
+  Screen.Cursor := crHourGlass;
+  ACaption := 'АвтоОценка состояния '+GetConstantValue('SERVER_NAME')+' на '+DateToStr(now);
+  ANameFile:=GetConstantValue('SERVER_NAME')+'_SYS_'+DateToStr(now);
+  try
+    ExportDBGridToExcel(ACaption,ANameFile,
+      (sender as TCRDBGrid), False, True);
+  finally
+    Screen.Cursor := cr;
+  end;
+
+end;
+
+ var
+fList:TForm;
+Mcloselsit,Mto_excel:TMethod;
+qBH:TOraQuery;
+dsBH:TDataSource;
+tBH:TCRDBGrid;
+q_num:integer;
+popMenu:TPopupMenu;
+NewItem:TMenuItem;
+
+begin
+if (shift=[ssCtrl]) and (key=114) then begin
+
+flist:=tform.Create(self);
+    with flist do begin
+      BorderStyle:=bsSingle;
+      Caption:='Оценка текущего состояния '+GetConstantValue('SERVER_NAME');
+      Position:=poScreenCenter;
+      Width:=600;
+      Height:=540;
+    end;
+
+qBH:=TOraQuery.Create(flist);
+    with qBH do begin
+     sql.Clear;
+     Params.Clear;
+
+     sql.Add('select t.acc,acc.account_number,acc.company_name,t.col,t.message' + #13#10 +
+             'from V_ANALIZ_SYS t,accounts acc where to_char(acc.account_id(+))=to_char(t.acc)'
+            );
+
+    end;
+dsBH:=TDataSource.Create(flist);
+    with dsBH do begin
+    DataSet:=qBH;
+    Enabled:=true;
+    end;
+tBH:=TCRDBGrid.Create(flist);
+    with tBH do begin
+    parent:=fList;
+    DataSource:=dsBH;
+    align:=alClient;
+    Visible:=true;
+    Mcloselsit.Code:=@pclose;
+    Mcloselsit.Data:=tBH.Parent;
+    ReadOnly:=true;
+    OnDblClick:=TNotifyEvent(Mcloselsit);
+    end;
+try
+qBH.open;
+finally
+ with tbh.Columns do begin
+Items[0].Title.caption:='Account_id';
+Items[0].Width:=60;
+Items[1].Title.caption:='Л/С';
+Items[1].Width:=70;
+Items[2].Title.caption:='Организация';
+Items[2].Width:=120;
+Items[3].Title.caption:='Кол-во';
+Items[3].Width:=45;
+Items[4].Title.caption:='Тип вызова';
+Items[4].Width:=200;
+end;
+  popMenu:=TPopupMenu.Create(flist);
+  Mto_excel.Code:=@ToExcel;
+  Mto_excel.Data:=tBH;
+  NewItem:=TMenuItem.Create(popMenu);
+  with NewItem do begin
+  OnClick:=TNotifyEvent(Mto_excel);
+  Caption:='Выгрузить в Excel';
+  end;
+
+  popMenu.Items.Add(NewItem);
+  tBH.PopupMenu:=popMenu;
+if not qbh.Eof then
+begin
+fList.ShowModal;
+
+end
+else
+begin
+ ShowMessage('Нет данных.');flist.Destroy;
+end;
+end;
+end;
+
+
+
+end;
+
+end.

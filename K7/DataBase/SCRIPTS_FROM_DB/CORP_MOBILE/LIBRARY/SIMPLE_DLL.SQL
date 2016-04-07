@@ -1,0 +1,2 @@
+
+   CREATE OR REPLACE LIBRARY "CORP_MOBILE"."SIMPLE_DLL" UNTRUSTED AS 'C:\Oracle\product\11.2.0\dbhome_1\BIN\BeeDll.dll'

@@ -1,0 +1,155 @@
+
+  CREATE OR REPLACE FORCE VIEW "SIM_TRADE"."V_TMP_BILL_FULL_FINANCE_INCOR" ("ER_AB", "ER_SIN", "ER_DISC", "ER_CALL", "DBG_ROUM", "ACCOUNT_ID", "YEAR_MONTH", "PHONE_NUMBER", "ABONKA", "CALLS", "SINGLE_PAYMENTS", "DISCOUNTS", "BILL_SUM", "COMPLETE_BILL", "ABON_MAIN", "ABON_ADD", "ABON_OTHER", "SINGLE_MAIN", "SINGLE_ADD", "SINGLE_PENALTI", "SINGLE_CHANGE_TARIFF", "SINGLE_TURN_ON_SERV", "SINGLE_CORRECTION_ROUMING", "SINGLE_INTRA_WEB", "SINGLE_VIEW_BLACK_LIST", "SINGLE_OTHER", "DISCOUNT_YEAR", "DISCOUNT_SMS_PLUS", "DISCOUNT_CALL", "DISCOUNT_COUNT_ON_PHONES", "DISCOUNT_OTHERS", "CALLS_COUNTRY", "CALLS_SITY", "CALLS_LOCAL", "CALLS_SMS_MMS", "CALLS_GPRS", "CALLS_RUS_RPP", "CALLS_ALL", "ROUMING_NATIONAL", "ROUMING_INTERNATIONAL", "DATE_CREATED", "USER_CREATED", "USER_LAST_UPDATED", "DATE_LAST_UPDATED", "DISCOUNT_SOVINTEL") AS 
+  SELECT CASE
+             WHEN FB.ABONKA <> FB.ABON_MAIN + FB.ABON_ADD + FB.ABON_OTHER
+             THEN
+                1
+             ELSE
+                0
+          END
+             ER_AB,
+          CASE
+             WHEN NOT (   FB.SINGLE_PAYMENTS =
+                               FB.SINGLE_MAIN
+                             + FB.SINGLE_ADD
+                             + FB.SINGLE_CHANGE_TARIFF
+                             + FB.SINGLE_TURN_ON_SERV
+                             + FB.SINGLE_CORRECTION_ROUMING
+                             + FB.SINGLE_INTRA_WEB
+                             + FB.SINGLE_OTHER
+                       OR FB.SINGLE_PAYMENTS =
+                               FB.SINGLE_MAIN
+                             + FB.SINGLE_ADD
+                             + FB.SINGLE_CHANGE_TARIFF
+                             + FB.SINGLE_TURN_ON_SERV
+                             + FB.SINGLE_CORRECTION_ROUMING
+                             + FB.SINGLE_INTRA_WEB
+                             + FB.SINGLE_OTHER
+                             + FB.SINGLE_PENALTI
+                             + FB.SINGLE_VIEW_BLACK_LIST)
+             THEN
+                1
+             ELSE
+                0
+          END
+             ER_SIN,
+          CASE
+             WHEN FB.DISCOUNTS <>
+                       FB.DISCOUNT_YEAR
+                     + FB.DISCOUNT_SMS_PLUS
+                     + FB.DISCOUNT_CALL
+                     + FB.DISCOUNT_COUNT_ON_PHONES
+                     + FB.DISCOUNT_OTHERS
+                     + FB.DISCOUNT_SOVINTEL
+             THEN
+                1
+             ELSE
+                0
+          END
+             ER_DISC,
+          CASE
+             WHEN FB.CALLS_ALL <>
+                       FB.CALLS_COUNTRY
+                     + FB.CALLS_SITY
+                     + FB.CALLS_LOCAL
+                     + FB.CALLS_SMS_MMS
+                     + FB.CALLS_GPRS
+                     + FB.CALLS_RUS_RPP
+             THEN
+                1
+             ELSE
+                0
+          END
+             ER_CALL,
+          CASE
+             WHEN FB.CALLS <>
+                       FB.CALLS_ALL
+                     + FB.ROUMING_INTERNATIONAL
+                     + FB.ROUMING_NATIONAL
+             THEN
+                1
+             ELSE
+                0
+          END
+             DBG_ROUM,
+          FB."ACCOUNT_ID",
+          FB."YEAR_MONTH",
+          FB."PHONE_NUMBER",
+          FB."ABONKA",
+          FB."CALLS",
+          FB."SINGLE_PAYMENTS",
+          FB."DISCOUNTS",
+          FB."BILL_SUM",
+          FB."COMPLETE_BILL",
+          FB."ABON_MAIN",
+          FB."ABON_ADD",
+          FB."ABON_OTHER",
+          FB."SINGLE_MAIN",
+          FB."SINGLE_ADD",
+          FB."SINGLE_PENALTI",
+          FB."SINGLE_CHANGE_TARIFF",
+          FB."SINGLE_TURN_ON_SERV",
+          FB."SINGLE_CORRECTION_ROUMING",
+          FB."SINGLE_INTRA_WEB",
+          FB."SINGLE_VIEW_BLACK_LIST",
+          FB."SINGLE_OTHER",
+          FB."DISCOUNT_YEAR",
+          FB."DISCOUNT_SMS_PLUS",
+          FB."DISCOUNT_CALL",
+          FB."DISCOUNT_COUNT_ON_PHONES",
+          FB."DISCOUNT_OTHERS",
+          FB."CALLS_COUNTRY",
+          FB."CALLS_SITY",
+          FB."CALLS_LOCAL",
+          FB."CALLS_SMS_MMS",
+          FB."CALLS_GPRS",
+          FB."CALLS_RUS_RPP",
+          FB."CALLS_ALL",
+          FB."ROUMING_NATIONAL",
+          FB."ROUMING_INTERNATIONAL",
+          FB."DATE_CREATED",
+          FB."USER_CREATED",
+          FB."USER_LAST_UPDATED",
+          FB."DATE_LAST_UPDATED",
+          FB."DISCOUNT_SOVINTEL"
+     FROM TMPDB_LOADER_FULL_FINANCE_BILL FB
+    WHERE     FB.BILL_SUM <> 0
+          AND (   FB.BILL_SUM <>
+                     FB.ABONKA + FB.CALLS + FB.SINGLE_PAYMENTS + FB.DISCOUNTS
+               OR FB.ABONKA <> FB.ABON_MAIN + FB.ABON_ADD + FB.ABON_OTHER
+               OR (NOT (   FB.SINGLE_PAYMENTS =
+                                FB.SINGLE_MAIN
+                              + FB.SINGLE_ADD
+                              + FB.SINGLE_CHANGE_TARIFF
+                              + FB.SINGLE_TURN_ON_SERV
+                              + FB.SINGLE_CORRECTION_ROUMING
+                              + FB.SINGLE_INTRA_WEB
+                              + FB.SINGLE_OTHER
+                        OR FB.SINGLE_PAYMENTS =
+                                FB.SINGLE_MAIN
+                              + FB.SINGLE_ADD
+                              + FB.SINGLE_CHANGE_TARIFF
+                              + FB.SINGLE_TURN_ON_SERV
+                              + FB.SINGLE_CORRECTION_ROUMING
+                              + FB.SINGLE_INTRA_WEB
+                              + FB.SINGLE_OTHER
+                              + FB.SINGLE_PENALTI
+                              + FB.SINGLE_VIEW_BLACK_LIST))
+               OR FB.DISCOUNTS <>
+                       FB.DISCOUNT_YEAR
+                     + FB.DISCOUNT_SMS_PLUS
+                     + FB.DISCOUNT_CALL
+                     + FB.DISCOUNT_COUNT_ON_PHONES
+                     + FB.DISCOUNT_OTHERS
+                     + FB.DISCOUNT_SOVINTEL
+               OR FB.CALLS <>
+                       FB.CALLS_ALL
+                     + FB.ROUMING_INTERNATIONAL
+                     + FB.ROUMING_NATIONAL
+               OR FB.CALLS_ALL <>
+                       FB.CALLS_COUNTRY
+                     + FB.CALLS_SITY
+                     + FB.CALLS_LOCAL
+                     + FB.CALLS_SMS_MMS
+                     + FB.CALLS_GPRS
+                     + FB.CALLS_RUS_RPP)

@@ -1,0 +1,5 @@
+
+  CREATE OR REPLACE PROCEDURE "CORP_MOBILE"."TEST_T" is
+begin
+  null;
+end; 

@@ -1,0 +1,20 @@
+--#if isclient("CORP_MOBILE")
+--#if not TableExists("QUEUE_BLOCK_RESERVED") then
+CREATE TABLE QUEUE_BLOCK_RESERVED
+(
+  PHONE_NUMBER  VARCHAR2(10 CHAR),
+  STATUS NUMBER,
+  RESULT VARCHAR2(512)
+);
+--#end if
+
+--#Execute MAIN_SCHEMA=IsClient("")
+--#if not GrantExists("QUEUE_BLOCK_RESERVED", "ROLE", "SELECT") then
+begin EXECUTE IMMEDIATE 'GRANT ALL ON QUEUE_BLOCK_RESERVED TO &MAIN_SCHEMA'||'_ROLE'; end;
+--#end if
+
+--#if not GrantExists("QUEUE_BLOCK_RESERVED", "ROLE_RO", "SELECT") then
+begin EXECUTE IMMEDIATE 'GRANT SELECT, INSERT ON QUEUE_BLOCK_RESERVED TO &MAIN_SCHEMA'||'_ROLE_RO'; end;
+--#end if
+
+--#end if

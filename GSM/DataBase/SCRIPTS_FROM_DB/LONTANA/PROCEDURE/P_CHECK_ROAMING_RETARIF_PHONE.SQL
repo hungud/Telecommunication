@@ -1,0 +1,92 @@
+
+  CREATE OR REPLACE PROCEDURE "LONTANA"."P_CHECK_ROAMING_RETARIF_PHONE" (
+  pPHONE_NUMBER IN INTEGER,
+  pROAMING_RETARIF_METHOD IN INTEGER
+  ) IS
+--#Version=2
+--
+-- Проверяет, подключены ли к номеру опции роуминга
+-- Если не подключены, то подключается опция "Роуминг налегке".
+--
+-- 2. Уколов. Метод перетарификации теперь сохраняется в таблице ROAMING_RETARIF_PHONES.
+--
+  vDUMMY VARCHAR2(32000);
+  vOPTION_CODE TARIFF_OPTIONS.OPTION_CODE%TYPE;
+  vRESULT VARCHAR2(32000);
+  --
+  CURSOR C_DEFAULT_RETARIF_ROAM_DISC IS
+    SELECT OPTION_CODE
+    FROM TARIFF_OPTIONS
+    WHERE DEFAULT_RETARIF_ROAM_DISCOUNT=1;
+--
+  CURSOR C_ROAMING_RETARIF_PHONES IS
+    SELECT *
+    FROM ROAMING_RETARIF_PHONES
+    WHERE 
+      ROAMING_RETARIF_PHONES.PHONE_NUMBER=pPHONE_NUMBER
+      AND ROAMING_RETARIF_PHONES.END_DATE_TIME IS NULL;
+  --
+  FUNCTION IS_ROAMING_OPTION_TURNED RETURN BOOLEAN IS
+  --
+  CURSOR C_OPTIONS IS
+    SELECT
+      DB_LOADER_ACCOUNT_PHONE_OPTS.OPTION_CODE
+    FROM 
+      DB_LOADER_ACCOUNT_PHONE_OPTS,
+      TARIFF_OPTIONS
+    WHERE 
+      DB_LOADER_ACCOUNT_PHONE_OPTS.PHONE_NUMBER=pPHONE_NUMBER
+      AND YEAR_MONTH=TO_NUMBER(TO_CHAR(SYSDATE, 'YYYYMM'))
+      AND TURN_ON_DATE IS NOT NULL
+      AND TURN_OFF_DATE IS NULL
+      AND DB_LOADER_ACCOUNT_PHONE_OPTS.OPTION_CODE=TARIFF_OPTIONS.OPTION_CODE
+      AND TARIFF_OPTIONS.IS_ROAMING_DISCOUNT=1;
+  --
+    vOPTION_CODE DB_LOADER_ACCOUNT_PHONE_OPTS.OPTION_CODE%TYPE;
+  BEGIN
+    OPEN C_OPTIONS;
+    FETCH C_OPTIONS INTO vOPTION_CODE;
+    CLOSE C_OPTIONS;
+    RETURN (vOPTION_CODE IS NOT NULL);
+  END;
+--
+BEGIN
+  IF NOT IS_ROAMING_OPTION_TURNED THEN
+    -- Услуга не подключена - продолжаем
+    -- Обновим список услуг (через АПИ)
+    vDUMMY := BEELINE_API_PCKG.PHONE_OPTIONS(pPHONE_NUMBER);
+    -- Проверим повторно
+    IF NOT IS_ROAMING_OPTION_TURNED THEN
+      -- Если и сейчас не подключена, то подключаем опцию для роуминга по умолчанию
+      OPEN C_DEFAULT_RETARIF_ROAM_DISC;
+      FETCH C_DEFAULT_RETARIF_ROAM_DISC INTO vOPTION_CODE;
+      CLOSE C_DEFAULT_RETARIF_ROAM_DISC;
+      IF vOPTION_CODE IS NOT NULL THEN
+        vRESULT := BEELINE_API_PCKG.TURN_TARIFF_OPTION(pPHONE_NUMBER, vOPTION_CODE, 1, NULL, NULL, 'RETARIF');
+        IF vRESULT LIKE 'Заявка №%' THEN
+          -- Добавим запись в таблицу перетарифицируемых телефонов
+          INSERT INTO ROAMING_RETARIF_PHONES(
+            PHONE_NUMBER, 
+            OPTION_CODE,
+            SERVICE_ON_TICKET_ID,
+            BEGIN_DATE_TIME,
+            ROAMING_RETARIF_METHOD
+          ) VALUES (
+            pPHONE_NUMBER,
+            vOPTION_CODE,
+            regexp_replace(vRESULT, 'Заявка № *(\d+)', '\1'),
+            SYSDATE,
+            pROAMING_RETARIF_METHOD
+          );
+          COMMIT;
+        ELSE
+          DBMS_OUTPUT.PUT_LINE('Ошибка подключения услуги. '||vRESULT);
+        END IF;
+      END IF;
+--    ELSE
+--      DBMS_OUTPUT.PUT_LINE('Уже подключено (после проверки)');
+    END IF;
+--  ELSE
+--    DBMS_OUTPUT.PUT_LINE('Уже подключено');
+  END IF;
+END;

@@ -1,0 +1,57 @@
+create table gprs_alien_opts
+	(
+		opts_id 		integer, 
+		phone 			varchar2(10 char), 
+		curr_code 	varchar2(32 char), 
+		alien_code 	varchar2(32 char), 
+		load_date 	date,
+		is_checked  number(1) default 0,
+		date_off		date
+	);
+
+/
+ALTER TABLE GPRS_ALIEN_OPTS ADD (
+  CONSTRAINT PK_GPRS_ALIEN_OPTS
+ PRIMARY KEY
+ (OPTS_ID));
+/
+CREATE SEQUENCE GPRS_ALIEN_OPTS_ID
+  START WITH 101
+  MAXVALUE 9999999999999999999999999999
+  MINVALUE 1
+  NOCYCLE
+  CACHE 20
+  NOORDER;
+/
+CREATE OR REPLACE FUNCTION NEW_GPRS_ALIEN_OPTS_ID RETURN NUMBER IS
+--#Version=1
+  vRES NUMBER;
+BEGIN
+  SELECT GPRS_ALIEN_OPTS_ID.NEXTVAL
+  INTO vRES
+  FROM DUAL;
+  RETURN vRES;
+END;
+/
+
+
+COMMENT ON TABLE GPRS_ALIEN_OPTS              IS 'Доп.опции авто-интернет подключенные не автоматом (вручную).';
+
+COMMENT ON COLUMN GPRS_ALIEN_OPTS.OPTS_ID     IS 'Первичный ключ';
+
+COMMENT ON COLUMN GPRS_ALIEN_OPTS.PHONE       IS 'Номер телефона';
+
+COMMENT ON COLUMN GPRS_ALIEN_OPTS.CURR_CODE   IS 'Код текущей опции';
+
+COMMENT ON COLUMN GPRS_ALIEN_OPTS.ALIEN_CODE  IS 'Код чужой опции';
+
+COMMENT ON COLUMN GPRS_ALIEN_OPTS.LOAD_DATE   IS 'Дата загрузки записи';
+
+COMMENT ON COLUMN GPRS_ALIEN_OPTS.IS_CHECKED  IS 'Метка обработки записи';
+
+COMMENT ON COLUMN GPRS_ALIEN_OPTS.DATE_OFF    IS 'Дата отключения чужой доп.опции';
+/
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON GPRS_ALIEN_OPTS TO CORP_MOBILE_ROLE;
+
+GRANT SELECT ON GPRS_ALIEN_OPTS TO CORP_MOBILE_ROLE_RO;

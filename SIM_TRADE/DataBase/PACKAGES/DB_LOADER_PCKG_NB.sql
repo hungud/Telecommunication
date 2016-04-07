@@ -1,0 +1,95 @@
+CREATE OR REPLACE PACKAGE DB_LOADER_PCKG_NB AS
+--#Version=01
+-- новый кабинет Билайна.
+
+  PROCEDURE LOAD_REPORT_DATA(
+    pACCOUNT_ID IN INTEGER
+    );  
+
+END;
+/
+--
+CREATE OR REPLACE PACKAGE BODY DB_LOADER_PCKG_NB AS
+
+TYPE T_LOAD_SETTINGS IS RECORD (
+  ACCOUNT_ID ACCOUNTS.ACCOUNT_ID%TYPE,
+  DO_AUTO_LOAD_DATA NUMBER(1, 0),
+  LOGIN ACCOUNTS.LOGIN%TYPE, 
+  PASSWORD ACCOUNTS.PASSWORD%TYPE,
+  LOADING_YEAR BINARY_INTEGER,
+  LOADING_MONTH BINARY_INTEGER,
+  LOADER_SCRIPT_NAME OPERATORS.LOADER_SCRIPT_NAME%TYPE,
+  LOADER_DB_CONNECTION LOADER_SETTINGS.LOADER_DB_CONNECTION%TYPE,
+  LOADER_DB_USER_NAME LOADER_SETTINGS.LOADER_DB_USER_NAME%TYPE,
+  LOADER_DB_PASSWORD LOADER_SETTINGS.LOADER_DB_PASSWORD%TYPE,
+  LOAD_DETAIL_POOL_SIZE ACCOUNTS.LOAD_DETAIL_POOL_SIZE%TYPE,
+  LOAD_DETAIL_THREAD_COUNT ACCOUNTS.LOAD_DETAIL_THREAD_COUNT%TYPE
+  );
+--
+
+
+PROCEDURE LOAD_REPORT_DATA(
+    pACCOUNT_ID IN INTEGER
+    ) IS
+s T_LOAD_SETTINGS;
+vERROR_TEXT VARCHAR2(2000 CHAR);
+LOAD_TYPE INTEGER;
+LOADING_TYPE_NAME VARCHAR2(200);
+
+req        utl_http.req;
+resp       utl_http.resp;
+urls       varchar2(1000);
+datas      varchar2(1024);
+--answer_mes varchar2(1024);
+answer_mes clob;
+plogin  VARCHAR2(30 CHAR);
+pPASSWORD VARCHAR2(30 CHAR);
+
+--Загрузка отчетов о начислениях текущего месяца
+BEGIN
+      SELECT login, password INTO plogin, ppassword FROM ACCOUNTS WHERE ACCOUNT_ID=pACCOUNT_ID;  
+      urls := MS_PARAMS.GET_PARAM_VALUE('ROBOT_SITE_ADRESS') ||'/order?bill='||plogin||'&'||'pas='||ppassword;
+      req  := utl_http.begin_request(urls);
+      resp := utl_http.get_response(req);
+      BEGIN
+         answer_mes:='';
+        LOOP
+          UTL_HTTP.READ_TEXT(resp, datas);
+          answer_mes:=answer_mes||datas;
+          dbms_output.put_line(datas);
+          -- do something with the data
+        END LOOP;
+      EXCEPTION
+        WHEN UTL_HTTP.END_OF_BODY THEN
+          NULL;
+      END;
+      DBMS_OUTPUT.PUT_LINE(resp.status_code);
+      if resp.status_code = 200 then
+        DBMS_OUTPUT.PUT_LINE('123');
+      END IF;
+
+/*  LOAD_TYPE:=6;
+  LOADING_TYPE_NAME:=GET_NAME_LOAD(LOAD_TYPE);
+  s := GET_LOADER_SETTINGS(pACCOUNT_ID);
+  vERROR_TEXT := LOADER_CALL_PCKG.LOAD_REPORT_DATA(
+    s.LOGIN,
+    s.PASSWORD,
+    s.LOADING_YEAR,
+    s.LOADING_MONTH,
+    s.LOADER_SCRIPT_NAME,
+    s.LOADER_DB_CONNECTION,
+    s.LOADER_DB_USER_NAME,
+    s.LOADER_DB_PASSWORD
+  );
+  IF vERROR_TEXT IS NOT NULL THEN
+        RAISE_APPLICATION_ERROR(-20200, 'Loading error. ' || vERROR_TEXT);
+  END IF;*/
+  
+  
+END;  
+
+END; 
+/
+
+--GRANT EXECUTE ON DB_LOADER_PCKG_NB TO DB_LOADER;
+

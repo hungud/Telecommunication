@@ -1,0 +1,36 @@
+--#if not TableExists("LOG_CHANGE_CONTRACT_DOP_STATUS") then
+CREATE TABLE LOG_CHANGE_CONTRACT_DOP_STATUS
+(
+  PHONE_NUMBER VARCHAR2(10 CHAR),
+  DATE_CREATED  DATE,
+  DATE_LAST_UPDATED DATE
+);
+--#end if
+
+--#if GetTableComment("LOG_CHANGE_CONTRACT_DOP_STATUS")<>"Таблица" then
+COMMENT ON TABLE LOG_CHANGE_CONTRACT_DOP_STATUS IS 'История изменения дополнительного статуса "Предпродажная подготовка"';
+--#end if
+
+--#if GetColumnComment("LOG_CHANGE_CONTRACT_DOP_STATUSS.PHONE_NUMBER") <> "Название" then
+COMMENT ON COLUMN LOG_CHANGE_CONTRACT_DOP_STATUS.PHONE_NUMBER IS 'Номер телефона, с которого снят доп статус';
+--#end if
+
+--#if not IndexExists("I_LOG_CHG_DOP_STAT_PHONE_NUM") THEN
+CREATE INDEX I_LOG_CHG_DOP_STAT_PHONE_NUM ON LOG_CHANGE_CONTRACT_DOP_STATUS(PHONE_NUMBER);
+--#end if
+
+--#IF GetVersion("TIU_LOG_CHANGE_CONTRACT_DOP_STATUSS") < 1 THEN
+CREATE OR REPLACE TRIGGER TIU_LOG_CHNG_CONT_DOP_STATUS 
+  BEFORE INSERT OR UPDATE ON LOG_CHANGE_CONTRACT_DOP_STATUS FOR EACH ROW 
+--#Version=1
+BEGIN 
+  IF INSERTING THEN      
+    :NEW.DATE_CREATED := SYSDATE;
+  END IF;    
+  :NEW.DATE_LAST_UPDATED := SYSDATE; 
+END;
+--#end if
+
+Alter table LOG_CHANGE_CONTRACT_DOP_STATUS add (DOP_STATUS_ID      NUMBER);
+COMMENT ON TABLE LOG_CHANGE_CONTRACT_DOP_STATUS IS 'Таблица автоматического изменения доп.статусов контракта с последующей разблокировкой (Только Первоначальная (222) и Предпродажная блокировка (242))';
+COMMENT ON COLUMN LOG_CHANGE_CONTRACT_DOP_STATUS.DOP_STATUS_ID IS 'ID доп.статуса (таблица CONTRACT_DOP_STATUSES)';

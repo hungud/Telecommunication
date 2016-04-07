@@ -1,0 +1,48 @@
+CREATE OR REPLACE PROCEDURE S_SHOW_PAGE_LIST(
+  pPAGE BINARY_INTEGER,
+  pPAGE_COUNT BINARY_INTEGER,
+  pURL VARCHAR2
+  ) IS
+--#Version=1
+  vFIRST_PAGE BINARY_INTEGER;
+  vLAST_PAGE BINARY_INTEGER;
+--
+BEGIN
+  IF pPAGE_COUNT > 1 THEN
+    HTP.PRINT('Страницы: ');
+    IF pPAGE <> 1 THEN
+      HTP.PRINT('<a href="'||pURL||'?'||G_STATE.SESSION_KEY_PARAM_1||'">1</a>');
+    ELSE
+      HTP.PRINT('1');
+    END IF;
+    vFIRST_PAGE := pPAGE-5;
+    vLAST_PAGE := pPAGE+5;
+    IF vFIRST_PAGE < 2 THEN
+      vFIRST_PAGE := 2;
+    END IF;
+    IF vFIRST_PAGE > 2 THEN
+      HTP.PRINT('...');
+    END IF;
+    FOR I IN vFIRST_PAGE..pPAGE-1 LOOP
+      HTP.PRINT(' <a href="'||pURL||'?PAGE=' || I || G_STATE.SESSION_KEY_PARAM_2||'">'||I||'</a>');
+    END LOOP;
+    IF pPAGE > 1 AND pPAGE < pPAGE_COUNT-1 THEN
+      HTP.PRINT(' '||pPAGE);
+    END IF;
+    IF vLAST_PAGE > pPAGE_COUNT-1 THEN
+      vLAST_PAGE := pPAGE_COUNT-1;
+    END IF;
+    FOR I IN pPAGE+1..vLAST_PAGE LOOP
+      HTP.PRINT(' <a href="'||pURL||'?PAGE=' || I || G_STATE.SESSION_KEY_PARAM_2||'">'||I||'</a>');
+    END LOOP;
+    IF vLAST_PAGE < pPAGE_COUNT-1 THEN
+      HTP.PRINT('...');
+    END IF;
+    IF pPAGE <> pPAGE_COUNT THEN
+      HTP.PRINT(' <a href="'||pURL||'?PAGE='||pPAGE_COUNT ||G_STATE.SESSION_KEY_PARAM_2||'">'||pPAGE_COUNT||'</a>');
+    ELSE
+      HTP.PRINT(' '||pPAGE_COUNT);
+    END IF;
+  END IF;
+END;
+/

@@ -1,0 +1,3 @@
+CREATE OR REPLACE DIRECTORY 
+DBF_FILES_COPY_DBF AS 
+'D:\Tarifer\DB\Billing\copydbf\';

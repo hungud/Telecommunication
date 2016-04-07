@@ -1,0 +1,37 @@
+
+  CREATE OR REPLACE TRIGGER "CORP_MOBILE"."TIU_TARIFF_OPTION_NEW_COST" 
+BEFORE INSERT OR UPDATE
+ON TARIFF_OPTION_NEW_COST
+REFERENCING NEW AS NEW OLD AS OLD
+FOR EACH ROW
+BEGIN
+  IF INSERTING THEN
+    IF NVL(:NEW.TARIFF_OPTION_NEW_COST_ID, 0) = 0 then
+      :NEW.TARIFF_OPTION_NEW_COST_ID := NEW_TARIFF_OPTION_NEW_COST_ID;
+    END IF;
+    :NEW.USER_CREATED := USER;
+    :NEW.DATE_CREATED := SYSDATE;
+  END IF;
+  :NEW.USER_LAST_UPDATED := USER;
+  :NEW.DATE_LAST_UPDATED := SYSDATE;
+  
+  if UPDATING then
+    IF    nvl( :OLD.TARIFF_OPTION_NEW_COST_ID , -1 )                      <> nvl( :NEW.TARIFF_OPTION_NEW_COST_ID , -1 )
+      OR  nvl( :OLD.TARIFF_OPTION_COST_ID , -1 )                          <> nvl( :NEW.TARIFF_OPTION_COST_ID , -1 )
+      OR  nvl( :OLD.TARIFF_ID , -1 )                                      <> nvl( :NEW.TARIFF_ID , -1 )
+      OR  nvl( :OLD.TURN_ON_COST , -1 )                                   <> nvl( :NEW.TURN_ON_COST , -1 )
+      OR  nvl( :OLD.MONTHLY_COST , -1 )                                   <> nvl( :NEW.MONTHLY_COST , -1 )
+      OR  nvl( :OLD.USER_CREATED , '-1' )                                 <> nvl( :NEW.USER_CREATED , '-1' )      
+      OR  nvl( :OLD.DATE_CREATED , to_date('01.01.1900','dd.mm.yyyy') )   <> nvl( :NEW.DATE_CREATED , to_date('01.01.1900','dd.mm.yyyy') )
+      OR  nvl( :OLD.TURN_ON_COST_FOR_BILLS , -1 )                         <> nvl( :NEW.TURN_ON_COST_FOR_BILLS , -1 ) 
+      OR  nvl( :OLD.MONTHLY_COST_FOR_BILLS , -1 )                         <> nvl( :NEW.MONTHLY_COST_FOR_BILLS , -1 ) 
+     THEN       
+     INSERT INTO SH_TARIFF_OPTION_NEW_COST
+       ( TARIFF_OPTION_NEW_COST_ID, TARIFF_OPTION_COST_ID, TARIFF_ID, TURN_ON_COST, MONTHLY_COST, USER_CREATED, DATE_CREATED, USER_LAST_UPDATED, DATE_LAST_UPDATED, TURN_ON_COST_FOR_BILLS, MONTHLY_COST_FOR_BILLS, UPDATE_USER, UPDATE_TIME )
+     VALUES
+       ( :old.TARIFF_OPTION_NEW_COST_ID, :old.TARIFF_OPTION_COST_ID, :old.TARIFF_ID, :old.TURN_ON_COST, :old.MONTHLY_COST, :old.USER_CREATED, :old.DATE_CREATED, :old.USER_LAST_UPDATED, :old.DATE_LAST_UPDATED, :old.TURN_ON_COST_FOR_BILLS, :old.MONTHLY_COST_FOR_BILLS, USER, SYSDATE );
+     p_new_tarif_opts_cost(:old.TARIFF_ID);   
+    END IF;   
+  end if;
+END;
+ALTER TRIGGER "CORP_MOBILE"."TIU_TARIFF_OPTION_NEW_COST" ENABLE

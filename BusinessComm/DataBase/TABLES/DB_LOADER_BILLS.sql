@@ -1,0 +1,164 @@
+CREATE TABLE BUSINESS_COMM.DB_LOADER_BILLS
+(
+  BILL_ID                         INTEGER       NOT NULL,
+  ACCOUNT_ID                      INTEGER       NOT NULL,
+  YEAR_MONTH                      INTEGER       NOT NULL,
+  PHONE_ID                        INTEGER       NOT NULL,
+  DATE_BEGIN                      DATE,
+  DATE_END                        DATE,
+  TARIFF_CODE                     VARCHAR2(30 CHAR),
+  BILL_SUM                        NUMBER(15,2),
+  SUBSCRIBER_PAYMENT_MAIN         NUMBER(15,2),
+  SUBSCRIBER_PAYMENT_ADD          NUMBER(15,2),
+  SINGLE_PAYMENTS                 NUMBER(15,2),
+  CALLS_LOCAL_COST                NUMBER(15,2),
+  CALLS_OTHER_CITY_COST           NUMBER(15,2),
+  CALLS_OTHER_COUNTRY_COST        NUMBER(15,2),
+  MESSAGES_COST                   NUMBER(15,2),
+  INTERNET_COST                   NUMBER(15,2),
+  OTHER_COUNTRY_ROAMING_COST      NUMBER(15,2),
+  NATIONAL_ROAMING_COST           NUMBER(15,2),
+  PENI_COST                       NUMBER(15,2),
+  DISCOUNT_VALUE                  NUMBER(15,2),
+  OTHER_COUNTRY_ROAMING_CALLS     NUMBER(15,2),
+  OTHER_COUNTRY_ROAMING_MESSAGES  NUMBER(15,2),
+  OTHER_COUNTRY_ROAMING_INTERNET  NUMBER(15,2),
+  NATIONAL_ROAMING_CALLS          NUMBER(15,2),
+  NATIONAL_ROAMING_MESSAGES       NUMBER(15,2),
+  NATIONAL_ROAMING_INTERNET       NUMBER(15,2),
+  DATE_CREATED                    DATE,
+  USER_CREATED                    VARCHAR2(30 CHAR),
+  USER_LAST_UPDATED               VARCHAR2(30 CHAR),
+  DATE_LAST_UPDATED               DATE,
+  LOG_BILL_ID                     INTEGER       NOT NULL
+);
+
+
+COMMENT ON  TABLE DB_LOADER_BILLS                                IS 'Выставленные оператором счёта';
+COMMENT ON COLUMN DB_LOADER_BILLS.BILL_ID                        IS 'Идентификатор записи';
+COMMENT ON COLUMN DB_LOADER_BILLS.ACCOUNT_ID                     IS 'ИД счета';
+COMMENT ON COLUMN DB_LOADER_BILLS.YEAR_MONTH                     IS 'Год и месяц отчётного периода';
+COMMENT ON COLUMN DB_LOADER_BILLS.PHONE_ID                       IS 'ИД номера телефона PHONES.PHONE_I';
+COMMENT ON COLUMN DB_LOADER_BILLS.DATE_BEGIN                     IS 'Дата начала периода (загруженное значение)';
+COMMENT ON COLUMN DB_LOADER_BILLS.DATE_END                       IS 'Дата окончания периода (загруженное значение)';
+COMMENT ON COLUMN DB_LOADER_BILLS.TARIFF_CODE                    IS 'Код тарифа';
+COMMENT ON COLUMN DB_LOADER_BILLS.BILL_SUM                       IS 'Начисленная сумма (полная)';
+COMMENT ON COLUMN DB_LOADER_BILLS.SUBSCRIBER_PAYMENT_MAIN        IS 'Абонентская плата по тарифу';
+COMMENT ON COLUMN DB_LOADER_BILLS.SUBSCRIBER_PAYMENT_ADD         IS 'Абонплата за дополнительные услуги';
+COMMENT ON COLUMN DB_LOADER_BILLS.SINGLE_PAYMENTS                IS 'Разовые начисления';
+COMMENT ON COLUMN DB_LOADER_BILLS.CALLS_LOCAL_COST               IS 'Стоимость местных звонков';
+COMMENT ON COLUMN DB_LOADER_BILLS.CALLS_OTHER_CITY_COST          IS 'Стоимость междугородние звонки';
+COMMENT ON COLUMN DB_LOADER_BILLS.CALLS_OTHER_COUNTRY_COST       IS 'Стоимость интернета';
+COMMENT ON COLUMN DB_LOADER_BILLS.MESSAGES_COST                  IS 'Стоимость сообщений (SMS, MMS)';
+COMMENT ON COLUMN DB_LOADER_BILLS.INTERNET_COST                  IS 'Стоимость интернета';
+COMMENT ON COLUMN DB_LOADER_BILLS.OTHER_COUNTRY_ROAMING_COST     IS 'Международный роуминг';
+COMMENT ON COLUMN DB_LOADER_BILLS.NATIONAL_ROAMING_COST          IS 'Национальный роуминг';
+COMMENT ON COLUMN DB_LOADER_BILLS.PENI_COST                      IS 'Начисленные пени';
+COMMENT ON COLUMN DB_LOADER_BILLS.DISCOUNT_VALUE                 IS 'Скидки';
+COMMENT ON COLUMN DB_LOADER_BILLS.OTHER_COUNTRY_ROAMING_CALLS    IS 'Международный роуминг Эфирное время (начисления партнера)';
+COMMENT ON COLUMN DB_LOADER_BILLS.OTHER_COUNTRY_ROAMING_MESSAGES IS 'Международный роуминг SMS (начисления партнера)';
+COMMENT ON COLUMN DB_LOADER_BILLS.OTHER_COUNTRY_ROAMING_INTERNET IS 'Международный роуминг GPRS (начисления партнера)';
+COMMENT ON COLUMN DB_LOADER_BILLS.NATIONAL_ROAMING_CALLS         IS 'Национальный роуминг Эфирное время (начисления партнера)';
+COMMENT ON COLUMN DB_LOADER_BILLS.NATIONAL_ROAMING_MESSAGES      IS 'Национальный роуминг SMS (начисления партнера)';
+COMMENT ON COLUMN DB_LOADER_BILLS.NATIONAL_ROAMING_INTERNET      IS 'Национальный роуминг GPRS (начисления партнера)';
+COMMENT ON COLUMN DB_LOADER_BILLS.DATE_CREATED                   IS 'Дата/время создания записи';
+COMMENT ON COLUMN DB_LOADER_BILLS.USER_CREATED                   IS 'Пользователь, создавший запись';
+COMMENT ON COLUMN DB_LOADER_BILLS.USER_LAST_UPDATED              IS 'Пользователь, редактировавший запись последним';
+COMMENT ON COLUMN DB_LOADER_BILLS.DATE_LAST_UPDATED              IS 'Дата/время последней редакции записи';
+COMMENT ON COLUMN DB_LOADER_BILLS.LOG_BILL_ID                    IS 'Идентификатор DB_LOADER_BILL_LOAD_LOG лога загрузки файлов счетов';
+
+CREATE SEQUENCE S_NEW_DB_LOADER_BILLS
+  START WITH 0
+  MAXVALUE 9999999999999999999999999999
+  MINVALUE 0
+  NOCYCLE
+  NOCACHE
+  NOORDER;
+
+
+CREATE UNIQUE INDEX DB_LOADER_BILLS_PK ON DB_LOADER_BILLS (BILL_ID);
+
+CREATE OR REPLACE TRIGGER TIUD_DB_LOADER_BILLS
+BEFORE DELETE OR INSERT OR UPDATE
+ON DB_LOADER_BILLS
+REFERENCING NEW AS NEW OLD AS OLD
+FOR EACH ROW
+declare
+cnt  integer;
+v_VIRTUAL_ACCOUNTS_ID INTEGER;
+v_YEAR_MONTH          INTEGER;
+BEGIN
+  IF INSERTING THEN
+    IF NVL(:NEW.BILL_ID, 0) = 0 then
+      :NEW.BILL_ID := S_NEW_DB_LOADER_BILLS.NEXTVAL;
+    END IF;
+    :NEW.USER_CREATED := USER;
+    :NEW.DATE_CREATED := SYSDATE;
+    :NEW.USER_LAST_UPDATED := USER;
+    :NEW.DATE_LAST_UPDATED := SYSDATE;
+  -- связка телефон - аккаунт должна быть уникальной.
+  -- При получении телефона на новом аккаунте старую записьв таблице PHONE_ON_ACCOUNTS преносим в лог 
+    if (:NEW.ACCOUNT_ID is not null) and (:NEW.PHONE_ID is not null) then
+      select count(p.ACCOUNT_ID) into cnt from PHONE_ON_ACCOUNTS p where p.PHONE_ID = :NEW.PHONE_ID;
+      if (cnt = 0) then
+        SELECT count(PHONE_ID) into cnt FROM PHONES where PHONE_ID = :NEW.PHONE_ID;
+        if (cnt = 0) then
+          INSERT INTO PHONES (PHONE_ID, PHONE_NUMBER)  VALUES (:NEW.PHONE_ID, to_char(:NEW.PHONE_ID));
+        end if;  
+        insert into PHONE_ON_ACCOUNTS (ACCOUNT_ID, PHONE_ID) values (:NEW.ACCOUNT_ID, :NEW.PHONE_ID);
+      else
+       --null; 
+       update PHONE_ON_ACCOUNTS set ACCOUNT_ID = :NEW.ACCOUNT_ID where PHONE_ID = :NEW.PHONE_ID;
+      end if;
+    end if;   
+    
+    BALANCE.INSERT_BILLS_INTO_BALANCE_TR (:NEW.ACCOUNT_ID, sysdate, :NEW.BILL_ID, :NEW.PHONE_ID, :NEW.BILL_SUM);
+
+  END IF;
+  
+  if UPDATING THEN
+    :NEW.USER_LAST_UPDATED := USER;
+    :NEW.DATE_LAST_UPDATED := SYSDATE;
+  end if;
+  
+  if DELETING THEN
+   
+   select VIRTUAL_ACCOUNTS_ID, YEAR_MONTH into v_VIRTUAL_ACCOUNTS_ID, v_YEAR_MONTH
+     from BALANCE_VIRT_ACOUNTS 
+    where BILL_ID = :OLD.BILL_ID;
+   
+   delete from BALANCE_VIRT_ACOUNTS 
+       where BILL_ID = :OLD.BILL_ID;
+       
+       BALANCE.RECALC_BALANCE2(v_VIRTUAL_ACCOUNTS_ID, v_YEAR_MONTH);      
+   
+      
+  end if;
+
+
+END;
+/
+
+ALTER TABLE DB_LOADER_BILLS ADD (
+  CONSTRAINT DB_LOADER_BILLS_PK
+  PRIMARY KEY
+  (BILL_ID)
+  USING INDEX DB_LOADER_BILLS_PK
+  ENABLE VALIDATE);
+
+ALTER TABLE DB_LOADER_BILLS ADD (
+  CONSTRAINT DB_LOADER_BILLS_FK_ACCOUNT_ID 
+  FOREIGN KEY (ACCOUNT_ID) 
+  REFERENCES ACCOUNTS (ACCOUNT_ID)
+  ENABLE VALIDATE,
+  CONSTRAINT DB_LOADER_BILLS_FK_PHONE_ID 
+  FOREIGN KEY (PHONE_ID) 
+  REFERENCES PHONES (PHONE_ID)
+  ENABLE VALIDATE);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON DB_LOADER_BILLS TO BUSINESS_COMM_ROLE;
+GRANT SELECT ON S_NEW_DB_LOADER_BILLS TO BUSINESS_COMM_ROLE;
+GRANT SELECT, UPDATE ON DB_LOADER_BILLS TO BUSINESS_COMM_ROLE_RO;
+
+CREATE INDEX I_DB_LOADER_BILLS_YEAR_MONTH ON DB_LOADER_BILLS
+(YEAR_MONTH);

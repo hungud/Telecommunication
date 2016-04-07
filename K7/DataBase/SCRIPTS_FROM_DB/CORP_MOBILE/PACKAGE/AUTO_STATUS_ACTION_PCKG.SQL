@@ -1,0 +1,201 @@
+
+  CREATE OR REPLACE PACKAGE "CORP_MOBILE"."AUTO_STATUS_ACTION_PCKG" AS
+--
+--#Version=3
+--
+--3 06.02.2015 Крайнов. Автоотключение услуг для номеров в сохранении.
+--2 17.11.2014 Крайнов. Поправка для удаления номеров при зависании.
+--1 16.10.2014 Крайнов. Создание пакета.
+--
+  PROCEDURE ADD_QUEUE_REBLOCK;
+--      
+  PROCEDURE AUTO_REBLOCK_PHONES(
+    pSTREAM_ID IN INTEGER
+    );  
+--    
+  PROCEDURE AUTO_TURN_OFF_OPTION(
+    pSTREAM_ID IN INTEGER
+    ); 
+--     
+END; 
+CREATE OR REPLACE PACKAGE BODY "CORP_MOBILE"."AUTO_STATUS_ACTION_PCKG" AS
+--
+-- Добавление номеров в очередь на переблок в сохранение
+  PROCEDURE ADD_QUEUE_REBLOCK IS
+  BEGIN
+    FOR rec IN (SELECT *
+                  FROM V_PHONE_FOR_REBLOCK V
+                  WHERE NOT EXISTS (SELECT 1
+                                      FROM QUEUE_PHONE_REBLOCK H
+                                      WHERE H.PHONE_NUMBER = V.PHONE_NUMBER))
+    LOOP
+      INSERT INTO QUEUE_PHONE_REBLOCK(PHONE_NUMBER)
+        VALUES(REC.PHONE_NUMBER);
+      COMMIT;  
+    END LOOP;
+  END ADD_QUEUE_REBLOCK;
+--
+-- Подпрограмма для логирования очереди переблока
+  PROCEDURE QUEUE_REBLOCK_LOG(pQUEUE_ID IN INTEGER) IS
+  --PRAGMA AUTONOMOUS_TRANSACTIONS;
+  BEGIN
+    INSERT INTO QUEUE_PHONE_REBLOCK_LOG(
+             QUEUE_PHONE_REBLOCK_ID, PHONE_NUMBER, DATE_ACTIV, DATE_CREATED, TICKED_UNLOCK_ID, DATE_UNLOCK, TICKED_LOCK_ID, DATE_LOCK, ERROR_STR, STREAM_ID)
+      SELECT QUEUE_PHONE_REBLOCK_ID, PHONE_NUMBER, DATE_ACTIV, DATE_CREATED, TICKED_UNLOCK_ID, DATE_UNLOCK, TICKED_LOCK_ID, DATE_LOCK, ERROR_STR, STREAM_ID
+        FROM QUEUE_PHONE_REBLOCK
+        WHERE QUEUE_PHONE_REBLOCK_ID = pQUEUE_ID;
+    DELETE QUEUE_PHONE_REBLOCK
+      WHERE QUEUE_PHONE_REBLOCK_ID = pQUEUE_ID;      
+  END QUEUE_REBLOCK_LOG; 
+-- Обработка очереди номеров на переблок в сохранение
+  PROCEDURE AUTO_REBLOCK_PHONES(
+    pSTREAM_ID IN INTEGER
+    ) IS
+    CURSOR C IS
+      SELECT RB.*, 
+             TU.ANSWER UNLOCK_ANSWER, 
+             TB.ANSWER LOCK_ANSWER
+        FROM QUEUE_PHONE_REBLOCK RB,
+             BEELINE_TICKETS TU,
+             BEELINE_TICKETS TB
+        WHERE RB.STREAM_ID = pSTREAM_ID
+          AND NVL(RB.DATE_ACTIV, SYSDATE - 1) < SYSDATE
+          AND RB.TICKED_LOCK_ID = TB.TICKET_ID(+)
+          AND RB.TICKED_UNLOCK_ID = TU.TICKET_ID(+)
+        ORDER BY RB.DATE_CREATED desc; 
+    DUMMY C%ROWTYPE;
+    CURSOR ST(pPHONE_NUMBER IN VARCHAR2) IS
+      SELECT B.STATUS_CODE, B.ACCESS_BLOCK, B.ACCESS_UNLOCK, B.IS_CONSERVATION, B.IS_ACTIVE
+        FROM BEELINE_STATUS_CODE B,
+             DB_LOADER_ACCOUNT_PHONES D
+        WHERE D.PHONE_NUMBER = pPHONE_NUMBER
+          AND D.YEAR_MONTH = TO_NUMBER(TO_CHAR(SYSDATE,'YYYYMM'))
+          AND B.STATUS_ID = D.STATUS_ID;
+    DUMMY_ST ST%ROWTYPE;
+    vSTR VARCHAR2(1000 CHAR);   
+  --  
+  BEGIN 
+    FOR DUMMY IN C
+    LOOP
+      BEGIN
+        /*FETCH C INTO DUMMY;
+        EXIT WHEN C%NOTFOUND;*/
+        -- Проверим статус номера
+        vSTR:=BEELINE_API_PCKG.PHONE_STATUS(DUMMY.PHONE_NUMBER);
+        OPEN ST(DUMMY.PHONE_NUMBER);
+        FETCH ST INTO DUMMY_ST;
+        IF ST%NOTFOUND THEN
+          UPDATE QUEUE_PHONE_REBLOCK
+            SET ERROR_STR = 'Для заданного номера нет загруженного кода статуса'
+            WHERE QUEUE_PHONE_REBLOCK_ID = DUMMY.QUEUE_PHONE_REBLOCK_ID;
+          QUEUE_REBLOCK_LOG(DUMMY.QUEUE_PHONE_REBLOCK_ID);
+        ELSE
+          IF DUMMY_ST.IS_CONSERVATION = 1 THEN
+            UPDATE QUEUE_PHONE_REBLOCK
+              SET ERROR_STR = 'Номер на сохранении'
+              WHERE QUEUE_PHONE_REBLOCK_ID = DUMMY.QUEUE_PHONE_REBLOCK_ID;
+            QUEUE_REBLOCK_LOG(DUMMY.QUEUE_PHONE_REBLOCK_ID);
+          END IF;
+        END IF;
+        CLOSE ST;
+        -- Начинаем разлок номера
+        IF (DUMMY.TICKED_UNLOCK_ID IS NULL)
+            OR (DUMMY.UNLOCK_ANSWER = 0) THEN
+          vSTR:=BEELINE_API_PCKG.PHONE_STATUS(DUMMY.PHONE_NUMBER);
+          OPEN ST(DUMMY.PHONE_NUMBER);
+          FETCH ST INTO DUMMY_ST;
+          IF ST%NOTFOUND THEN
+            UPDATE QUEUE_PHONE_REBLOCK
+              SET ERROR_STR = 'Для заданного номера нет загруженного кода статуса'
+              WHERE QUEUE_PHONE_REBLOCK_ID = DUMMY.QUEUE_PHONE_REBLOCK_ID;
+            QUEUE_REBLOCK_LOG(DUMMY.QUEUE_PHONE_REBLOCK_ID);
+          ELSE
+            IF DUMMY_ST.IS_ACTIVE = 1 THEN
+              UPDATE QUEUE_PHONE_REBLOCK
+                SET ERROR_STR = 'Номер активен и не нуждается в переблокировке'
+                WHERE QUEUE_PHONE_REBLOCK_ID = DUMMY.QUEUE_PHONE_REBLOCK_ID;
+              QUEUE_REBLOCK_LOG(DUMMY.QUEUE_PHONE_REBLOCK_ID);
+            ELSE
+              IF DUMMY_ST.ACCESS_UNLOCK = 0 THEN
+                UPDATE QUEUE_PHONE_REBLOCK
+                  SET ERROR_STR = DUMMY_ST.STATUS_CODE||'. Этому статусу запрещена разблокировка.'
+                  WHERE QUEUE_PHONE_REBLOCK_ID = DUMMY.QUEUE_PHONE_REBLOCK_ID;
+                --QUEUE_LOG(DUMMY.QUEUE_PHONE_REBLOCK_ID);   
+              ELSE
+                -- Разблокируем номер
+                vSTR:=BEELINE_API_PCKG.UNLOCK_PHONE(DUMMY.PHONE_NUMBER); 
+                IF INSTR(vSTR,'Заявка на разблок №') > 0 THEN             
+                  UPDATE QUEUE_PHONE_REBLOCK
+                    SET TICKED_UNLOCK_ID = REPLACE(vSTR,'Заявка на разблок №'),
+                        DATE_UNLOCK = SYSDATE
+                    WHERE QUEUE_PHONE_REBLOCK_ID = DUMMY.QUEUE_PHONE_REBLOCK_ID;
+                ELSE            
+                  UPDATE QUEUE_PHONE_REBLOCK
+                    SET ERROR_STR = vSTR
+                    WHERE QUEUE_PHONE_REBLOCK_ID = DUMMY.QUEUE_PHONE_REBLOCK_ID;
+                END IF;    
+              END IF;
+            END IF;
+          END IF;
+          CLOSE ST;
+        ELSE
+          -- Начинаем блокировку номера на сохранение 
+          IF (DUMMY.TICKED_LOCK_ID IS NULL)
+              OR (DUMMY.LOCK_ANSWER = 0) THEN
+            vSTR:=BEELINE_API_PCKG.PHONE_STATUS(DUMMY.PHONE_NUMBER);
+            OPEN ST(DUMMY.PHONE_NUMBER);
+            FETCH ST INTO DUMMY_ST;
+            IF ST%NOTFOUND THEN
+              UPDATE QUEUE_PHONE_REBLOCK
+                SET ERROR_STR = 'Для заданного номера нет загруженного кода статуса'
+                WHERE QUEUE_PHONE_REBLOCK_ID = DUMMY.QUEUE_PHONE_REBLOCK_ID;
+              QUEUE_REBLOCK_LOG(DUMMY.QUEUE_PHONE_REBLOCK_ID);
+            ELSE
+              IF DUMMY_ST.ACCESS_BLOCK = 0 THEN
+                UPDATE QUEUE_PHONE_REBLOCK
+                  SET ERROR_STR = DUMMY_ST.STATUS_CODE||'. Этому статусу запрещена блокировка на сохранение.'
+                  WHERE QUEUE_PHONE_REBLOCK_ID = DUMMY.QUEUE_PHONE_REBLOCK_ID;
+                --QUEUE_LOG(DUMMY.QUEUE_PHONE_REBLOCK_ID);   
+              ELSE
+                -- Блокируем номер на сохранение
+                vSTR:=BEELINE_API_PCKG.LOCK_PHONE(DUMMY.PHONE_NUMBER, 1, 'S1B'); 
+                IF INSTR(vSTR,'Заявка на блок №') > 0 THEN             
+                  UPDATE QUEUE_PHONE_REBLOCK
+                    SET TICKED_LOCK_ID = REPLACE(vSTR,'Заявка на блок №'),
+                        DATE_LOCK = SYSDATE
+                    WHERE QUEUE_PHONE_REBLOCK_ID = DUMMY.QUEUE_PHONE_REBLOCK_ID;
+                ELSE            
+                  UPDATE QUEUE_PHONE_REBLOCK
+                    SET ERROR_STR = vSTR
+                    WHERE QUEUE_PHONE_REBLOCK_ID = DUMMY.QUEUE_PHONE_REBLOCK_ID;
+                END IF;    
+              END IF;
+            END IF;
+            CLOSE ST;
+          END IF;  
+        END IF;  
+        COMMIT;
+        IF DUMMY.DATE_ACTIV < SYSDATE - 3/24 THEN
+          UPDATE QUEUE_PHONE_REBLOCK
+            SET ERROR_STR = 'Сбой переблокировки'
+            WHERE QUEUE_PHONE_REBLOCK_ID = DUMMY.QUEUE_PHONE_REBLOCK_ID;
+          QUEUE_REBLOCK_LOG(DUMMY.QUEUE_PHONE_REBLOCK_ID);
+          COMMIT;
+        END IF;
+      EXCEPTION
+        WHEN OTHERS THEN
+          NULL;
+          INSERT INTO AAA(SSS1,SSS2)
+            VALUES(DUMMY.PHONE_NUMBER,'Сбой переблока на сохранение '||TO_CHAR(SYSDATE, 'DD.MM.YYYY HH24:MI:SS'));
+          COMMIT;
+      END;
+    END LOOP;
+  END AUTO_REBLOCK_PHONES; 
+-- 
+  PROCEDURE AUTO_TURN_OFF_OPTION(
+    pSTREAM_ID IN INTEGER
+    ) IS
+  BEGIN
+    NULL;
+  END;      
+END; 

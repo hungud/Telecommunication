@@ -1,0 +1,29 @@
+CREATE OR REPLACE FORCE VIEW CRM_V_REQUESTS
+AS
+  --Version 2
+  --v.2 Алексеев. Добавил поле LEAVING_REASON_ID. А также данный скрипт в svn
+  --v.1
+   SELECT "REQUEST_ID",
+          "PHONE_NUMBER",
+          "TEXT_REQUEST",
+          "ID_STATUS_REQUEST",
+          "DATE_CREATED",
+          "USER_CREATED",
+          "USER_LAST_UPDATED",
+          "DATE_LAST_UPDATED",
+          "RESPONSIBLE_USER",
+          "TYPE_REQUEST_ID",
+          "DOP_CONTACT",
+          "ATTACHED_FILES",
+          "DEADLINE_DATE",
+          "OPERATOR",
+          "LEAVING_REASON_ID"
+     FROM CRM_REQUESTS;
+
+
+DROP SYNONYM CRM_USER.REQUESTS;
+
+CREATE SYNONYM CRM_USER.REQUESTS FOR CRM_V_REQUESTS;
+
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON CRM_V_REQUESTS TO CRM_USER;

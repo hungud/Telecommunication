@@ -1,0 +1,774 @@
+BEGIN
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_API_TICKET_CHECK'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверяет статус заявки');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_CLIENT_105'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ID 105');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_CLIENT_125'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ID 125');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_CLIENT_145'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ID 145');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_CLIENT_185'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ID 185');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_CLIENT_205'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ID 205');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_CLIENT_225'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ID 225');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_CLIENT_245'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ID 245');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_CLIENT_265'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ID 265');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_CLIENT_285'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ID 285');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_CLIENT_45'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ID 45');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_CLIENT_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ID 66');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_CLIENT_85'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Блокировка клиента ID 85');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_LOYAL_CLIENT_185'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Лояльная блокировка клиента ID 185');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_LOYAL_CLIENT_205'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Лояльная блокировка клиента ID 205');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_LOYAL_CLIENT_225'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Лояльная блокировка клиента ID 225');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_LOYAL_CLIENT_245'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Лояльная блокировка клиента ID 245');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_LOYAL_CLIENT_265'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Лояльная блокировка клиента ID 265');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_BLOCK_LOYAL_CLIENT_285'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Лояльная блокировка клиента ID 285');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_EXPORT_OBJECTS_TO_SVN'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Экспорт объектов в svn');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_EXPRESS_UNLOCK'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Быстрая разблокировка клиентов');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_HOT_BILLING_CALCDETAILSUM1'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_HOT_BILLING_CALCDETAILSUM2'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_HOT_BILLING_CALCDETAILSUM3'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_HOT_BILLING_CALCDETAILSUM4'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации');
+
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_HOT_BILLING_CALCDETAILSUM5'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_HOT_BILLING_CALCDETAILSUM6'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг сумм по детализации');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_HOT_BILLING_CALCDETAILSUMALL'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Горячий биллинг по суммам детализаций');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_HOT_BILLING_RECALC'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Пересчет горячего биллинга');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_HOT_BILLING_SAVE_CALL'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Поиск и удаление дублей');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_KILL_HANGED_JOBS'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Удаление висящих JOBS');
+
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_ACCOUNTS_TARIFFS'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка тарифов абонента');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_105'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 105');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_125'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 125');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_145'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 145');
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_185'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 185');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_205'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 205');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_225'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 225');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_245'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 245');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_265'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 265');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_285'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 285');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_45'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 45');
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 66');
+
+
+
+ SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_85'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 85');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_BEELINE_BILLS_105'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка счетов билайн ACCOUNT_ID 105');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_DETAIL_API_STREAM_00'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_DETAIL_API_STREAM_01'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_DETAIL_API_STREAM_02'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_DETAIL_API_STREAM_03'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_DETAIL_API_STREAM_04'
+     ,attribute => 'COMMENTS'
+     ,value     => 'загрузка детализаций по апи');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_OBJ_ID_105'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 105');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_OBJ_ID_125'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 125');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_OBJ_ID_145'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 145');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_OBJ_ID_185'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 185');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_OBJ_ID_205'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 205');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_OBJ_ID_225'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 225');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_OBJ_ID_245'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 245');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_OBJ_ID_265'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 265');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_OBJ_ID_285'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 285');
+
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_OBJ_ID_45'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 45');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_OBJ_ID_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 66');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_OBJ_ID_85'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка OBG_ID по счету 85');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONE_OPTIONS_105'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 105');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONE_OPTIONS_125'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 125');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONE_OPTIONS_145'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 145');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONE_OPTIONS_185'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 185');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONE_OPTIONS_205'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 205');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONE_OPTIONS_225'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 225');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONE_OPTIONS_245'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 245');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONE_OPTIONS_265'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 265');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONE_OPTIONS_285'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 285');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONE_OPTIONS_45'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 45');
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONE_OPTIONS_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 66');
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONE_OPTIONS_85'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка списков подключенных опций ID 85');
+
+
+
+  SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONES_105'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 105');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONES_125'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 125');
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONES_145'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 145');
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONES_185'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 185');
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONES_205'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 205');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONES_225'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 225');
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONES_245'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 245');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONES_265'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 265');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONES_285'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 285');
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONES_45'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 45');
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONES_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 66');
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_PHONES_85'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка статуса абонента id 85');
+
+
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_REPORT_DATA_105'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 105');
+
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_REPORT_DATA_125'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 125');
+
+
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_REPORT_DATA_145'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 145');
+
+
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_REPORT_DATA_185'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 185');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_REPORT_DATA_205'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 205');
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_REPORT_DATA_225'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 225');
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_REPORT_DATA_245'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 245');
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_REPORT_DATA_265'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 265');
+
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_REPORT_DATA_285'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 285');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_REPORT_DATA_45'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 45');
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_REPORT_DATA_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 66');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_LOAD_REPORT_DATA_85'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Загрузка отчетов о текущих начислениях ID 85');
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_RECALC_CURR_TARIF'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Пересчет текущего тарифа');
+
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_RUN_P_CR_BALANCE_HISTORY'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Пересчет баланса');
+
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_END_MONTH_NOTICE_105'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка уведомлений о нехватке денег для абонентской платы счета 105');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_END_MONTH_NOTICE_125'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка уведомлений о нехватке денег для абонентской платы 125');
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_END_MONTH_NOTICE_145'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка уведомлений о нехватке денег для абонентской платы 145');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_END_MONTH_NOTICE_185'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка уведомлений о нехватке денег для абонентской платы 185');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_END_MONTH_NOTICE_205'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка уведомлений о нехватке денег для абонентской платы 205');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_END_MONTH_NOTICE_225'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка уведомлений о нехватке денег для абонентской платы 225');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_END_MONTH_NOTICE_245'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка уведомлений о нехватке денег для абонентской платы 245');
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_END_MONTH_NOTICE_265'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка уведомлений о нехватке денег для абонентской платы 265');
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_END_MONTH_NOTICE_285'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка уведомлений о нехватке денег для абонентской платы 285');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_END_MONTH_NOTICE_45'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка уведомлений о нехватке денег для абонентской платы 45');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_END_MONTH_NOTICE_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка уведомлений о нехватке денег для абонентской платы 66');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_END_MONTH_NOTICE_85'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка уведомлений о нехватке денег для абонентской платы 85');
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_SEND_SMS_NOTIFY_BILLS'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Отправки СМС с сообщением о балансе');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_UNBLOCK_CLIENT_185'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Разблокировка клиентов с балансом больше 0 счета 185');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_UNBLOCK_CLIENT_205'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Разблокировка клиентов с балансом больше 0 счета 205');
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_UNBLOCK_CLIENT_225'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Разблокировка клиентов с балансом больше 0 счета 225');
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_UNBLOCK_CLIENT_245'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Разблокировка клиентов с балансом больше 0 счета 245');
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_UNBLOCK_CLIENT_265'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Разблокировка клиентов с балансом больше 0 счета 265');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_UNBLOCK_CLIENT_285'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Разблокировка клиентов с балансом больше 0 счета 285');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_UNBLOCK_CLIENT_45'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Разблокировка клиентов с балансом больше 0 счета 45');
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_UNBLOCK_CLIENT_66'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Разблокировка клиентов с балансом больше 0 счета 66');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_UNBLOCK_CLIENT_85'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Разблокировка клиентов с балансом больше 0 счета 85');
+
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.J_USSD_TIMEOUT'
+     ,attribute => 'COMMENTS'
+     ,value     => 'проверка запросов по ussd');
+
+
+SYS.DBMS_SCHEDULER.SET_ATTRIBUTE
+    ( name      => 'LONTANA.SMS_ERROR_NOTICE_JOB'
+     ,attribute => 'COMMENTS'
+     ,value     => 'Рассылка почтовых сообщений об ошибках');
+
+
+END;

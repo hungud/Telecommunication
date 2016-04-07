@@ -1,0 +1,64 @@
+CREATE TABLE MOB_PAY
+(
+  PHONE        VARCHAR2(11 BYTE),
+  SUM_PAY      NUMBER,
+  DATE_INSERT  DATE,
+  DATE_PAY     DATE
+);
+
+COMMENT ON TABLE MOB_PAY IS 'ОКЮРЕФХ ВЕПЕГ НОПЕДЕКЕММШИ ОПНЛЕФСРНЙ БПЕЛЕМХ';
+
+COMMENT ON COLUMN MOB_PAY.PHONE IS 'мнлеп рекетнмю';
+
+COMMENT ON COLUMN MOB_PAY.SUM_PAY IS 'ясллю окюрефю';
+
+COMMENT ON COLUMN MOB_PAY.DATE_INSERT IS 'дюрю днаюбкемхъ';
+
+COMMENT ON COLUMN MOB_PAY.DATE_PAY IS 'дюрю окюрефю';
+
+
+
+CREATE OR REPLACE TRIGGER TI_MOB_PAY
+--#Version=1
+  BEFORE INSERT ON  MOB_PAY FOR EACH ROW
+BEGIN
+     :NEW.date_insert := sysdate;
+END;
+/
+create index I_MOB_PAY_PHONE on MOB_PAY (phone);
+
+alter table mob_pay add USER_CREATED varchar2(50);
+alter table mob_pay add DATE_CREATED DATE;
+alter table mob_pay add USER_UPDATED varchar2(30);
+alter table mob_pay add DATE_UPDATED DATE;
+
+COMMENT ON COLUMN MOB_PAY.USER_CREATED IS 'янгдюбьхи онкэгнбюрекэ';
+COMMENT ON COLUMN MOB_PAY.DATE_CREATED IS 'дюрю янгдюмхъ';
+COMMENT ON COLUMN MOB_PAY.USER_UPDATED IS 'намнбхбьхи онкэгнбюрекэ';
+COMMENT ON COLUMN MOB_PAY.DATE_UPDATED IS 'дюрю намнбкемхъ';
+
+DROP TRIGGER TI_MOB_PAY;
+
+CREATE OR REPLACE TRIGGER TIU_MOB_PAY
+--#Version=1
+  BEFORE INSERT OR UPDATE ON  MOB_PAY FOR EACH ROW
+BEGIN
+  
+  IF INSERTING THEN
+    :NEW.date_insert := sysdate;
+    IF :NEW.USER_CREATED is null then
+      :NEW.USER_CREATED :=  USER;
+    END IF;
+  END IF;
+  
+  IF UPDATING THEN
+    :NEW.DATE_UPDATED := sysdate;
+    IF :NEW.USER_UPDATED is null then
+      :NEW.USER_UPDATED :=  USER;
+    END IF;  
+  END IF;
+END;
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON MOB_PAY TO CORP_MOBILE_ROLE;
+
+GRANT SELECT ON MOB_PAY TO CORP_MOBILE_ROLE_RO;

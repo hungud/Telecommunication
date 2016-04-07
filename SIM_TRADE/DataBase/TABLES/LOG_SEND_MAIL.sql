@@ -1,0 +1,24 @@
+--#if not TableExists("LOG_SEND_MAIL") then
+CREATE TABLE LOG_SEND_MAIL
+(
+  YEAR_MONTH    NUMBER(38),
+  PHONE_NUMBER  VARCHAR2(10 CHAR),
+  DATE_SEND     DATE,
+  MAIL_SUBJECT  VARCHAR2(300 CHAR),
+  NOTE          VARCHAR2(100 CHAR)
+);
+--#end if
+
+--#Execute MAIN_SCHEMA=IsClient("")
+--#if not GrantExists("LOG_SEND_MAIL", "ROLE", "SELECT") then
+begin EXECUTE IMMEDIATE 'GRANT ALL ON LOG_SEND_MAIL TO &MAIN_SCHEMA'||'_ROLE'; end;
+--#end if
+
+--#if not GrantExists("LOG_SEND_MAIL", "ROLE_RO", "SELECT") then
+begin EXECUTE IMMEDIATE 'GRANT SELECT ON LOG_SEND_MAIL TO &MAIN_SCHEMA'||'_ROLE_RO'; end;
+--#end if
+
+--#if not GrantExists("LOG_SEND_MAIL", "ROLE_RO", "INSERT") then
+begin EXECUTE IMMEDIATE 'GRANT INSERT ON LOG_SEND_MAIL TO &MAIN_SCHEMA'||'_ROLE_RO'; end;
+--#end if
+

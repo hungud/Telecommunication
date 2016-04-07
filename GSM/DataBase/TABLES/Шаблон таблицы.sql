@@ -1,0 +1,49 @@
+--#if not ObjectExists("S_NEW_%TABLE_NAME%_ID")
+CREATE SEQUENCE S_NEW_%TABLE_NAME%_ID;
+--#end if
+
+--#if not TableExists("%TABLE_NAME%S") then
+CREATE TABLE %TABLE_NAME%S
+(
+  ID            INTEGER  CONSTRAINT PK_%TABLE_NAME%S PRIMARY KEY,
+  NAME          VARCHAR2(250 CHAR),
+  USER_CREATED  VARCHAR2(30 CHAR),
+  DATE_CREATED  DATE,
+  USER_LAST_UPDATED  VARCHAR2(30 CHAR),
+  DATE_LAST_UPDATED  DATE
+);
+--#end if
+
+--#if GetTableComment("%TABLE_NAME%")<>"Таблица" then
+COMMENT ON TABLE %TABLE_NAME%S IS 'Таблица';
+--#end if
+
+--#if GetColumnComment("%TABLE_NAME%S.ID") <> "Первичный ключ" then
+COMMENT ON COLUMN %TABLE_NAME%S.ID IS 'Первичный ключ';
+--#end if
+
+--#if GetColumnComment("%TABLE_NAME%S.NAME") <> "Название" then
+COMMENT ON COLUMN %TABLE_NAME%S.NAME IS 'Название';
+--#end if
+
+--#if not IndexExists("I_%TABLE_NAME%S_NAME") THEN
+CREATE INDEX I_%TABLE_NAME%S_NAME ON %TABLE_NAME%S(NAME);
+--#end if
+
+--#IF GetVersion("TIU_%TABLE_NAME%S") < 1 THEN
+CREATE OR REPLACE TRIGGER TIU_%TABLE_NAME%S 
+  BEFORE INSERT OR UPDATE ON %TABLE_NAME%S FOR EACH ROW 
+--#Version=1
+BEGIN 
+  IF INSERTING THEN 
+    IF NVL(:NEW.ID, 0) = 0 then 
+      :NEW.ID := S_NEW_%TABLE_NAME%_ID.NEXTVAL; 
+    END IF; 
+    :NEW.USER_CREATED := USER; 
+    :NEW.DATE_CREATED := SYSDATE;
+  END IF; 
+  :NEW.USER_LAST_UPDATED := USER; 
+  :NEW.DATE_LAST_UPDATED := SYSDATE; 
+END;
+--#end if
+

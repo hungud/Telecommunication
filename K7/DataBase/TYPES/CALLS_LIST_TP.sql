@@ -1,0 +1,18 @@
+--
+--#version=1
+--v1 20.05.2015 - Кочнев для GET_UNBILLED_CALLS_LIST_PIPE зад.2790
+--
+
+CREATE OR REPLACE
+TYPE CORP_MOBILE.CALLS_LIST_TP  AS OBJECT
+(
+CALLDATE varchar2(26),
+CALLNUMBER varchar2(120),
+CALLTONUMBER varchar2(30),
+SERVICENAME      varchar2(120),
+CALLTYPE        varchar2(120),
+DATAVOLUME      varchar2(15),
+CALLAMT varchar2(15),
+CALLDURATION varchar2(15)
+)
+/

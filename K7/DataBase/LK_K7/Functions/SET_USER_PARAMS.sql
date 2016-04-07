@@ -1,0 +1,87 @@
+CREATE OR REPLACE FUNCTION K7_LK.SET_USER_PARAMS(
+  pCONTRACT_ID IN INTEGER,
+  pName IN VARCHAR2,
+  pEMAIL IN VARCHAR2,
+  pBirthDay IN Date,
+  pPASSPORT IN VARCHAR2,
+  pKeyWORD IN VARCHAR2,
+  pPASSWORD IN VARCHAR2
+  
+  ) RETURN INTEGER IS
+--
+--#Version=1
+--
+  vABONENT_ID INTEGER;
+  vName  ABONENT_ADD_INFO.Name%TYPE;
+  vEMAIL ABONENT_ADD_INFO.EMAIL%TYPE;
+  vBirthDay ABONENT_ADD_INFO.BirthDay%TYPE;
+  vPASSPORT ABONENT_ADD_INFO.PASSPORT%TYPE;
+  vKeyWORD  ABONENT_ADD_INFO.KeyWORD%TYPE; 
+  CURSOR cFIND IS
+    SELECT CONTRACT_ID
+    FROM ABONENT_ADD_INFO
+    WHERE ABONENT_ADD_INFO.CONTRACT_ID=pCONTRACT_ID;
+  vDUMMY INTEGER;
+BEGIN
+  SELECT
+    ABONENT_ID INTO vABONENT_ID
+  FROM
+    CORP_MOBILE.CONTRACTS
+  WHERE
+    CONTRACTS.CONTRACT_ID = pCONTRACT_ID;
+  --
+  IF pPASSWORD IS NOT NULL THEN
+    UPDATE
+      CORP_MOBILE.CONTRACTS
+    SET
+      USER_PASSWORD=pPASSWORD
+    WHERE
+      CONTRACT_ID=pCONTRACT_ID;
+  END IF;
+  --
+  OPEN cFIND;
+    FETCH cFIND INTO vDUMMY;
+    
+    vName  := SUBSTRB(trim(pName), 1, 100);
+    vEMAIL := SUBSTRB(trim(pEMAIL), 1, 100);
+    vBirthDay :=  trunc(pBirthDay);
+    vPASSPORT := SUBSTRB(trim(pPASSPORT), 1, 250);
+    vKeyWORD  := SUBSTRB(trim(pKeyWORD), 1, 250);
+    
+    IF cFIND%FOUND THEN
+      UPDATE ABONENT_ADD_INFO
+      SET 
+        Name =  vName,
+        EMAIL = vEMAIL,
+        BirthDay = vBirthDay,
+        PASSPORT = vPASSPORT,
+        KeyWORD  = vKeyWORD 
+      WHERE 
+        ABONENT_ADD_INFO.CONTRACT_ID = pCONTRACT_ID;
+    ELSE
+      INSERT INTO ABONENT_ADD_INFO
+        (
+          CONTRACT_ID, 
+          Name, 
+          EMAIL,
+          BirthDay,
+          PASSPORT,
+          KeyWORD
+        )
+        VALUES (
+          pCONTRACT_ID, 
+          vName, 
+          vEMAIL,
+          vBirthDay,
+          vPASSPORT,
+          vKeyWORD 
+        );
+    END IF;
+  CLOSE cFIND;
+  Commit;
+  RETURN 1;
+EXCEPTION WHEN NO_DATA_FOUND THEN
+  RollBack;
+  RETURN 0;
+END;
+/

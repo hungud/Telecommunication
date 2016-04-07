@@ -1,0 +1,678 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{1279E93C-F0B9-4259-8034-866031AB8F52}</ProjectGuid>
+			<MainSource>ContractsRegistration.DPR</MainSource>
+			<Base>True</Base>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<AppType>Application</AppType>
+			<FrameworkType>VCL</FrameworkType>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<ProjectVersion>13.4</ProjectVersion>
+			<Platform Condition="'$(Platform)'==''">Win32</Platform>
+			<TargetedPlatforms>1</TargetedPlatforms>
+			<Platform>Win32</Platform>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+			<Cfg_2_Win32>true</Cfg_2_Win32>
+			<CfgParent>Cfg_2</CfgParent>
+			<Cfg_2>true</Cfg_2>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<VerInfo_Build>4</VerInfo_Build>
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.8.15.4;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+			<VerInfo_Locale>1049</VerInfo_Locale>
+			<DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+			<VerInfo_MinorVer>8</VerInfo_MinorVer>
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<VerInfo_Release>15</VerInfo_Release>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_MapFile>3</DCC_MapFile>
+			<DCC_UsePackage>vclx;vcl;rtl;indy;dsnapcon;dsnap;dbrtl;vcldb;VclSmp;adortl;bdertl;vcldbx;ibxpress;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclOffice2k;dxCoreD7;dxGDIPlusD7;cxLibraryVCLD7;dxsbD7;dxComnD7;dxBarD7;dxBarDBNavD7;dxBarExtDBItemsD7;dxBarExtItemsD7;dxRibbonD7;dxDockingD7;dac70;CRControls70;dacvcl70;odac70;odacvcl70;$(DCC_UsePackage)</DCC_UsePackage>
+			<DCC_UnitSearchPath>$(DELPHI)\Lib\Debug;C:\Program Files\Borland\Delphi7\Source;C:\Program Files\Borland\Delphi7\CRGrid\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_RemoteDebug>true</DCC_RemoteDebug>
+			<DCC_Define>EUREKALOG;EUREKALOG_VER7;$(DCC_Define)</DCC_Define>
+			<DCC_K>false</DCC_K>
+			<DCC_N>true</DCC_N>
+			<DCC_S>false</DCC_S>
+			<DCC_F>false</DCC_F>
+			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+			<DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
+			<DCC_E>false</DCC_E>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_Define>DEBUG;_VER7;_VER6;_VER6;$(DCC_Define)</DCC_Define>
+			<DCC_Optimize>false</DCC_Optimize>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+<<<<<<< .mine
+			<VerInfo_Build>40</VerInfo_Build>
+=======
+			<VerInfo_Build>39</VerInfo_Build>
+>>>>>>> .r3327
+			<VerInfo_Release>26</VerInfo_Release>
+<<<<<<< .mine
+			<VerInfo_Keys>CompanyName=Tarifer.ru;FileDescription=;FileVersion=1.8.26.40;InternalName=ContractRegistration;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.8.0.0;Comments=</VerInfo_Keys>
+=======
+			<VerInfo_Keys>CompanyName=Tarifer.ru;FileDescription=;FileVersion=1.8.26.39;InternalName=ContractRegistration;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.8.0.0;Comments=</VerInfo_Keys>
+>>>>>>> .r3327
+			<Icon_MainIcon>ContractsRegistration_Icon.ico</Icon_MainIcon>
+			<Manifest_File>None</Manifest_File>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="$(MainSource)">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="Main.pas">
+				<Form>MainForm</Form>
+			</DCCReference>
+			<DCCReference Include="TemplateFrm.pas">
+				<Form>TemplateForm</Form>
+			</DCCReference>
+			<DCCReference Include="ConnForm.pas">
+				<Form>fmConn</Form>
+			</DCCReference>
+			<DCCReference Include="RefDocumTypesFrm.pas">
+				<Form>RefDocumTypesForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefFilials.pas">
+				<Form>RefFilialsForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefUserNames.pas">
+				<Form>RefUserNamesForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefCountries.pas">
+				<Form>RefCountriesForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefStartBalances.pas">
+				<Form>RefStartBalancesForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefRegions.pas">
+				<Form>RefRegionsForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefPhoneBlocks.pas">
+				<Form>RefPhoneBlocksForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefAccounts.pas">
+				<Form>RefAccountsForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefTariffs.pas">
+				<Form>RefTariffsForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefOperators.pas">
+				<Form>RefOperatorsForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefContractCancelTypes.pas">
+				<Form>RefContractCancelTypesForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefAbonents.pas">
+				<Form>RefAbonentsForm</Form>
+			</DCCReference>
+			<DCCReference Include="EditAbonent.pas">
+				<Form>EditAbonentForm</Form>
+			</DCCReference>
+			<DCCReference Include="EditAbonentFrame.pas">
+				<Form>EditAbonentFrme</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="ContractsRegistration_Utils.pas">
+				<Form>dmUtils</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="JornalAll.pas">
+				<Form>JornalAllForm</Form>
+			</DCCReference>
+			<DCCReference Include="EditContract.pas">
+				<Form>EditContractForm</Form>
+			</DCCReference>
+			<DCCReference Include="JornalAllFilter.pas">
+				<Form>JornalAllFilterForm</Form>
+			</DCCReference>
+			<DCCReference Include="CancelContract.pas">
+				<Form>CancelContractForm</Form>
+			</DCCReference>
+			<DCCReference Include="SelectContract.pas">
+				<Form>SelectContractForm</Form>
+			</DCCReference>
+			<DCCReference Include="RegisterPayment.pas">
+				<Form>RegisterPaymentForm</Form>
+			</DCCReference>
+			<DCCReference Include="ChangeContract.pas">
+				<Form>ChangeContractForm</Form>
+			</DCCReference>
+			<DCCReference Include="ShowUserStat.pas">
+				<Form>ShowUserStatForm</Form>
+			</DCCReference>
+			<DCCReference Include="LoadData.pas">
+				<Form>LoadDataFrm</Form>
+			</DCCReference>
+			<DCCReference Include="IntecExportGrid.pas">
+				<Form>SelectPrintColumnsForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportBalance.pas">
+				<Form>ReportBalanceFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportActiveNumberNoContracts.pas">
+				<Form>ReportActiveNumberNoContractsFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportPhoneStat.pas">
+				<Form>ReportPhoneStatFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportProfit.pas">
+				<Form>ReportProfitFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportAntiFraudBlocked.pas">
+				<Form>AntiFraudBlockedFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportSummaryMinutes.pas">
+				<Form>ReportSummaryMinutesFrm</Form>
+			</DCCReference>
+			<DCCReference Include="CRStrUtils.pas"/>
+			<DCCReference Include="SendSms.pas">
+				<Form>SendSmsFrm</Form>
+			</DCCReference>
+			<DCCReference Include="RefSendSMSParametres.pas">
+				<Form>RefProvidersFrm</Form>
+			</DCCReference>
+			<DCCReference Include="BlockList.pas">
+				<Form>BlockListFrm</Form>
+			</DCCReference>
+			<DCCReference Include="UnBlockList.pas">
+				<Form>UnBlockListFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportSendSms.pas">
+				<Form>ReportSendSmsFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportAbonPay.pas">
+				<Form>ReportAbonPayFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportPhonePayments.pas">
+				<Form>ReportPhonePaymentsFrm</Form>
+			</DCCReference>
+			<DCCReference Include="AddDeposite.pas">
+				<Form>AddDepositeFrm</Form>
+			</DCCReference>
+			<DCCReference Include="RefTariffOptions.pas">
+				<Form>RefTariffOptionsForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportTariffViolations.pas">
+				<Form>ReportTariffViolationsFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportPhoneNumberViolations.pas">
+				<Form>ReportPhoneNumberViolationsFrm</Form>
+			</DCCReference>
+			<DCCReference Include="RefSendMailParametres.pas">
+				<Form>SendMailParametresFrm</Form>
+			</DCCReference>
+			<DCCReference Include="RefMailRecipients.pas">
+				<Form>RefMailRecipientsFrm</Form>
+			</DCCReference>
+			<DCCReference Include="RefFixingBalances.pas">
+				<Form>RefFixingBalancesFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportSendSmsEndMonth.pas">
+				<Form>ReportSendSmsEndMonthFrm</Form>
+			</DCCReference>
+			<DCCReference Include="BeelineLoadFrm.pas">
+				<Form>BeelineLoadForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefDiscounts.pas">
+				<Form>TemplateForm1</Form>
+			</DCCReference>
+			<DCCReference Include="ReportDiscounts.pas">
+				<Form>ReportDiscountsFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportBills.pas">
+				<Form>ReportBills</Form>
+			</DCCReference>
+			<DCCReference Include="ReportPhoneForBlockSave.pas">
+				<Form>ReportPhoneForBlockSaveForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportPhoneForUnblockSave.pas">
+				<Form>ReportPhoneForUnblockSaveForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportBalanceOnEndMonth.pas">
+				<Form>ReportBalanceOnEndMonthForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefForwardingSMS.pas">
+				<Form>RefForwardingSMSForm</Form>
+			</DCCReference>
+			<DCCReference Include="ShowBillDetails.pas">
+				<Form>ShowBillDetailsForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportSityPhoneNumbers.pas">
+				<Form>ReportSityPhoneNumbersForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportHandBlockNumbers.pas">
+				<Form>Form1</Form>
+			</DCCReference>
+			<DCCReference Include="ReportFieldDetails.pas">
+				<Form>ReportFieldDetailsForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportUSSDSend.pas">
+				<Form>ReportUSSDSendFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportNumWithoutAbonPay.pas">
+				<Form>ReportNumWithoutAbonPayFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportKolNom.pas">
+				<Form>ReportKolNomFrm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportContractHandBlock.pas">
+				<Form>ReportContractHandBlockForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportTariferPayments.pas">
+				<Form>ReportTariferPaymentsForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportVirtualPayments.pas">
+				<Form>ReportVirtualPaymentsForm</Form>
+			</DCCReference>
+			<DCCReference Include="ShowBalanceChange.pas">
+				<Form>ShowBalanceChangeForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportBalanceChange.pas">
+				<Form>ReportBalanceChangeForm</Form>
+			</DCCReference>
+			<DCCReference Include="ShowPayments.pas">
+				<Form>ShowPayments</Form>
+			</DCCReference>
+			<DCCReference Include="ReportAccountPhones.pas"/>
+			<DCCReference Include="RefRightsTypeAccount.pas">
+				<Form>RefRightsTypeAccount</Form>
+			</DCCReference>
+			<DCCReference Include="ChangePassword.pas">
+				<Form>ChangePassword</Form>
+			</DCCReference>
+			<DCCReference Include="ReportHotBillingDelay.pas">
+				<Form>ReportHotBillingDelayForm</Form>
+			</DCCReference>
+			<DCCReference Include="LoadDetail.pas">
+				<Form>LoadDetailForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefAutoBlockPhoneNoContract.pas">
+				<Form>RefAutoBlockPhoneNoContractForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefAccountBillLoad.pas">
+				<Form>RefAccountBillLoadForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportBillViols.pas">
+				<Form>ReportBillViolsForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportFinanceModule.pas">
+				<Form>ReportFinance</Form>
+			</DCCReference>
+			<DCCReference Include="PassWord.pas">
+				<Form>PasswordDlg</Form>
+			</DCCReference>
+			<DCCReference Include="ReportYearBilssDayAbon.pas">
+				<Form>ReportYearBilssDayAbonForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportDebitorka.pas">
+				<Form>ReportDebitorkaForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportMobPayments.pas">
+				<Form>ReportMobPaymentsForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefAbonDiscountAndRassroch.pas">
+				<Form>RefAbonDiscountAndRassrochForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportBillNoDiscountYear.pas">
+				<Form>ReportBillNoDiscountYearForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefDealersFrm.pas">
+				<Form>RefDealersFrmForm</Form>
+			</DCCReference>
+			<DCCReference Include="ShowUserAlerts.pas">
+				<Form>ShowUserAlertForm</Form>
+			</DCCReference>
+			<DCCReference Include="ChangeTariffArray.pas">
+				<Form>ChangeTariffArrayForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportAccountInfo.pas">
+				<Form>ReportAccountInfo</Form>
+			</DCCReference>
+			<DCCReference Include="RefCopyDatabase.pas">
+				<Form>RefCopyDataBaseForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportPaymentsPromised.pas">
+				<Form>ReportPromisedPaymentsForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportTariffOptionPhones.pas">
+				<Form>ReportTariffOptionPhonesForm</Form>
+			</DCCReference>
+			<DCCReference Include="PhoneNumberInputFrm.pas">
+				<Form>PhoneNumberInputForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportPaymentWithoutContracts.pas">
+				<Form>ReportPaymentWithoutContractsForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportMissingPhones.pas">
+				<Form>ReportMissingPhonesForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportBillNegative.pas">
+				<Form>ReportBillNagativeForm</Form>
+			</DCCReference>
+			<DCCReference Include="ShowGroupStat.pas">
+				<Form>ShowGroupStatForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefContractGroups.pas">
+				<Form>RefContractGroupsForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportBalancesOnDate.pas">
+				<Form>ReportBalancesOnDateForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportReplaceSIM.pas">
+				<Form>ReportReplaceSIMFrm</Form>
+			</DCCReference>
+			<DCCReference Include="RefPhonesWithDailyAbon.pas">
+				<Form>PhonesWithDailyAbonForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="MonitorServices.pas">
+				<Form>MonitorServ</Form>
+			</DCCReference>
+			<DCCReference Include="DMUnit.pas">
+				<Form>DM</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="RefAllSendMail.pas">
+				<Form>RefAllSendMailForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefDopStatusFrm.pas">
+				<Form>RefDopStatusForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefAllLogs.pas">
+				<Form>RefAllLogsForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportDopStatus.pas">
+				<Form>ReportDopStatusForm</Form>
+			</DCCReference>
+			<DCCReference Include="Web.pas">
+				<Form>FormWeb</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefTariffOptionBenefits.pas">
+				<Form>RefTariffOptionBenefitsForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="ReportFinanceHistoryPhoneActiv.pas">
+				<Form>ReportFinanceHistoryPhoneActivForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="ReportFinanceInflowOutflow.pas">
+				<Form>ReportFinanceInflowOutflowForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RegisterPaymentGroup.pas">
+				<Form>RegisterPaymentGroupForm</Form>
+			</DCCReference>
+			<DCCReference Include="RepCalcBalance.pas">
+				<Form>RepCalcBalanceFRM</Form>
+			</DCCReference>
+			<DCCReference Include="ReportFinanceSumBills.pas">
+				<Form>ReportFinanceSumBillsForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportSumPositiveBalance.pas">
+				<Form>ReportSumPositiveBalanceForm</Form>
+			</DCCReference>
+			<DCCReference Include="WSlider.pas"/>
+			<DCCReference Include="ExportGridToExcelPDF.pas"/>
+			<DCCReference Include="ChangeDopStatusArray.pas">
+				<Form>ChangeDopStatusArrayForm</Form>
+			</DCCReference>
+			<DCCReference Include="PaymentTypesFrm.pas">
+				<Form>PaymentTypesForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportPhoneInactivity.pas">
+				<Form>ReportPhoneInactivityForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefTariff_option.pas">
+				<Form>Tariff_option</Form>
+			</DCCReference>
+			<DCCReference Include="RefPhoneUsername.pas">
+				<Form>RefPhoneUsernameForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefMNP.pas">
+				<Form>MNP_NUMBERS</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefVip_abonents.pas">
+				<Form>VIP_Abonents</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="MonitorEvents.pas">
+				<Form>MonitorEv</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="ReportPaymentPassenger.pas">
+				<Form>ReportPaymentPassengerForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportListPhones.pas">
+				<Form>fReportListPhones</Form>
+			</DCCReference>
+			<DCCReference Include="ReportHotBillingMonitor.pas">
+				<Form>Form2</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="ShowUserTurnOnOffOption.pas">
+				<Form>ShowUserTurnOnOffOptionForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="RefInactivePhoneLessCont.pas">
+				<Form>RefInactivePhoneLessContForm</Form>
+			</DCCReference>
+			<DCCReference Include="LoadInactivePhoneLessCont.pas">
+				<Form>LoadInactivePhoneLessContForm</Form>
+			</DCCReference>
+			<DCCReference Include="RefMaskBeauty.pas">
+				<Form>RefMaskBeautyForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportCurrentQueueSMS.pas">
+				<Form>fReportCurrentQueueSMS</Form>
+			</DCCReference>
+			<DCCReference Include="ReportPhoneOnBan.pas">
+				<Form>BeelineLoaderForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportAccountPeriod.pas">
+				<Form>ReportAccountPeriodForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="ReportRecoveryCloseContracts.pas">
+				<Form>ReportRecoveryCloseContractsFrm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="ReportAPIRejectBlocks.pas">
+				<Form>ReportAPIRejectBlocksForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportFrm.pas">
+				<Form>ReportForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportAccPay4Equip.pas">
+				<Form>ReportAccPay4EquipForm</Form>
+			</DCCReference>
+			<DCCReference Include="ReportChangeStatusPresaleBlock.pas">
+				<Form>ReportChangeStatusPresaleBlockFrm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="ReportPhoneReBlock.pas">
+				<Form>ReportPhoneReBlockForm</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="ReportLoadAccounts.pas">
+				<Form>ReportLoadAccountsForm</Form>
+			</DCCReference>
+			<DCCReference Include="RepRaschodPhones.pas">
+				<Form>frmRepRaschodPhones</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType>VCLApplication</Borland.ProjectType>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Source>
+						<Source Name="MainSource">ContractsRegistration.DPR</Source>
+					</Source>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">8</VersionInfo>
+						<VersionInfo Name="Release">15</VersionInfo>
+						<VersionInfo Name="Build">4</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1049</VersionInfo>
+						<VersionInfo Name="CodePage">1251</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.8.15.4</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k160.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dclofficexp160.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+				</Delphi.Personality>
+				<Platforms>
+					<Platform value="Win64">False</Platform>
+					<Platform value="Win32">True</Platform>
+				</Platforms>
+				<ModelSupport>False</ModelSupport>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>
+
+<!-- EurekaLog First Line
+[Exception Log]
+EurekaLog Version=7001
+Activate=1
+AutoCrashOperation=2
+boHandleSafeCallExceptions=1
+boUseMainModuleOptions=1
+CompatibilityMode=1
+csoAllowedRenderMethods=64
+csoDisabledRenderMethods=-2
+csoDoNotStoreProcNames=1
+csoShowWindowsThreads=1
+DeleteMapAfterCompile=1
+Email Address="support@tarifer.ru"
+Email Object="Bug"
+Encrypt Password=tar_173g!
+Errors Number=32
+Errors Terminate=5
+Foreground Tab=0
+loAppendReproduceText=1
+loCatchLeaks=0
+loEnableMMDebugMode=0
+loFreeAllLeaks=1
+loHideRTLLeaks=0
+loMaxLeaks=1024
+loOnlyUnderIDE=0
+loProcessesSection=1
+Output Path=""
+SMTP From="robot@tarifer.ru"
+SMTP Host="tarifer.ru"
+SMTP Password="tariferrobot"
+SMTP UserID="robot"
+sndAddDateInFileName=0
+sndScreenshot=3
+sndSendEntireLog=1
+sndShowSuccessMsg=0
+soActCtlsControlClass=1
+soActCtlsControlText=1
+soActCtlsFormClass=1
+soActCtlsFormText=1
+soAppCompilationDate=1
+soAppName=1
+soAppParameters=1
+soAppStartDate=1
+soAppUpTime=1
+soAppVersionNumber=1
+soCmpDisplayDPI=1
+soCmpDisplayMode=1
+soCmpFreeDisk=1
+soCmpFreeMemory=1
+soCmpName=1
+soCmpPrinter=1
+soCmpProcessor=1
+soCmpSysUpTime=1
+soCmpTotalDisk=1
+soCmpTotalMemory=1
+soCmpVideoCard=1
+soCustomData=1
+soExcCount=1
+soExcDate=1
+soExcModuleName=1
+soExcModuleVersion=1
+soExcNote=1
+soExcStatus=1
+soNetDHCP=1
+soNetDNS1=1
+soNetDNS2=1
+soNetGateway=1
+soNetIP=1
+soNetSubmask=1
+soOSBuildN=1
+soOSCharset=1
+soOSLanguage=1
+soOSType=1
+soOSUpdate=1
+soUserCompany=1
+soUserID=1
+soUserPrivileges=1
+TerminateBtn Operation=0
+TextsCollection="Russian"
+TrakerCategory="Automessage"
+TrakerPassword="tarifer_user"
+TrakerProject="%U0423%U0447%U0451%U0442 %U0430%U0431%U043E%U043D%U0435%U043D%U0442%U043E%U0432"
+TrakerUser="user"
+WebPort=0
+WebURL="bugs.tarifer.ru"
+EurekaLog Last Line -->

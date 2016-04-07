@@ -1,0 +1,8 @@
+CREATE OR REPLACE VIEW V_INV_OBJ AS
+SELECT
+--#Version=1
+  *
+FROM  dba_objects tt where TT.STATUS<>'VALID' 
+and owner='SIM_TRADE' 
+AND TT.OBJECT_TYPE<>'MATERIALIZED VIEW';
+

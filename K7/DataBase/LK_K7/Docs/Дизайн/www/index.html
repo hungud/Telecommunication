@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <title>Личный кабиент</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5">
+        <a class="header-logo" href="index.html">Личный кабинет</a>
+      </div>
+      <div class="col-md-4 col-sm-3">
+        <p class="header-phone">Служба поддержки
+        <a class="none-decoration" href="tel:+74993015121">+7 499 301-51-21</a></p>
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <ul class="header-menu list-inline">
+          <li><a href="settings.html">Мои настройки</a></li>
+          <li><a href="login.html">Выход</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Begin page content -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <nav>
+        <ul class="list-group main-bar">
+          <li class="list-group-item"><a href="payments.html"><div class="icon-payments"></div> Мои платежи</a></li>
+          <li class="list-group-item"><a href="promised-payment.html"><div class="icon-promised-payment"></div> Обещанный платеж</a></li>
+          <li class="list-group-item"><a href="detailing.html"><div class="icon-detailing"></div> Детализация услуг</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-md-10">
+      <div class="panel panel-default">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-1 col-xs-2">
+                <div class="icon-number"></div>
+              </div>
+              <div class="col-sm-6 col-xs-10">
+                <p>Ваш номер
+                <span class="phone-number">+7 905 777-82-87</span>
+                <a href="#">Заблокировать номер</a></p>
+              </div>
+              <div class="col-sm-5 col-sm-offset-0 col-xs-10 col-xs-offset-2">
+                <p><span class="text-muted">Баланс:</span> <span class="balance">950 ₽</span> <a class="none-decoration" href="#"><span class="glyphicon glyphicon-repeat"></span> <span class="dotted">Обновить</span></a></p>
+                <p><span class="text-muted">Статус:</span> <span class="label label-danger">заблокирован</span></p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-1 col-xs-2">
+                <div class="icon-tariff"></div>
+              </div>
+              <div class="col-sm-6 col-xs-10">
+                <p>Ваш тариф
+                  <span class="tariff">Формула свободы MAXI</span>
+                  <a href="tariff.html">Подробнее о тарифе</a></p>
+              </div>
+              <div class="col-sm-5 col-sm-offset-0 col-xs-10 col-xs-offset-2">
+                <p><span class="text-muted">Абон. плата:</span> <span>450 ₽/мес.</span></p>
+                <p><span class="text-muted">Система оплаты:</span> <span>авансовая</span></p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Информация по пакетам услуг</h2>
+        </div>
+
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-7"><p>Междугородние вызовы на номера других операторов сотовой и фиксированной связи</p></div>
+              <div class="col-sm-5">
+                <p class="text-center">381 мин. из 500 мин.</p>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                    <span class="sr-only">60% Complete</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-7"><p>Местные вызовы на номера других операторов сотовой и фиксированной связи</p></div>
+              <div class="col-sm-5">
+                <p class="text-center">410 мин. из 500 мин.</p>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                    <span class="sr-only">75% Complete</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-7"><p>MMS и SMS</p></div>
+              <div class="col-sm-5">
+                <p class="text-center">1300 шт. из 1300 шт.</p>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-7"><p>Мобильный интернет</p></div>
+              <div class="col-sm-5">
+                <p class="text-center">958 Мб из 10240 Мб</p>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                    <span class="sr-only">65% Complete</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Расходы текущего периода</h2>
+        </div>
+        <table class="table expenses">
+          <tbody>
+          <tr>
+            <td colspan="2">Абон. плата по тарифу</td>
+            <td>450 ₽</td>
+          </tr>
+          <tr>
+            <td colspan="3">Входящие и исходящие вызовы</td>
+          </tr>
+          <tr class="sub-tr">
+            <td>Бесплатные</td>
+            <td>93 шт./ 224 мин.</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr class="sub-tr">
+            <td>Платные</td>
+            <td>10 шт./ 34 мин.</td>
+            <td>92,86 ₽</td>
+          </tr>
+          <tr>
+            <td colspan="3">MMS и SMS</td>
+          </tr>
+          <tr class="sub-tr">
+            <td>Бесплатные</td>
+            <td>251 шт.</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr class="sub-tr">
+            <td>Платные</td>
+            <td>10 шт.</td>
+            <td>5,98 ₽</td>
+          </tr>
+          <tr>
+            <td>Мобильный интернет</td>
+            <td>1592,46 Мб</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td colspan="2">Прочие услуги</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr class="total-tr">
+            <td colspan="2">Итого:</td>
+            <td>648,84 ₽</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Подключённые услуги</h2>
+        </div>
+
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-1 col-xs-2">
+                <label class="ios7-switch">
+                  <input type="checkbox" checked>
+                  <span></span>
+                </label>
+              </div>
+              <div class="col-sm-7 col-xs-10">
+                <h4>Блокировка передачи данных в роуминге</h4>
+                <p class="text-muted">Подключение: 17.08.2015, <br class="visible-xs-inline"> отключение: 15.10.2015</p>
+              </div>
+              <div class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-2">
+                <p><span class="text-muted">Абон. плата:</span> 0 ₽/сутки</p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-1 col-xs-2">
+                <label class="ios7-switch">
+                  <input type="checkbox" checked disabled>
+                  <span></span>
+                </label>
+              </div>
+              <div class="col-sm-7 col-xs-10">
+                <h4>Будь в курсе</h4>
+                <p class="text-muted">Подключение: 17.08.2015, <br class="visible-xs-inline"> услугу нельзя отключить.</p>
+              </div>
+              <div class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-2">
+                <p><span class="text-muted">Абон. плата:</span> 0 ₽/сутки</p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-1 col-xs-2">
+                <label class="ios7-switch">
+                  <input type="checkbox" checked disabled>
+                  <span></span>
+                </label>
+              </div>
+              <div class="col-sm-7 col-xs-10">
+                <h4>Доступ в 4G</h4>
+                <p class="text-muted">Подключение: 17.08.2015, <br class="visible-xs-inline"> услугу нельзя отключить.</p>
+              </div>
+              <div class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-2">
+                <p><span class="text-muted">Абон. плата:</span> 0 ₽/сутки</p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-1 col-xs-2">
+                <label class="ios7-switch">
+                  <input type="checkbox" checked>
+                  <span></span>
+                </label>
+              </div>
+              <div class="col-sm-7 col-xs-10">
+                <h4>Больше интернета 20Гб</h4>
+                <p class="text-muted">Подключение: 17.08.2015</p>
+              </div>
+              <div class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-2">
+                <p><span class="text-muted">Абон. плата:</span> 200 ₽/мес.</p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-sm-1 col-xs-2">
+                <label class="ios7-switch">
+                  <input type="checkbox">
+                  <span></span>
+                </label>
+              </div>
+              <div class="col-sm-7 col-xs-10">
+                <h4>Международная связь и роуминг</h4>
+                <p class="text-muted">Подключение: 17.08.2015</p>
+                <span class="label label-info">Услуга отключена</span>
+              </div>
+              <div class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-2">
+                <p><span class="text-muted">Абон. плата:</span> 0 ₽/сутки</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>© 2015, ООО «Агентство связи» </p>
+  </div>
+</footer>
+
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

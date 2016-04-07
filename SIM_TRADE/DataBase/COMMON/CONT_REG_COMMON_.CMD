@@ -1,0 +1,1 @@
+..\cmd\run.bat CONT_REG_COMMON_.SQL %1 %2 %3 %4

@@ -1,0 +1,58 @@
+CREATE OR REPLACE PROCEDURE GET_PHONE_NUMBERS_JSON2(HASH VARCHAR2 DEFAULT NULL) IS
+  
+  CURSOR CUR IS     
+    SELECT O.OPERATOR_NAME, D.PHONE_NUMBER, TRIM(TO_CHAR(D.PRICE, '999G999G990D99')) PRICE,
+           --T.TARIFF_NAME,
+           MS.MAIN_STORE_NAME
+      FROM D_PHONE_NUMBERS D, D_OPERATORS O, D_TARIFFS T, D_MAIN_STORES MS
+     WHERE D.OPERATOR_ID = O.OPERATOR_ID (+) 
+       AND D.TARIFF_ID = T.TARIFF_ID (+) 
+       --AND ((pPHONE_TYPES IS NULL) 
+       --      OR (pPHONE_TYPES = 'ALL')
+       --      OR ((pPHONE_TYPES = D_CONSTANTS_PKG.IS_DIRECT) AND (T.IS_DIRECT = 1)) 
+       --      OR ((NVL(pPHONE_TYPES, 'NULL') <> D_CONSTANTS_PKG.IS_DIRECT) AND (NVL(T.IS_DIRECT, 0) <> 1))) 
+       --AND ((pMIN_PRICE IS NULL) OR (D.PRICE >= pMIN_PRICE))
+       --AND ((pMAX_PRICE IS NULL) OR (D.PRICE <= pMAX_PRICE))
+       --AND ((pHLR IS NULL) OR (D.HL = pHLR))
+       --AND ((pOPERATOR_ID IS NULL) OR (D.OPERATOR_ID = pOPERATOR_ID))
+       --AND ((pMAIN_STORE_ID IS NULL) OR (D.D_MAIN_STORE_ID = pMAIN_STORE_ID))
+       --AND ((pTARIFF_ID IS NULL) OR (D.TARIFF_ID = pTARIFF_ID))
+       --AND ((REPLACE(pPHONE_SEARCH, ' ', '') IS NULL) OR (TO_CHAR(D.PHONE_NUMBER) LIKE '%'||REPLACE(pPHONE_SEARCH, ' ', '')||'%'))
+       --AND REGEXP_LIKE(D.PHONE_NUMBER, pPHONE_NUMBER)
+       AND D.USER_ID IS NULL -- не в работе ни укакого пользователя
+       AND D.USER_ID_STORED IS NULL -- не лежат на складе ни у какого пользователя
+       AND D.IS_ACTIVE = 1
+       AND D.D_MAIN_STORE_ID = MS.D_MAIN_STORE_ID (+)
+     --ORDER BY REPLACE(D.PHONE_NUMBER, ' ', '');
+     ORDER BY OPERATOR_NAME, PHONE_NUMBER;
+  vIS_FIRST BOOLEAN := TRUE;
+  FUNCTION PREPARE_JSON(pSTR VARCHAR2) RETURN VARCHAR2 IS
+  BEGIN
+    RETURN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
+        pSTR, 
+        '[', '\['),
+        ']', '\]'),
+        '''', '\'''),
+        '"', '\"'),
+        '{', '\{'),
+        '}', '\}')
+        ;
+  END;  
+BEGIN
+  IF HASH = 'BLABLABLABLA' THEN
+    HTP.PRINT('{response: [');
+    FOR REC IN CUR LOOP
+      -- ['Оператор', 'Номер', 'Цена', 'Склад']
+      IF NOT vIS_FIRST THEN 
+        HTP.PRN(',['''||PREPARE_JSON(REC.OPERATOR_NAME)||''', '''||PREPARE_JSON(REC.PHONE_NUMBER)||''', '''||REC.PRICE||''', '''||PREPARE_JSON(REC.MAIN_STORE_NAME)||''']');
+      ELSE    
+        HTP.PRN('['''||PREPARE_JSON(REC.OPERATOR_NAME)||''', '''||PREPARE_JSON(REC.PHONE_NUMBER)||''', '''||REC.PRICE||''', '''||PREPARE_JSON(REC.MAIN_STORE_NAME)||''']');    
+        vIS_FIRST := FALSE;
+      END IF;      
+    END LOOP;
+    HTP.PRINT(']}');
+  ELSE
+    HTP.PRINT(1/0);
+  END IF;
+END;
+/

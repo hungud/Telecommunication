@@ -1,0 +1,22 @@
+
+  CREATE OR REPLACE FUNCTION "CORP_MOBILE"."GET_MAIL_PHONE_FOR_UNBL_SAVE3" RETURN CLOB IS
+--Version=1
+RESULT_CLOB CLOB;
+LINE CLOB;
+BEGIN
+--  DBMS_LOB.CREATETEMPORARY(RESULT_CLOB, TRUE);
+ -- RESULT_CLOB:='"Телефон"' || CHR(9) || '"Баланс"' || CHR(9) || '"ФИО"' || CHR(9) || '"Ручная блокировка"';
+ RESULT_CLOB:='"Phone Number for Unlock"'|| CHR(13) ||CHR(10) ;
+  FOR rec IN(
+    SELECT vv.phone_number
+   FROM V_PHONE_NUMBER_FOR_UNBL_SAVE_3 vv
+      ) LOOP
+   -- LINE:=CHR(10) || rec.PHONE_NUMBER || CHR(9) || rec.BALANCE || CHR(9) || rec.FIO || CHR(9) || rec.HAND_BLOCK;
+
+   LINE:=CHR(13) ||CHR(10) || rec.PHONE_NUMBER;
+
+    DBMS_LOB.APPEND(RESULT_CLOB, LINE);
+  END LOOP;
+  RETURN RESULT_CLOB;
+  DBMS_LOB.FREETEMPORARY(RESULT_CLOB);
+END;

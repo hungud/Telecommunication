@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <title>Личный кабиент</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5">
+        <a class="header-logo" href="index.html">Личный кабинет</a>
+      </div>
+      <div class="col-md-4 col-sm-3">
+        <p class="header-phone">Служба поддержки
+        <a class="none-decoration" href="tel:+74993015121">+7 499 301-51-21</a></p>
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <ul class="header-menu list-inline">
+          <li><a href="settings.html">Мои настройки</a></li>
+          <li><a href="login.html">Выход</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Begin page content -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <nav>
+        <ul class="list-group main-bar">
+          <li class="list-group-item"><a href="payments.html"><div class="icon-payments"></div> Мои платежи</a></li>
+          <li class="list-group-item"><a href="promised-payment.html"><div class="icon-promised-payment"></div> Обещанный платеж</a></li>
+          <li class="list-group-item"><a href="detailing.html"><div class="icon-detailing"></div> Детализация услуг</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-md-10">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Обещанный платеж</h2>
+        </div>
+
+        <div class="panel-body">
+          <h4>Сумма платежа</h4>
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="sum" class="sr-only">Сумма</label>
+              <select id="sum" class="form-control p-payment">
+                <option>200 ₽</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-warning">Запросить</button>
+          </form>
+          <br>
+          <br>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>© 2015, ООО «Агентство связи» </p>
+  </div>
+</footer>
+
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

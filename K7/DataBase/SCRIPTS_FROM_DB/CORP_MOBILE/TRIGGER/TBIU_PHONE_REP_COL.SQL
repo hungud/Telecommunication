@@ -1,0 +1,17 @@
+
+  CREATE OR REPLACE TRIGGER "CORP_MOBILE"."TBIU_PHONE_REP_COL" 
+  before insert OR UPDATE on phone_report_columns
+  for each row
+begin
+  select S_NEW_PHONE_REPORT_COLUMNS_ID.Nextval
+    into :NEW.PHONE_REPORT_COLUMN_ID
+    from dual;
+  IF INSERTING THEN
+    :NEW.USER_CREATED := USER;
+    :NEW.DATE_CREATED := SYSDATE;
+  else
+    :NEW.USER_LAST_UPDATED := USER;
+    :NEW.DATE_LAST_UPDATED := SYSDATE;
+  end if;
+end;
+ALTER TRIGGER "CORP_MOBILE"."TBIU_PHONE_REP_COL" ENABLE
